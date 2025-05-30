@@ -1,0 +1,60 @@
+generator client {
+    provider = "prisma-client-js"
+    output   = "../src/generated/prisma"
+}
+
+datasource db {
+    provider = "mysql"
+    url      = env("DATABASE_URL")
+}
+
+model Admin {
+    id       Int    @id @default(autoincrement())
+    username String @unique
+    password String
+}
+
+model Elevation {
+    id              Int      @id @default(autoincrement())
+    water_elevation Float
+    created_at      DateTime @default(now())
+    hardwareId      Int
+    Hardware        Hardware @relation(fields: [hardwareId], references: [id])
+
+    @@index([hardwareId], map: "Elevation_hardwareId_fkey")
+}
+
+model Hardware {
+    id        Int         @id @default(autoincrement())
+    name      String
+    Elevation Elevation[]
+    Location  Location[]
+    Whatsapp  Whatsapp[]
+}
+
+model Location {
+    id         Int      @id @default(autoincrement())
+    longitude  String
+    latitude   String
+    created_at DateTime @default(now())
+    hardwareId Int
+    Hardware   Hardware @relation(fields: [hardwareId], references: [id])
+
+    @@index([hardwareId], map: "Location_hardwareId_fkey")
+}
+
+model Whatsapp {
+    id              Int      @id @default(autoincrement())
+    whatsapp_number String
+    hardwareId      Int
+    Hardware        Hardware @relation(fields: [hardwareId], references: [id])
+
+    @@index([hardwareId], map: "Whatsapp_hardwareId_fkey")
+}
+
+model Level {
+    id     Int @id @default(autoincrement())
+    Normal Int
+    Siaga  Int
+    Banjir Int
+}
