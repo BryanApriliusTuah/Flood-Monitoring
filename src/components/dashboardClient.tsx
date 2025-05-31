@@ -4,9 +4,9 @@ import {
 	ElevationType,
 	SectionCardType,
 	LocationType,
-} from "@/domain/dashboard/promise";
-import { ContextType } from "@/domain/dashboard/context";
-import { UserType } from "@/domain/dashboard/user";
+} from "@/domain/entities/dashboard/promise";
+import { ContextType } from "@/domain/entities/dashboard/context";
+import { User } from "@/domain/entities/dashboard/user";
 import { DataTable } from "@/components/data-table";
 import { SiteHeader } from "@/components/SiteHeader";
 import { AppSidebar } from "@/components/app-sidebar";
@@ -34,7 +34,7 @@ export default function dashboardClient({
 	const sectionCardData = use(promiseSectionCard);
 	const locationData = use(promiseLocation);
 
-	const [user, setUser] = useState<UserType | null>(null);
+	const [user, setUser] = useState<User | null>(null);
 	const [dashboard, setDashboard] = useState(false);
 	const [map, setMap] = useState(false);
 	const [chart, setChart] = useState(false);

@@ -1,5 +1,5 @@
 import { z } from "zod";
-import earlyWarningSchema from "../schema/early-warning-schema";
+import earlyWarningSchema from "@/domain/entities/schema/early-warning-schema";
 
 export default interface TableCellEarlyWarning {
 	item: z.infer<typeof earlyWarningSchema>;

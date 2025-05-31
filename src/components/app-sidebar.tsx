@@ -1,6 +1,6 @@
 "use client";
 import { IconInnerShadowTop } from "@tabler/icons-react";
-import navMainData from "@/domain/side-bar/nav-main-data";
+import navMainData from "@/domain/entities/side-bar/nav-main-data";
 import { NavMain } from "@/components/nav-main";
 import { NavUser } from "@/components/nav-user";
 import {

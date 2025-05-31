@@ -25,7 +25,7 @@ import { Separator } from "@/components/ui/separator";
 import { Area, AreaChart, CartesianGrid, XAxis } from "recharts";
 import TableCellElevation from "@/domain/table-cell/table-cell-elevation";
 import TableCellEarlyWarning from "@/domain/table-cell/table-cell-early-warning";
-import chartConfig from "@/domain/chart/chart-config";
+import chartConfig from "@/domain/entities/chart/chart-config";
 
 export const URL = process.env.NEXT_PUBLIC_URL;
 
