@@ -13,6 +13,10 @@ import {
 	ChartTooltip,
 	ChartTooltipContent,
 } from "@/components/ui/chart";
+import {
+	TableCellElevation,
+	TableCellEarlyWarning,
+} from "@/domain/entities/table-cell.type";
 import axios from "axios";
 import { toast } from "sonner";
 import { useState } from "react";
@@ -23,9 +27,7 @@ import { Button } from "@/components/ui/button";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { Separator } from "@/components/ui/separator";
 import { Area, AreaChart, CartesianGrid, XAxis } from "recharts";
-import TableCellElevation from "@/domain/table-cell/table-cell-elevation";
-import TableCellEarlyWarning from "@/domain/table-cell/table-cell-early-warning";
-import chartConfig from "@/domain/entities/chart/chart-config";
+import chartConfig from "@/domain/entities/chart-config.type";
 
 export const URL = process.env.NEXT_PUBLIC_URL;
 

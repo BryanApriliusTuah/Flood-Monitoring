@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { decrypt } from "@/lib/session";
 import { cookies } from "next/headers";
 import { PrismaClient } from "@/generated/prisma";
-import { DataTypeServer } from "@/components/interface";
+import { DataTableType } from "@/domain/entities/dashboard.type";
 
 const prisma = new PrismaClient();
 
@@ -72,7 +72,7 @@ export async function GET() {
 		.map((item) => {
 			const { Elevation, Location, Whatsapp } = item;
 			const minLength = Math.min(Elevation.length, Location.length);
-			const Combined: DataTypeServer[] = [];
+			const Combined: DataTableType["Combined"] = [];
 
 			for (let i = 0; i < minLength; i++) {
 				Combined.push({

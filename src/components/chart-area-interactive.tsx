@@ -2,8 +2,8 @@
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { useState, useEffect } from "react";
 import { Area, AreaChart, CartesianGrid, XAxis } from "recharts";
-import chartConfig from "@/domain/entities/chart/chart-config";
-import { ElevationType } from "@/domain/entities/dashboard/promise";
+import chartConfig from "@/domain/entities/chart-config.type";
+import { ElevationType } from "@/domain/entities/dashboard.type";
 import { useIsMobile } from "@/hooks/use-mobile";
 import {
 	Select,

@@ -8,9 +8,9 @@ import {
 	Layer,
 } from "@vis.gl/react-maplibre";
 import "maplibre-gl/dist/maplibre-gl.css";
-import { Location } from "./interface";
+import { LocationType } from "@/domain/entities/dashboard.type";
 
-const Mapping = ({ location }: { location: Location }) => {
+const Mapping = ({ location }: { location: LocationType }) => {
 	const longitude = parseFloat(location.longitude);
 	const latitude = parseFloat(location.latitude);
 

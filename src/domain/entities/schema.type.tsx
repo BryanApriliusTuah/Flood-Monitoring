@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-const elevationSchema = z.object({
+export const elevationSchema = z.object({
 	idElevation: z.number(),
 	water_elevation: z.number(),
 	created_at: z.string(),
@@ -9,4 +9,7 @@ const elevationSchema = z.object({
 	longitude: z.string(),
 });
 
-export default elevationSchema;
+export const earlyWarningSchema = z.object({
+	id: z.number(),
+	whatsapp_number: z.string(),
+});

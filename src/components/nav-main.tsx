@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/sidebar";
 import { useContext } from "react";
 import { DashboardContext } from "@/components/dashboardClient";
-import { ContextType } from "@/domain/entities/dashboard/context";
+import { ContextType } from "@/domain/entities/dashboard.type";
 
 export function NavMain({
 	items,

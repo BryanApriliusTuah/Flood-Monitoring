@@ -27,8 +27,10 @@ import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import type { ColumnDef } from "@tanstack/react-table";
 import { DeleteAlert } from "@/components/delete-alert";
-import elevationSchema from "@/domain/entities/schema/elevation-schema";
-import earlyWarningSchema from "@/domain/entities/schema/early-warning-schema";
+import {
+	elevationSchema,
+	earlyWarningSchema,
+} from "@/domain/entities/schema.type";
 
 export const URL = process.env.NEXT_PUBLIC_URL;
 

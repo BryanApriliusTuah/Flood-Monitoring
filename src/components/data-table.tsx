@@ -50,9 +50,11 @@ import { useState } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { AddDialog } from "@/components/add-dialog";
-import { LocationType } from "@/domain/entities/dashboard/promise";
-import elevationSchema from "@/domain/entities/schema/elevation-schema";
-import earlyWarningSchema from "@/domain/entities/schema/early-warning-schema";
+import { LocationType } from "@/domain/entities/dashboard.type";
+import {
+	elevationSchema,
+	earlyWarningSchema,
+} from "@/domain/entities/schema.type";
 import { elevationTable, earlyWarningTable } from "./interface";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 

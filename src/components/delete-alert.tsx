@@ -8,8 +8,10 @@ import {
 	AlertDialogHeader,
 	AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
-import elevationSchema from "@/domain/entities/schema/elevation-schema";
-import earlyWarningSchema from "@/domain/entities/schema/early-warning-schema";
+import {
+	elevationSchema,
+	earlyWarningSchema,
+} from "@/domain/entities/schema.type";
 import { z } from "zod";
 import { toast } from "sonner";
 import axios from "axios";

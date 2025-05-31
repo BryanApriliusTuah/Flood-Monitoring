@@ -24,9 +24,9 @@ import {
 	SidebarMenuItem,
 	useSidebar,
 } from "@/components/ui/sidebar";
-import { User } from "@/domain/entities/dashboard/user";
+import { UserType } from "@/domain/entities/dashboard.type";
 
-export function NavUser({ user }: { user: User }) {
+export function NavUser({ user }: { user: UserType }) {
 	const { isMobile } = useSidebar();
 
 	return (

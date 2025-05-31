@@ -3,7 +3,7 @@ import {
 	ElevationType,
 	LocationType,
 	SectionCardType,
-} from "@/domain/entities/dashboard/promise";
+} from "@/domain/entities/dashboard.type";
 
 export interface DataTableRepository {
 	getDashboard: () => Promise<DataTableType>;

@@ -5,7 +5,7 @@ import { SidebarTrigger } from "@/components/ui/sidebar";
 import { useContext } from "react";
 import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
-import { ContextType } from "@/domain/entities/dashboard/context";
+import { ContextType } from "@/domain/entities/dashboard.type";
 import { DashboardContext } from "@/components/dashboardClient";
 import {
 	DropdownMenu,
