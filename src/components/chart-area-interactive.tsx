@@ -2,7 +2,8 @@
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { useState, useEffect } from "react";
 import { Area, AreaChart, CartesianGrid, XAxis } from "recharts";
-import { chartConfig, Elevation } from "./interface";
+import chartConfig from "@/domain/chart/chart-config";
+import { ElevationType } from "@/domain/dashboard/promise";
 import { useIsMobile } from "@/hooks/use-mobile";
 import {
 	Select,
@@ -29,7 +30,7 @@ import dataset_bmkg from "@/app/Dataset_BMKG.json";
 export const description = "An interactive area chart";
 const URL = process.env.NEXT_PUBLIC_URL;
 
-export function ChartAreaInteractive({ data }: { data: Elevation }) {
+export function ChartAreaInteractive({ data }: { data: ElevationType }) {
 	const isMobile = useIsMobile();
 	const [timeRange, setTimeRange] = useState("90");
 	const [elevation, setElevation] = useState(

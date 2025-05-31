@@ -5,8 +5,8 @@ import { SidebarTrigger } from "@/components/ui/sidebar";
 import { useContext } from "react";
 import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
-import { DataType } from "./interface";
-import { SharingData } from "@/components/dashboardClient";
+import { ContextType } from "@/domain/dashboard/context";
+import { DashboardContext } from "@/components/dashboardClient";
 import {
 	DropdownMenu,
 	DropdownMenuContent,
@@ -15,7 +15,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 export function SiteHeader() {
-	const { header } = useContext(SharingData) as DataType;
+	const { header } = useContext(DashboardContext) as ContextType;
 	const { setTheme } = useTheme();
 	return (
 		<header className="flex h-(--header-height) shrink-0 items-center gap-2 border-b transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-(--header-height)">

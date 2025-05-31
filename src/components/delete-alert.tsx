@@ -8,7 +8,8 @@ import {
 	AlertDialogHeader,
 	AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
-import { earlySchema, schema } from "@/components/interface";
+import elevationSchema from "@/domain/schema/elevation-schema";
+import earlyWarningSchema from "@/domain/schema/early-warning-schema";
 import { z } from "zod";
 import { toast } from "sonner";
 import axios from "axios";
@@ -20,13 +21,13 @@ export function DeleteAlert({
 	open,
 	setOpen,
 }: {
-	item: z.infer<typeof schema> | z.infer<typeof earlySchema>;
+	item: z.infer<typeof elevationSchema> | z.infer<typeof earlyWarningSchema>;
 	open: boolean;
 	setOpen: (open: boolean) => void;
 }) {
 	const Handler = () => {
-		const schemaResult = schema.safeParse(item);
-		const earlySchemaResult = earlySchema.safeParse(item);
+		const schemaResult = elevationSchema.safeParse(item);
+		const earlySchemaResult = earlyWarningSchema.safeParse(item);
 
 		let data: any;
 

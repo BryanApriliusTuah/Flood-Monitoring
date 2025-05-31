@@ -45,23 +45,25 @@ import {
 	TableRow,
 } from "@/components/ui/table";
 import { z } from "zod";
+import Mapping from "./map";
 import { useState } from "react";
-import { earlySchema, Location, schema } from "./interface";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { AddDialog } from "@/components/add-dialog";
+import { LocationType } from "@/domain/dashboard/promise";
+import elevationSchema from "@/domain/schema/elevation-schema";
+import earlyWarningSchema from "@/domain/schema/early-warning-schema";
 import { elevationTable, earlyWarningTable } from "./interface";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import Mapping from "./map";
-import { AddDialog } from "@/components/add-dialog";
 
 export function DataTable({
 	elevation,
 	earlyWarning,
 	location,
 }: {
-	elevation: z.infer<typeof schema>[];
-	earlyWarning: z.infer<typeof earlySchema>[];
-	location: Location;
+	elevation: z.infer<typeof elevationSchema>[];
+	earlyWarning: z.infer<typeof earlyWarningSchema>[];
+	location: LocationType;
 }) {
 	const [dataTable, setDataTable] = useState(() => elevation);
 	const [dataTable2, setDataTable2] = useState(() => earlyWarning);

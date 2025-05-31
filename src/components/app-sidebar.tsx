@@ -1,6 +1,6 @@
 "use client";
 import { IconInnerShadowTop } from "@tabler/icons-react";
-import { data } from "@/components/interface";
+import navMainData from "@/domain/side-bar/nav-main-data";
 import { NavMain } from "@/components/nav-main";
 import { NavUser } from "@/components/nav-user";
 import {
@@ -34,10 +34,10 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 				</SidebarMenu>
 			</SidebarHeader>
 			<SidebarContent>
-				<NavMain items={data.navMain} />
+				<NavMain items={navMainData.navMain} />
 			</SidebarContent>
 			<SidebarFooter>
-				<NavUser user={data.user} />
+				<NavUser user={navMainData.user} />
 			</SidebarFooter>
 		</Sidebar>
 	);

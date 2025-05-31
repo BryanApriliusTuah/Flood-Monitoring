@@ -9,8 +9,8 @@ import {
 	SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import { useContext } from "react";
-import { SharingData } from "@/components/dashboardClient";
-import { DataType } from "./interface";
+import { DashboardContext } from "@/components/dashboardClient";
+import { ContextType } from "@/domain/dashboard/context";
 
 export function NavMain({
 	items,
@@ -28,7 +28,7 @@ export function NavMain({
 		setHardware,
 		setWarning,
 		setHeader,
-	} = useContext(SharingData) as DataType;
+	} = useContext(DashboardContext) as ContextType;
 
 	const handler = ({ title }: { title: string }) => {
 		setMap(false);

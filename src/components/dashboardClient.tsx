@@ -1,12 +1,12 @@
 "use client";
 import {
-	DataType,
-	DataTypeElevationWhatsapp,
-	Elevation,
-	Location,
-	SectionCard,
-	User,
-} from "@/components/interface";
+	DataTableType,
+	ElevationType,
+	SectionCardType,
+	LocationType,
+} from "@/domain/dashboard/promise";
+import { ContextType } from "@/domain/dashboard/context";
+import { UserType } from "@/domain/dashboard/user";
 import { DataTable } from "@/components/data-table";
 import { SiteHeader } from "@/components/SiteHeader";
 import { AppSidebar } from "@/components/app-sidebar";
@@ -15,7 +15,7 @@ import { createContext, CSSProperties, useState, use } from "react";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { ChartAreaInteractive } from "@/components/chart-area-interactive";
 
-export const SharingData = createContext<DataType | null>(null);
+export const DashboardContext = createContext<ContextType | null>(null);
 
 export default function dashboardClient({
 	promiseTable,
@@ -23,10 +23,10 @@ export default function dashboardClient({
 	promiseSectionCard,
 	promiseLocation,
 }: {
-	promiseTable: Promise<DataTypeElevationWhatsapp>;
-	promiseChart: Promise<Elevation>;
-	promiseSectionCard: Promise<SectionCard>;
-	promiseLocation: Promise<Location>;
+	promiseTable: Promise<DataTableType>;
+	promiseChart: Promise<ElevationType>;
+	promiseSectionCard: Promise<SectionCardType>;
+	promiseLocation: Promise<LocationType>;
 }) {
 	const elevationData = use(promiseTable).Combined;
 	const earlyWarning = use(promiseTable).Whatsapp;
@@ -34,7 +34,7 @@ export default function dashboardClient({
 	const sectionCardData = use(promiseSectionCard);
 	const locationData = use(promiseLocation);
 
-	const [user, setUser] = useState<User | null>(null);
+	const [user, setUser] = useState<UserType | null>(null);
 	const [dashboard, setDashboard] = useState(false);
 	const [map, setMap] = useState(false);
 	const [chart, setChart] = useState(false);
@@ -42,7 +42,7 @@ export default function dashboardClient({
 	const [warning, setWarning] = useState(false);
 	const [header, setHeader] = useState<{ title: string }>({ title: "" });
 	return (
-		<SharingData.Provider
+		<DashboardContext.Provider
 			value={{
 				user,
 				header,
@@ -86,6 +86,6 @@ export default function dashboardClient({
 					)}
 				</SidebarInset>
 			</SidebarProvider>
-		</SharingData.Provider>
+		</DashboardContext.Provider>
 	);
 }
