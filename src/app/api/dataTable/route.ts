@@ -91,7 +91,7 @@ export async function GET() {
 
 	if (!filteredData) return NextResponse.json({ status: 404 });
 
-	return NextResponse.json({ filteredData: filteredData }, { status: 200 });
+	return NextResponse.json(filteredData[0], { status: 200 });
 }
 
 export async function POST(request: Request) {

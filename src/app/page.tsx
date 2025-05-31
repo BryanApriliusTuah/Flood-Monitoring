@@ -1,30 +1,28 @@
 import DashboardClient from "@/components/dashboardClient";
 import axios from "axios";
+import { Suspense } from "react";
 
 const URL = process.env.NEXT_PUBLIC_URL;
 
 export default async function DashboardPage() {
-	const dataTable = await axios
-		.get(`${URL}/dataTable`)
-		.then((res) => res.data.filteredData);
+	const dataTable = axios.get(`${URL}/dataTable`).then((res) => res.data);
 
-	const dataChart = await axios
-		.get(`${URL}/chart`)
-		.then((res) => res.data.elevation);
+	const dataChart = axios.get(`${URL}/chart`).then((res) => res.data);
 
-	const dataSectionCard = await axios
+	const dataSectionCard = axios
 		.get(`${URL}/sectionCard`)
 		.then((res) => res.data);
 
-	const location = await axios.get(`${URL}/location`).then((res) => res.data);
+	const location = axios.get(`${URL}/location`).then((res) => res.data);
 
 	return (
-		<DashboardClient
-			serverElevationTable={dataTable[0].Combined}
-			serverEarlyWarningTable={dataTable[0].Whatsapp}
-			serverDataChart={dataChart}
-			serverSectionCard={dataSectionCard}
-			serverLocation={location}
-		/>
+		<Suspense fallback={<>Wait Bro...</>}>
+			<DashboardClient
+				promiseTable={dataTable}
+				promiseChart={dataChart}
+				promiseSectionCard={dataSectionCard}
+				promiseLocation={location}
+			/>
+		</Suspense>
 	);
 }

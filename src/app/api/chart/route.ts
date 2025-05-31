@@ -18,5 +18,5 @@ export async function GET() {
 
 	if (!elevation) return NextResponse.json({ status: 404 });
 
-	return NextResponse.json({ elevation }, { status: 200 });
+	return NextResponse.json(elevation, { status: 200 });
 }

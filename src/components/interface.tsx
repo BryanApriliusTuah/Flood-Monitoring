@@ -73,18 +73,19 @@ export interface DataType {
 	setHeader: (value: { title: string }) => void;
 }
 
-export interface DataTypeServer {
-	idElevation: number;
-	water_elevation: number;
-	created_at: string;
-	idLocation: number;
-	latitude: string;
-	longitude: string;
-}
-
-export interface EarlyWarning {
-	id: number;
-	whatsapp_number: string;
+export interface DataTypeElevationWhatsapp {
+	Combined: {
+		idElevation: number;
+		water_elevation: number;
+		created_at: string;
+		idLocation: number;
+		latitude: string;
+		longitude: string;
+	}[];
+	Whatsapp: {
+		id: number;
+		whatsapp_number: string;
+	}[];
 }
 
 export interface SectionCard {

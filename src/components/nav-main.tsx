@@ -31,14 +31,12 @@ export function NavMain({
 	} = useContext(SharingData) as DataType;
 
 	const handler = ({ title }: { title: string }) => {
-		// Reset all to false
 		setMap(false);
 		setDashboard(false);
 		setChart(false);
 		setHardware(false);
 		setWarning(false);
 
-		// Set only the selected one to true
 		switch (title) {
 			case "Map":
 				setMap(true);

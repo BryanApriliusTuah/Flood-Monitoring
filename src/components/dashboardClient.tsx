@@ -1,36 +1,39 @@
 "use client";
-import { AppSidebar } from "@/components/app-sidebar";
-import { ChartAreaInteractive } from "@/components/chart-area-interactive";
-import { DataTable } from "@/components/data-table";
-import { SectionCards } from "@/components/section-cards";
-import { SiteHeader } from "@/components/SiteHeader";
-import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
-import { createContext, CSSProperties, useState } from "react";
 import {
 	DataType,
-	DataTypeServer,
-	EarlyWarning,
+	DataTypeElevationWhatsapp,
 	Elevation,
 	Location,
 	SectionCard,
 	User,
 } from "@/components/interface";
+import { DataTable } from "@/components/data-table";
+import { SiteHeader } from "@/components/SiteHeader";
+import { AppSidebar } from "@/components/app-sidebar";
+import { SectionCards } from "@/components/section-cards";
+import { createContext, CSSProperties, useState, use } from "react";
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
+import { ChartAreaInteractive } from "@/components/chart-area-interactive";
 
 export const SharingData = createContext<DataType | null>(null);
 
 export default function dashboardClient({
-	serverElevationTable,
-	serverEarlyWarningTable,
-	serverDataChart,
-	serverSectionCard,
-	serverLocation,
+	promiseTable,
+	promiseChart,
+	promiseSectionCard,
+	promiseLocation,
 }: {
-	serverElevationTable: DataTypeServer[];
-	serverEarlyWarningTable: EarlyWarning[];
-	serverDataChart: Elevation;
-	serverSectionCard: SectionCard;
-	serverLocation: Location;
+	promiseTable: Promise<DataTypeElevationWhatsapp>;
+	promiseChart: Promise<Elevation>;
+	promiseSectionCard: Promise<SectionCard>;
+	promiseLocation: Promise<Location>;
 }) {
+	const elevationData = use(promiseTable).Combined;
+	const earlyWarning = use(promiseTable).Whatsapp;
+	const chartData = use(promiseChart);
+	const sectionCardData = use(promiseSectionCard);
+	const locationData = use(promiseLocation);
+
 	const [user, setUser] = useState<User | null>(null);
 	const [dashboard, setDashboard] = useState(false);
 	const [map, setMap] = useState(false);
@@ -66,16 +69,16 @@ export default function dashboardClient({
 						<div className="flex flex-1 flex-col">
 							<div className="@container/main flex flex-1 flex-col gap-2">
 								<div className="flex flex-col gap-4 py-4 md:gap-6 md:py-6">
-									<SectionCards data={serverSectionCard} />
+									<SectionCards data={sectionCardData} />
 									<div className="px-4 lg:px-6">
 										<ChartAreaInteractive
-											data={serverDataChart}
+											data={chartData}
 										/>
 									</div>
 									<DataTable
-										elevation={serverElevationTable}
-										earlyWarning={serverEarlyWarningTable}
-										location={serverLocation}
+										elevation={elevationData}
+										earlyWarning={earlyWarning}
+										location={locationData}
 									/>
 								</div>
 							</div>
