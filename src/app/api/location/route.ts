@@ -4,7 +4,7 @@ import { cookies } from "next/headers";
 import { prisma } from "@/lib/prisma";
 
 export async function GET() {
-	const location = await prisma.location.findFirst({
+	const location = await prisma.location.findMany({
 		select: {
 			latitude: true,
 			longitude: true,
