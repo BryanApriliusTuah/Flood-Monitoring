@@ -6,7 +6,7 @@ import {
 } from "@/domain/entities/dashboard.type";
 
 export interface DataTableRepository {
-	getDashboard: () => Promise<DataTableType>;
+	getDataTable: () => Promise<DataTableType>;
 }
 
 export interface ElevationRepository {

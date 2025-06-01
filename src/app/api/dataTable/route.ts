@@ -2,94 +2,17 @@ import { NextResponse } from "next/server";
 import { decrypt } from "@/lib/session";
 import { cookies } from "next/headers";
 import { prisma } from "@/lib/prisma";
-import { DataTableType } from "@/domain/entities/dashboard.type";
+import { getDataTable } from "@/application/use-cases/dashboard.useCase";
+import { DataTableInfrastructure } from "@/infrastructure/repositories/dashboard.infrastructure";
 
 export async function GET() {
-	const dataTable = await prisma.hardware.findMany({
-		select: {
-			Elevation: {
-				select: {
-					id: true,
-					water_elevation: true,
-					created_at: true,
-				},
-				orderBy: {
-					created_at: "desc",
-				},
-			},
-			Location: {
-				select: {
-					id: true,
-					latitude: true,
-					longitude: true,
-					created_at: true,
-				},
-				orderBy: {
-					created_at: "desc",
-				},
-			},
-			Whatsapp: {
-				select: {
-					id: true,
-					whatsapp_number: true,
-				},
-			},
-		},
-		where: {
-			id: 1,
-		},
-	});
-
-	const filteredData = dataTable
-		.map((item) => {
-			const isSameHour = ({ a, b }: { a: Date; b: Date }) =>
-				a.getFullYear() === b.getFullYear() &&
-				a.getMonth() === b.getMonth() &&
-				a.getDate() === b.getDate() &&
-				a.getHours() === b.getHours();
-
-			const matchedElevations = item.Elevation.filter((e) =>
-				item.Location.some((l) =>
-					isSameHour({ a: e.created_at, b: l.created_at })
-				)
-			);
-
-			const matchedLocations = item.Location.filter((l) =>
-				item.Elevation.some((e) =>
-					isSameHour({ a: l.created_at, b: e.created_at })
-				)
-			);
-
-			return {
-				Elevation: matchedElevations,
-				Location: matchedLocations,
-				Whatsapp: item.Whatsapp,
-			};
-		})
-		.filter((item) => item.Elevation.length > 0 && item.Location.length > 0)
-		.map((item) => {
-			const { Elevation, Location, Whatsapp } = item;
-			const minLength = Math.min(Elevation.length, Location.length);
-			const Combined: DataTableType["Combined"] = [];
-
-			for (let i = 0; i < minLength; i++) {
-				Combined.push({
-					idElevation: Elevation[i].id,
-					water_elevation: Elevation[i].water_elevation,
-					created_at: String(
-						Elevation[i].created_at || Location[i].created_at
-					),
-					idLocation: Location[i].id,
-					latitude: Location[i].latitude,
-					longitude: Location[i].longitude,
-				});
-			}
-			return { Combined, Whatsapp };
-		});
-
-	if (!filteredData) return NextResponse.json({ status: 404 });
-
-	return NextResponse.json(filteredData[0], { status: 200 });
+	const filteredData = await getDataTable(DataTableInfrastructure);
+	if (
+		filteredData.Combined.length === 0 ||
+		filteredData.Whatsapp.length === 0
+	)
+		return NextResponse.json({ status: 404 });
+	return NextResponse.json(filteredData, { status: 200 });
 }
 
 export async function POST(request: Request) {
