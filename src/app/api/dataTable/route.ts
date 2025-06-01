@@ -1,10 +1,8 @@
 import { NextResponse } from "next/server";
 import { decrypt } from "@/lib/session";
 import { cookies } from "next/headers";
-import { PrismaClient } from "@/generated/prisma";
+import { prisma } from "@/lib/prisma";
 import { DataTableType } from "@/domain/entities/dashboard.type";
-
-const prisma = new PrismaClient();
 
 export async function GET() {
 	const dataTable = await prisma.hardware.findMany({

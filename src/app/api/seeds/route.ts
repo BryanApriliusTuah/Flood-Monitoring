@@ -1,12 +1,9 @@
-import { NextResponse } from "next/server";
-import { decrypt } from "@/lib/session";
-import { cookies } from "next/headers";
-import { PrismaClient } from "@/generated/prisma";
 import axios from "axios";
-
+import { prisma } from "@/lib/prisma";
 import Level from "@/components/level";
-
-const prisma = new PrismaClient();
+import { cookies } from "next/headers";
+import { decrypt } from "@/lib/session";
+import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {
 	const newElevation = await prisma.elevation.create({

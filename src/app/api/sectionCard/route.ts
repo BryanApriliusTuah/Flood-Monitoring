@@ -1,12 +1,9 @@
-import { NextResponse } from "next/server";
-import { decrypt } from "@/lib/session";
-import { cookies } from "next/headers";
-import { PrismaClient } from "@/generated/prisma";
 import axios from "axios";
-
+import { prisma } from "@/lib/prisma";
+import { cookies } from "next/headers";
 import Level from "@/components/level";
-
-const prisma = new PrismaClient();
+import { decrypt } from "@/lib/session";
+import { NextResponse } from "next/server";
 
 export async function GET() {
 	// Status

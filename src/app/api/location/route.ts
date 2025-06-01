@@ -1,9 +1,7 @@
-import { PrismaClient } from "@/generated/prisma";
 import { NextResponse } from "next/server";
 import { decrypt } from "@/lib/session";
 import { cookies } from "next/headers";
-
-const prisma = new PrismaClient();
+import { prisma } from "@/lib/prisma";
 
 export async function GET() {
 	const location = await prisma.location.findFirst({
