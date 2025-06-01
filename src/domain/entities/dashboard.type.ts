@@ -13,9 +13,9 @@ export interface DataTableType {
 	}[];
 }
 
-export interface ElevationType {
+export interface ChartType {
 	water_elevation: number;
-	created_at: string;
+	created_at: Date;
 }
 
 export interface SectionCardType {
@@ -41,7 +41,7 @@ export interface SectionCardType {
 	predictPersentage: string;
 }
 
-export interface LocationType {
+export interface MapType {
 	latitude: string;
 	longitude: string;
 }

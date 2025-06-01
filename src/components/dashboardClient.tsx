@@ -1,9 +1,9 @@
 "use client";
 import {
 	DataTableType,
-	ElevationType,
+	ChartType,
 	SectionCardType,
-	LocationType,
+	MapType,
 	ContextType,
 	UserType,
 } from "@/domain/entities/dashboard.type";
@@ -24,9 +24,9 @@ export default function dashboardClient({
 	promiseLocation,
 }: {
 	promiseTable: Promise<DataTableType>;
-	promiseChart: Promise<ElevationType>;
+	promiseChart: Promise<ChartType>;
 	promiseSectionCard: Promise<SectionCardType>;
-	promiseLocation: Promise<LocationType>;
+	promiseLocation: Promise<MapType>;
 }) {
 	const elevationData = use(promiseTable).Combined;
 	const earlyWarning = use(promiseTable).Whatsapp;

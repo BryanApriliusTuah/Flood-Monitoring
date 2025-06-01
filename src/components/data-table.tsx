@@ -50,7 +50,7 @@ import { useState } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { AddDialog } from "@/components/add-dialog";
-import { LocationType } from "@/domain/entities/dashboard.type";
+import { MapType } from "@/domain/entities/dashboard.type";
 import {
 	elevationSchema,
 	earlyWarningSchema,
@@ -65,7 +65,7 @@ export function DataTable({
 }: {
 	elevation: z.infer<typeof elevationSchema>[];
 	earlyWarning: z.infer<typeof earlyWarningSchema>[];
-	location: LocationType;
+	location: MapType;
 }) {
 	const [dataTable, setDataTable] = useState(() => elevation);
 	const [dataTable2, setDataTable2] = useState(() => earlyWarning);

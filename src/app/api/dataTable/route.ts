@@ -6,13 +6,18 @@ import { getDataTable } from "@/application/use-cases/dashboard.useCase";
 import { DataTableInfrastructure } from "@/infrastructure/repositories/dashboard.infrastructure";
 
 export async function GET() {
-	const filteredData = await getDataTable(DataTableInfrastructure);
-	if (
-		filteredData.Combined.length === 0 ||
-		filteredData.Whatsapp.length === 0
-	)
-		return NextResponse.json({ status: 404 });
-	return NextResponse.json(filteredData, { status: 200 });
+	try {
+		const filteredData = await getDataTable(DataTableInfrastructure);
+		return NextResponse.json(filteredData, { status: 200 });
+	} catch (error) {
+		if (error instanceof Error) {
+			console.error("Router Data Table: ", error.message);
+			return NextResponse.json({ error: error.message }, { status: 400 });
+		} else {
+			console.error("Router Data Table Unknown error: ", error);
+			return NextResponse.json({ error: String(error) }, { status: 400 });
+		}
+	}
 }
 
 export async function POST(request: Request) {
