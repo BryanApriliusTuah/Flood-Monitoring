@@ -3,7 +3,7 @@ import {
 	deleteElevation,
 	getElevations,
 	updateElevation,
-} from "@/application/use-cases/elevation.useCase";
+} from "@/application/use-cases/elevation.application";
 import { decrypt } from "@/lib/session";
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";

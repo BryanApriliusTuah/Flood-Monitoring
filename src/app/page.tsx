@@ -13,7 +13,7 @@ export default async function DashboardPage() {
 		.get(`${URL}/sectionCard`)
 		.then((res) => res.data);
 
-	const location = axios.get(`${URL}/locations`).then((res) => res.data);
+	const location = axios.get(`${URL}/location`).then((res) => res.data);
 
 	return (
 		<Suspense fallback={<>Wait Bro...</>}>

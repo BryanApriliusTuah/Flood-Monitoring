@@ -1,6 +1,22 @@
+import { MapType } from "@/domain/entities/dashboard.type";
 import LocationType from "@/domain/entities/location.type";
 import LocationRepository from "@/domain/repositories/location.repository";
 import { prisma } from "@/lib/prisma";
+
+const Location = async (): Promise<MapType> => {
+	const map = await prisma.location.findFirst({
+		select: {
+			latitude: true,
+			longitude: true,
+		},
+		orderBy: {
+			created_at: "desc",
+		},
+	});
+
+	if (!map) throw new Error("Map");
+	return map;
+};
 
 const Locations = async (): Promise<LocationType[]> => {
 	const locations = await prisma.location.findMany({
@@ -64,6 +80,7 @@ const deleteLocation = async (id: number): Promise<LocationType> => {
 };
 
 export const LocationInfrastructure: LocationRepository = {
+	getLocation: async () => Location(),
 	getLocations: async () => Locations(),
 	addLocation: async (latitude, longitude) =>
 		addLocation(latitude, longitude),

@@ -1,5 +1,9 @@
 import LocationRepository from "@/domain/repositories/location.repository";
 
+export const getLocation = (infra: LocationRepository) => {
+	return infra.getLocation();
+};
+
 export const getLocations = (infra: LocationRepository) => {
 	return infra.getLocations();
 };
