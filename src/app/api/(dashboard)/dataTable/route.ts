@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { decrypt } from "@/lib/session";
 import { cookies } from "next/headers";
 import { prisma } from "@/lib/prisma";
-import { getDataTable } from "@/application/use-cases/dashboard.useCase";
+import { getDataTable } from "@/application/use-cases/dashboard.application";
 import { DataTableInfrastructure } from "@/infrastructure/repositories/dashboard.infrastructure";
 
 export async function GET() {

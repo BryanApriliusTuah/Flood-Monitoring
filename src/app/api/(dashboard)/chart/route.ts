@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { decrypt } from "@/lib/session";
 import { cookies } from "next/headers";
-import { getChart } from "@/application/use-cases/dashboard.useCase";
+import { getChart } from "@/application/use-cases/dashboard.application";
 import { ChartInfrastructure } from "@/infrastructure/repositories/dashboard.infrastructure";
 
 export async function GET() {
