@@ -12,6 +12,8 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useState, FormEvent } from "react";
 import axios from "axios";
+import delay from "@/lib/delay";
+import { useRouter } from "next/navigation";
 
 const URL = process.env.NEXT_PUBLIC_URL;
 
@@ -19,21 +21,24 @@ export function LoginForm({
 	className,
 	...props
 }: React.ComponentProps<"div">) {
+	const router = useRouter();
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
-	const [error, setError] = useState("");
 	const [loading, setLoading] = useState(false);
+	const [error, setError] = useState("");
 	const handler = async (e: FormEvent) => {
 		e.preventDefault();
 		setLoading(true);
+		await delay(500);
 		const login = await axios
 			.post(`${URL}/login`, { username, password })
 			.then((res) => res.data);
 		console.log(login);
 		if (login === "Success Login") {
-			alert(login);
+			router.push("/dashboard");
 		} else {
 			setError(login);
+			setLoading(false);
 		}
 	};
 

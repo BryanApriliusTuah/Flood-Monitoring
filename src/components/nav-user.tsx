@@ -25,9 +25,20 @@ import {
 	useSidebar,
 } from "@/components/ui/sidebar";
 import { UserType } from "@/domain/entities/dashboard.type";
+import axios from "axios";
+import { useRouter } from "next/navigation";
 
 export function NavUser({ user }: { user: UserType }) {
 	const { isMobile } = useSidebar();
+	const router = useRouter();
+
+	const logout = async (e: any) => {
+		e.preventDefault();
+		const URL = process.env.NEXT_PUBLIC_URL;
+		await axios.post(`${URL}/logout`);
+
+		router.push("/login");
+	};
 
 	return (
 		<SidebarMenu>
@@ -101,7 +112,7 @@ export function NavUser({ user }: { user: UserType }) {
 							</DropdownMenuItem>
 						</DropdownMenuGroup>
 						<DropdownMenuSeparator />
-						<DropdownMenuItem>
+						<DropdownMenuItem onClick={logout}>
 							<IconLogout />
 							Log out
 						</DropdownMenuItem>
