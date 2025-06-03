@@ -1,37 +1,28 @@
-import { AppSidebar } from "@/components/app-sidebar";
-import { ChartAreaInteractive } from "@/components/chart-area-interactive";
-import { DataTable } from "@/components/data-table";
-import { SectionCards } from "@/components/section-cards";
-import { SiteHeader } from "@/components/SiteHeader";
-import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
+import DashboardClient from "@/components/dashboardClient";
+import axios from "axios";
+import { Suspense } from "react";
 
-import data from "./data.json";
+const URL = process.env.NEXT_PUBLIC_URL;
 
-export default function Page() {
+export default async function DashboardPage() {
+	const dataTable = axios.get(`${URL}/dataTable`).then((res) => res.data);
+
+	const dataChart = axios.get(`${URL}/chart`).then((res) => res.data);
+
+	const dataSectionCard = axios
+		.get(`${URL}/sectionCard`)
+		.then((res) => res.data);
+
+	const location = axios.get(`${URL}/location`).then((res) => res.data);
+
 	return (
-		<SidebarProvider
-			style={
-				{
-					"--sidebar-width": "calc(var(--spacing) * 72)",
-					"--header-height": "calc(var(--spacing) * 12)",
-				} as React.CSSProperties
-			}
-		>
-			<AppSidebar variant="inset" />
-			<SidebarInset>
-				<SiteHeader />
-				<div className="flex flex-1 flex-col">
-					<div className="@container/main flex flex-1 flex-col gap-2">
-						<div className="flex flex-col gap-4 py-4 md:gap-6 md:py-6">
-							<SectionCards />
-							<div className="px-4 lg:px-6">
-								<ChartAreaInteractive />
-							</div>
-							<DataTable data={data} />
-						</div>
-					</div>
-				</div>
-			</SidebarInset>
-		</SidebarProvider>
+		<Suspense fallback={<>Wait Bro...</>}>
+			<DashboardClient
+				promiseTable={dataTable}
+				promiseChart={dataChart}
+				promiseSectionCard={dataSectionCard}
+				promiseLocation={location}
+			/>
+		</Suspense>
 	);
 }
