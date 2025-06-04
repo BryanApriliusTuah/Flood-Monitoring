@@ -54,21 +54,27 @@ import { MapType } from "@/domain/entities/dashboard.type";
 import {
 	elevationSchema,
 	earlyWarningSchema,
+	signUpSchema,
 } from "@/domain/entities/schema.type";
-import { elevationTable, earlyWarningTable } from "./interface";
+import { elevationTable, earlyWarningTable, signUpTable } from "./interface";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 export function DataTable({
 	elevation,
 	earlyWarning,
 	location,
+	signUp,
 }: {
 	elevation: z.infer<typeof elevationSchema>[];
 	earlyWarning: z.infer<typeof earlyWarningSchema>[];
 	location: MapType;
+	signUp: z.infer<typeof signUpSchema>[];
 }) {
-	const [dataTable, setDataTable] = useState(() => elevation);
-	const [dataTable2, setDataTable2] = useState(() => earlyWarning);
+	const [dataElevation, setDataElevation] = useState(() => elevation);
+	const [dataEarlyWarning, setDataEarlyWarning] = useState(
+		() => earlyWarning
+	);
+	const [dataSignUp, setdataSignUp] = useState(() => signUp);
 	const [rowSelection, setRowSelection] = useState({});
 	const [tabValue, setTabValue] = useState("elevation");
 	const [sorting, setSorting] = useState<SortingState>([]);
@@ -82,7 +88,7 @@ export function DataTable({
 	);
 
 	const table = useReactTable({
-		data: dataTable,
+		data: dataElevation,
 		columns: elevationTable,
 		state: {
 			sorting,
@@ -107,8 +113,33 @@ export function DataTable({
 	});
 
 	const table2 = useReactTable({
-		data: dataTable2,
+		data: dataEarlyWarning,
 		columns: earlyWarningTable,
+		state: {
+			sorting,
+			columnVisibility,
+			rowSelection,
+			columnFilters,
+			pagination,
+		},
+		getRowId: (row) => row.id.toString(),
+		enableRowSelection: true,
+		onRowSelectionChange: setRowSelection,
+		onSortingChange: setSorting,
+		onColumnFiltersChange: setColumnFilters,
+		onColumnVisibilityChange: setColumnVisibility,
+		onPaginationChange: setPagination,
+		getCoreRowModel: getCoreRowModel(),
+		getFilteredRowModel: getFilteredRowModel(),
+		getPaginationRowModel: getPaginationRowModel(),
+		getSortedRowModel: getSortedRowModel(),
+		getFacetedRowModel: getFacetedRowModel(),
+		getFacetedUniqueValues: getFacetedUniqueValues(),
+	});
+
+	const table3 = useReactTable({
+		data: dataSignUp,
+		columns: signUpTable,
 		state: {
 			sorting,
 			columnVisibility,
@@ -161,9 +192,7 @@ export function DataTable({
 							Early Warning
 						</SelectItem>
 						<SelectItem value="location">Location</SelectItem>
-						<SelectItem value="focus-documents">
-							Focus Documents
-						</SelectItem>
+						<SelectItem value="sign-up">Sign Up Request</SelectItem>
 					</SelectContent>
 				</Select>
 				<TabsList className="**:data-[slot=badge]:bg-muted-foreground/30 hidden **:data-[slot=badge]:size-5 **:data-[slot=badge]:rounded-full **:data-[slot=badge]:px-1 @4xl/main:flex">
@@ -176,8 +205,8 @@ export function DataTable({
 					<TabsTrigger value="location">
 						Location <Badge variant="secondary">3</Badge>
 					</TabsTrigger>
-					<TabsTrigger value="focus-documents">
-						Focus Documents <Badge variant="secondary">4</Badge>
+					<TabsTrigger value="sign-up">
+						Sign Up Request <Badge variant="secondary">4</Badge>
 					</TabsTrigger>
 				</TabsList>
 				<div className="flex items-center gap-2">
@@ -193,7 +222,12 @@ export function DataTable({
 							</Button>
 						</DropdownMenuTrigger>
 						<DropdownMenuContent align="end" className="w-56">
-							{(tabValue == "elevation" ? table : table2)
+							{(tabValue == "elevation"
+								? table
+								: tabValue == "early-warning"
+								? table2
+								: table3
+							)
 								.getAllColumns()
 								.filter(
 									(column) =>
@@ -216,15 +250,25 @@ export function DataTable({
 								})}
 						</DropdownMenuContent>
 					</DropdownMenu>
-					<Button
-						variant="outline"
-						size="sm"
-						onClick={() => setOpen(true)}
-					>
-						<IconPlus />
-						<span className="hidden lg:inline">Add Section</span>
-					</Button>
-					<AddDialog open={open} setOpen={setOpen} tab={tabValue} />
+					{tabValue != "sign-up" && tabValue != "location" && (
+						<>
+							<Button
+								variant="outline"
+								size="sm"
+								onClick={() => setOpen(true)}
+							>
+								<IconPlus />
+								<span className="hidden lg:inline">
+									Add Section
+								</span>
+							</Button>
+							<AddDialog
+								open={open}
+								setOpen={setOpen}
+								tab={tabValue}
+							/>
+						</>
+					)}
 				</div>
 			</div>
 			<TabsContent
@@ -558,11 +602,166 @@ export function DataTable({
 					<Mapping location={location} />
 				</div>
 			</TabsContent>
-			<TabsContent
-				value="focus-documents"
-				className="flex flex-col px-4 lg:px-6"
-			>
-				<div className="aspect-video w-full flex-1 rounded-lg border border-dashed"></div>
+			<TabsContent value="sign-up" className="flex flex-col px-4 lg:px-6">
+				{/* <div className="aspect-video w-full flex-1 rounded-lg border border-dashed"></div> */}
+				<div className="overflow-hidden rounded-lg border">
+					<Table>
+						<TableHeader className="bg-muted sticky top-0 z-10">
+							{table3.getHeaderGroups().map((headerGroup) => (
+								<TableRow key={headerGroup.id}>
+									{headerGroup.headers.map((header) => {
+										return (
+											<TableHead
+												key={header.id}
+												colSpan={header.colSpan}
+											>
+												{header.isPlaceholder
+													? null
+													: flexRender(
+															header.column
+																.columnDef
+																.header,
+															header.getContext()
+													  )}
+											</TableHead>
+										);
+									})}
+								</TableRow>
+							))}
+						</TableHeader>
+						<TableBody className="**:data-[slot=table-cell]:first:w-8">
+							{table3.getRowModel().rows?.length ? (
+								table3.getRowModel().rows.map((row) => (
+									<TableRow
+										key={row.id}
+										data-state={
+											row.getIsSelected() && "selected"
+										}
+									>
+										{row.getVisibleCells().map((cell) => (
+											<TableCell key={cell.id}>
+												{flexRender(
+													cell.column.columnDef.cell,
+													cell.getContext()
+												)}
+											</TableCell>
+										))}
+									</TableRow>
+								))
+							) : (
+								<TableRow>
+									<TableCell
+										colSpan={elevationTable.length}
+										className="h-24 text-center"
+									>
+										No results.
+									</TableCell>
+								</TableRow>
+							)}
+						</TableBody>
+					</Table>
+				</div>
+				<div className="flex items-center justify-between px-4">
+					<div className="text-muted-foreground hidden flex-1 text-sm lg:flex">
+						{table3.getFilteredSelectedRowModel().rows.length} of{" "}
+						{table3.getFilteredRowModel().rows.length} row(s)
+						selected.
+					</div>
+					<div className="flex w-full items-center gap-8 lg:w-fit">
+						<div className="hidden items-center gap-2 lg:flex">
+							<Label
+								htmlFor="rows-per-page"
+								className="text-sm font-medium"
+							>
+								Rows per page
+							</Label>
+							<Select
+								value={`${
+									table3.getState().pagination.pageSize
+								}`}
+								onValueChange={(value) => {
+									table3.setPageSize(Number(value));
+								}}
+							>
+								<SelectTrigger
+									size="sm"
+									className="w-20"
+									id="rows-per-page"
+								>
+									<SelectValue
+										placeholder={
+											table3.getState().pagination
+												.pageSize
+										}
+									/>
+								</SelectTrigger>
+								<SelectContent side="top">
+									{[10, 20, 30, 40, 50].map((pageSize) => (
+										<SelectItem
+											key={pageSize}
+											value={`${pageSize}`}
+										>
+											{pageSize}
+										</SelectItem>
+									))}
+								</SelectContent>
+							</Select>
+						</div>
+						<div className="flex w-fit items-center justify-center text-sm font-medium">
+							Page {table3.getState().pagination.pageIndex + 1} of{" "}
+							{table3.getPageCount()}
+						</div>
+						<div className="ml-auto flex items-center gap-2 lg:ml-0">
+							<Button
+								variant="outline"
+								className="hidden h-8 w-8 p-0 lg:flex"
+								onClick={() => table3.setPageIndex(0)}
+								disabled={!table3.getCanPreviousPage()}
+							>
+								<span className="sr-only">
+									Go to first page
+								</span>
+								<IconChevronsLeft />
+							</Button>
+							<Button
+								variant="outline"
+								className="size-8"
+								size="icon"
+								onClick={() => table3.previousPage()}
+								disabled={!table3.getCanPreviousPage()}
+							>
+								<span className="sr-only">
+									Go to previous page
+								</span>
+								<IconChevronLeft />
+							</Button>
+							<Button
+								variant="outline"
+								className="size-8"
+								size="icon"
+								onClick={() => table3.nextPage()}
+								disabled={!table3.getCanNextPage()}
+							>
+								<span className="sr-only">Go to next page</span>
+								<IconChevronRight />
+							</Button>
+							<Button
+								variant="outline"
+								className="hidden size-8 lg:flex"
+								size="icon"
+								onClick={() =>
+									table3.setPageIndex(
+										table3.getPageCount() - 1
+									)
+								}
+								disabled={!table3.getCanNextPage()}
+							>
+								<span className="sr-only">Go to last page</span>
+								<IconChevronsRight />
+							</Button>
+						</div>
+					</div>
+				</div>
 			</TabsContent>
 		</Tabs>
 	);

@@ -14,6 +14,7 @@ import { SectionCards } from "@/components/section-cards";
 import { createContext, CSSProperties, useState, use } from "react";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { ChartAreaInteractive } from "@/components/chart-area-interactive";
+import SignUpType from "@/domain/entities/signup.type";
 
 export const DashboardContext = createContext<ContextType | null>(null);
 
@@ -22,17 +23,20 @@ export default function dashboardClient({
 	promiseChart,
 	promiseSectionCard,
 	promiseLocation,
+	promiseSignUp,
 }: {
 	promiseTable: Promise<DataTableType>;
 	promiseChart: Promise<ChartType>;
 	promiseSectionCard: Promise<SectionCardType>;
 	promiseLocation: Promise<MapType>;
+	promiseSignUp: Promise<SignUpType[]>;
 }) {
 	const elevationData = use(promiseTable).Combined;
 	const earlyWarning = use(promiseTable).Whatsapp;
 	const chartData = use(promiseChart);
 	const sectionCardData = use(promiseSectionCard);
 	const locationData = use(promiseLocation);
+	const signUpData = use(promiseSignUp);
 
 	const [user, setUser] = useState<UserType | null>(null);
 	const [dashboard, setDashboard] = useState(false);
@@ -79,6 +83,7 @@ export default function dashboardClient({
 										elevation={elevationData}
 										earlyWarning={earlyWarning}
 										location={locationData}
+										signUp={signUpData}
 									/>
 								</div>
 							</div>

@@ -19,10 +19,10 @@ const verify = async (): Promise<Response> => {
 	return new Response("Authenticated", { status: 200 });
 };
 
-const login = async (username: string, password: string): Promise<Response> => {
+const login = async (email: string, password: string): Promise<Response> => {
 	const user = await prisma.admin.findFirst({
 		where: {
-			username: username,
+			email: email,
 			password: password,
 		},
 	});
@@ -45,6 +45,6 @@ const logout = async (): Promise<Response> => {
 
 export const SessionInfrastructure: SessionRepository = {
 	verify: async () => verify(),
-	login: async (username, password) => login(username, password),
+	login: async (email, password) => login(email, password),
 	logout: async () => logout(),
 };

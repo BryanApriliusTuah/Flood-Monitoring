@@ -3,6 +3,8 @@ import {
 	IconDotsVertical,
 	IconBrandWhatsappFilled,
 	IconAlertHexagonFilled,
+	IconUserFilled,
+	IconLoader,
 } from "@tabler/icons-react";
 import {
 	DropdownMenu,
@@ -30,6 +32,7 @@ import { DeleteAlert } from "@/components/delete-alert";
 import {
 	elevationSchema,
 	earlyWarningSchema,
+	signUpSchema,
 } from "@/domain/entities/schema.type";
 
 export const URL = process.env.NEXT_PUBLIC_URL;
@@ -474,6 +477,199 @@ export const earlyWarningTable: ColumnDef<
 							</DropdownMenuItem>
 						</DropdownMenuContent>
 					</DropdownMenu>
+				</div>
+			);
+		},
+	},
+];
+
+export const signUpTable: ColumnDef<z.infer<typeof signUpSchema>>[] = [
+	{
+		id: "select",
+		header: ({ table }) => (
+			<div className="flex items-center justify-center">
+				<Checkbox
+					checked={
+						table.getIsAllPageRowsSelected() ||
+						(table.getIsSomePageRowsSelected() && "indeterminate")
+					}
+					onCheckedChange={(value) =>
+						table.toggleAllPageRowsSelected(!!value)
+					}
+					aria-label="Select all"
+				/>
+			</div>
+		),
+		cell: ({ row }) => (
+			<div className="flex items-center justify-center">
+				<Checkbox
+					checked={row.getIsSelected()}
+					onCheckedChange={(value) => row.toggleSelected(!!value)}
+					aria-label="Select row"
+				/>
+			</div>
+		),
+		enableSorting: false,
+		enableHiding: false,
+	},
+	{
+		accessorKey: "no",
+		header: () => <div className="w-full text-center">No</div>,
+		cell: ({ row }) => <div className="text-center">{row.index + 1}</div>,
+		enableHiding: false,
+	},
+	{
+		accessorKey: "username",
+		header: () => <div className="text-center">Username</div>,
+		cell: ({ row }) => (
+			<div className="flex justify-center items-center">
+				<Badge
+					variant="outline"
+					className="text-muted-foreground px-1.5"
+				>
+					<IconUserFilled className="fill-green-500 dark:fill-green-400" />
+					{row.original.username}
+				</Badge>
+			</div>
+		),
+	},
+	{
+		accessorKey: "email",
+		header: () => <div className="w-full text-center">Email</div>,
+		cell: ({ row }) => {
+			const [email, setEmail] = useState(row.original.email);
+
+			return (
+				<form
+					className="flex justify-center items-center"
+					onSubmit={(e) => {
+						e.preventDefault();
+						const data = {
+							id: row.original.id,
+							email: email,
+						};
+						toast.promise(
+							async () => {
+								await new Promise((resolve) =>
+									setTimeout(resolve, 1000)
+								);
+								return axios.put(`${URL}/whatsapp`, data);
+							},
+							{
+								loading: `Saving ${email}...`,
+								success: "Saved successfully!",
+								error: "Failed to save.",
+							}
+						);
+					}}
+				>
+					<Label
+						htmlFor={`${row.original.id}-number`}
+						className="sr-only"
+					>
+						Email
+					</Label>
+					<Input
+						className="hover:bg-input/30 focus-visible:bg-background dark:hover:bg-input/30 dark:focus-visible:bg-input/30 h-8 w-50 border-transparent bg-transparent text-center text-muted-foreground focus-visible:text-primary shadow-none focus-visible:border dark:bg-transparent"
+						value={email}
+						onChange={(e) => setEmail(e.target.value)}
+						id={`${row.original.id}-number`}
+					/>
+				</form>
+			);
+		},
+	},
+	{
+		accessorKey: "password",
+		header: () => <div className="w-full text-center">Password</div>,
+		cell: ({ row }) => {
+			const [password, setPassword] = useState(row.original.password);
+
+			return (
+				<form
+					className="flex justify-center items-center"
+					onSubmit={(e) => {
+						e.preventDefault();
+						const data = {
+							id: row.original.id,
+							password: password,
+						};
+						toast.promise(
+							async () => {
+								await new Promise((resolve) =>
+									setTimeout(resolve, 1000)
+								);
+								return axios.put(`${URL}/whatsapp`, data);
+							},
+							{
+								loading: `Saving ${password}...`,
+								success: "Saved successfully!",
+								error: "Failed to save.",
+							}
+						);
+					}}
+				>
+					<Label
+						htmlFor={`${row.original.id}-number`}
+						className="sr-only"
+					>
+						Password
+					</Label>
+					<Input
+						className="hover:bg-input/30 focus-visible:bg-background dark:hover:bg-input/30 dark:focus-visible:bg-input/30 h-8 w-40 border-transparent bg-transparent text-center text-muted-foreground focus-visible:text-primary shadow-none focus-visible:border dark:bg-transparent"
+						value={password}
+						onChange={(e) => setPassword(e.target.value)}
+						id={`${row.original.id}-number`}
+					/>
+				</form>
+			);
+		},
+	},
+	{
+		accessorKey: "status",
+		header: () => <div className="w-full text-center">Status</div>,
+		cell: () => {
+			return (
+				<div className="flex justify-center items-center">
+					<Badge
+						variant="outline"
+						className="text-muted-foreground px-1.5 tracking-widest"
+					>
+						<IconLoader className="" />
+						<div className="text-orange-500">Waiting...</div>
+					</Badge>
+				</div>
+			);
+		},
+	},
+	{
+		accessorKey: "accepted",
+		header: () => <div className="w-full text-center">Accepted</div>,
+		cell: () => {
+			return (
+				<div className="flex justify-center items-center">
+					<Button
+						variant="outline"
+						className="text-green-500 hover:text-green-600"
+					>
+						Accept
+					</Button>
+				</div>
+			);
+		},
+	},
+	{
+		accessorKey: "rejected",
+		header: () => <div className="w-full text-center">Rejected</div>,
+		cell: () => {
+			return (
+				<div className="flex justify-center items-center">
+					<Button
+						variant="outline"
+						className="text-red-500 hover:text-red-600"
+					>
+						Reject request
+					</Button>
 				</div>
 			);
 		},

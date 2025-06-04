@@ -13,3 +13,10 @@ export const earlyWarningSchema = z.object({
 	id: z.number(),
 	whatsapp_number: z.string(),
 });
+
+export const signUpSchema = z.object({
+	id: z.number(),
+	username: z.string(),
+	email: z.string(),
+	password: z.string(),
+});

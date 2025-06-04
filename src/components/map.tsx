@@ -11,8 +11,13 @@ import "maplibre-gl/dist/maplibre-gl.css";
 import { MapType } from "@/domain/entities/dashboard.type";
 
 const Mapping = ({ location }: { location: MapType }) => {
-	const longitude = parseFloat(location.longitude);
-	const latitude = parseFloat(location.latitude);
+	let latitude = parseFloat(location.latitude);
+	let longitude = parseFloat(location.longitude);
+
+	if (!location.longitude || !location.latitude) {
+		latitude = -2.207868;
+		longitude = 113.916263;
+	}
 
 	const [viewState, setViewState] = useState({
 		longitude: longitude,
