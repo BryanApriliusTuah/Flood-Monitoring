@@ -15,6 +15,24 @@ import axios from "axios";
 import Level from "@/components/level";
 
 const DataTable = async (): Promise<DataTableType> => {
+	const data: DataTableType = {
+		Combined: [
+			{
+				idElevation: 0,
+				water_elevation: 0,
+				created_at: new Date().toISOString(),
+				idLocation: 0,
+				latitude: "",
+				longitude: "",
+			},
+		],
+		Whatsapp: [
+			{
+				id: 0,
+				whatsapp_number: "",
+			},
+		],
+	};
 	const dataTable = await prisma.hardware.findMany({
 		select: {
 			Elevation: {
@@ -50,7 +68,7 @@ const DataTable = async (): Promise<DataTableType> => {
 		},
 	});
 
-	if (!dataTable) throw new Error("Data Table");
+	if (!dataTable.length) return data;
 
 	const filteredData = dataTable
 		.map((item) => {
@@ -99,7 +117,7 @@ const DataTable = async (): Promise<DataTableType> => {
 			return { Combined, Whatsapp };
 		});
 
-	if (!filteredData) throw new Error("Filtered Data");
+	if (!filteredData.length) throw new Error("Filtered Data");
 
 	return filteredData[0];
 };
@@ -121,6 +139,28 @@ const Chart = async (): Promise<ChartType[]> => {
 };
 
 const SectionCards = async (): Promise<SectionCardType> => {
+	const data: SectionCardType = {
+		status: "",
+		latitude: "",
+		longitude: "",
+		location: {
+			city: "Last updated",
+			village: "Palangkaraya",
+			state: "Indonesia",
+			country: "Indonesia",
+			postcode: "Postcode",
+		},
+		waterIndexLevel: {
+			water1: 0,
+			created_at1: new Date().toISOString(),
+			water2: 0,
+			created_at2: new Date().toISOString(),
+			persentage: 0,
+			time: "0",
+		},
+		prediction: "0",
+		predictPersentage: "0",
+	};
 	// Status
 	const index = await prisma.elevation.findFirst({
 		select: {
@@ -131,7 +171,7 @@ const SectionCards = async (): Promise<SectionCardType> => {
 		},
 	});
 
-	if (!index) throw new Error("Index");
+	if (!index) return data;
 
 	const status =
 		index.water_elevation > Level.Normal

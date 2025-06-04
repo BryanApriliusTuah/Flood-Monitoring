@@ -4,6 +4,10 @@ import LocationRepository from "@/domain/repositories/location.repository";
 import { prisma } from "@/lib/prisma";
 
 const Location = async (): Promise<MapType> => {
+	const data: MapType = {
+		latitude: "",
+		longitude: "",
+	};
 	const map = await prisma.location.findFirst({
 		select: {
 			latitude: true,
@@ -14,7 +18,7 @@ const Location = async (): Promise<MapType> => {
 		},
 	});
 
-	if (!map) throw new Error("Map");
+	if (!map) return data;
 	return map;
 };
 

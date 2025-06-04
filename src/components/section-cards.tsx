@@ -31,34 +31,34 @@ export function SectionCards({ data }: { data: SectionCardType }) {
 						}}
 						className="text-2xl font-semibold tabular-nums @[250px]/card:text-3xl tracking-widest "
 					>
-						{data.status}
+						{data.status !== "" ? data.status : "Offline"}
 					</CardTitle>
 				</CardHeader>
 				<CardFooter className="flex-col items-start gap-1.5 text-sm">
 					<div className="line-clamp-1 flex gap-2 font-medium">
-						<>Water level</>
-						{data.status == "NORMAL" ? (
-							<>
-								<IconArrowsShuffle className="size-4" />
-							</>
-						) : data.status == "SIAGA" ? (
-							<>
-								<IconTrendingUp className="size-4" />
-							</>
+						{data.status !== "" ? (
+							<>Water level</>
 						) : (
-							<>
-								<IconTrendingUp className="size-4" />
-							</>
+							<>Sistem is offline</>
 						)}
+						{data.status == "NORMAL" && (
+							<IconArrowsShuffle className="size-4" />
+						)}
+						{data.status == "SIAGA" && (
+							<IconArrowsShuffle className="size-4" />
+						)}
+						{data.status == "BANJIR" && (
+							<IconTrendingUp className="size-4" />
+						)}
+						{data.status == "" && <></>}
 					</div>
 					<div className="text-muted-foreground">
-						{data.status == "NORMAL" ? (
-							<>Water level is stable </>
-						) : data.status == "SIAGA" ? (
-							<>Water level is approaching ground </>
-						) : (
-							<>Flooding detected!</>
+						{data.status == "NORMAL" && <>Water level is stable</>}
+						{data.status == "SIAGA" && (
+							<>Water level is approaching ground</>
 						)}
+						{data.status == "BANJIR" && <>Flooding detected!</>}
+						{data.status == "" && <>No data available</>}
 					</div>
 				</CardFooter>
 			</Card>

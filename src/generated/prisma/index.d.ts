@@ -19,6 +19,11 @@ export type PrismaPromise<T> = $Public.PrismaPromise<T>
  */
 export type Admin = $Result.DefaultSelection<Prisma.$AdminPayload>
 /**
+ * Model SignUp
+ * 
+ */
+export type SignUp = $Result.DefaultSelection<Prisma.$SignUpPayload>
+/**
  * Model Elevation
  * 
  */
@@ -178,6 +183,16 @@ export class PrismaClient<
     * ```
     */
   get admin(): Prisma.AdminDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.signUp`: Exposes CRUD operations for the **SignUp** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more SignUps
+    * const signUps = await prisma.signUp.findMany()
+    * ```
+    */
+  get signUp(): Prisma.SignUpDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.elevation`: Exposes CRUD operations for the **Elevation** model.
@@ -669,6 +684,7 @@ export namespace Prisma {
 
   export const ModelName: {
     Admin: 'Admin',
+    SignUp: 'SignUp',
     Elevation: 'Elevation',
     Hardware: 'Hardware',
     Location: 'Location',
@@ -692,7 +708,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "admin" | "elevation" | "hardware" | "location" | "whatsapp" | "level"
+      modelProps: "admin" | "signUp" | "elevation" | "hardware" | "location" | "whatsapp" | "level"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -759,6 +775,72 @@ export namespace Prisma {
           count: {
             args: Prisma.AdminCountArgs<ExtArgs>
             result: $Utils.Optional<AdminCountAggregateOutputType> | number
+          }
+        }
+      }
+      SignUp: {
+        payload: Prisma.$SignUpPayload<ExtArgs>
+        fields: Prisma.SignUpFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.SignUpFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SignUpPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.SignUpFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SignUpPayload>
+          }
+          findFirst: {
+            args: Prisma.SignUpFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SignUpPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.SignUpFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SignUpPayload>
+          }
+          findMany: {
+            args: Prisma.SignUpFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SignUpPayload>[]
+          }
+          create: {
+            args: Prisma.SignUpCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SignUpPayload>
+          }
+          createMany: {
+            args: Prisma.SignUpCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.SignUpDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SignUpPayload>
+          }
+          update: {
+            args: Prisma.SignUpUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SignUpPayload>
+          }
+          deleteMany: {
+            args: Prisma.SignUpDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.SignUpUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.SignUpUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SignUpPayload>
+          }
+          aggregate: {
+            args: Prisma.SignUpAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateSignUp>
+          }
+          groupBy: {
+            args: Prisma.SignUpGroupByArgs<ExtArgs>
+            result: $Utils.Optional<SignUpGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.SignUpCountArgs<ExtArgs>
+            result: $Utils.Optional<SignUpCountAggregateOutputType> | number
           }
         }
       }
@@ -1177,6 +1259,7 @@ export namespace Prisma {
   }
   export type GlobalOmitConfig = {
     admin?: AdminOmit
+    signUp?: SignUpOmit
     elevation?: ElevationOmit
     hardware?: HardwareOmit
     location?: LocationOmit
@@ -1346,19 +1429,19 @@ export namespace Prisma {
 
   export type AdminMinAggregateOutputType = {
     id: number | null
-    username: string | null
+    email: string | null
     password: string | null
   }
 
   export type AdminMaxAggregateOutputType = {
     id: number | null
-    username: string | null
+    email: string | null
     password: string | null
   }
 
   export type AdminCountAggregateOutputType = {
     id: number
-    username: number
+    email: number
     password: number
     _all: number
   }
@@ -1374,19 +1457,19 @@ export namespace Prisma {
 
   export type AdminMinAggregateInputType = {
     id?: true
-    username?: true
+    email?: true
     password?: true
   }
 
   export type AdminMaxAggregateInputType = {
     id?: true
-    username?: true
+    email?: true
     password?: true
   }
 
   export type AdminCountAggregateInputType = {
     id?: true
-    username?: true
+    email?: true
     password?: true
     _all?: true
   }
@@ -1479,7 +1562,7 @@ export namespace Prisma {
 
   export type AdminGroupByOutputType = {
     id: number
-    username: string
+    email: string
     password: string
     _count: AdminCountAggregateOutputType | null
     _avg: AdminAvgAggregateOutputType | null
@@ -1504,7 +1587,7 @@ export namespace Prisma {
 
   export type AdminSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    username?: boolean
+    email?: boolean
     password?: boolean
   }, ExtArgs["result"]["admin"]>
 
@@ -1512,18 +1595,18 @@ export namespace Prisma {
 
   export type AdminSelectScalar = {
     id?: boolean
-    username?: boolean
+    email?: boolean
     password?: boolean
   }
 
-  export type AdminOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "username" | "password", ExtArgs["result"]["admin"]>
+  export type AdminOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "password", ExtArgs["result"]["admin"]>
 
   export type $AdminPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Admin"
     objects: {}
     scalars: $Extensions.GetPayloadResult<{
       id: number
-      username: string
+      email: string
       password: string
     }, ExtArgs["result"]["admin"]>
     composites: {}
@@ -1895,7 +1978,7 @@ export namespace Prisma {
    */
   interface AdminFieldRefs {
     readonly id: FieldRef<"Admin", 'Int'>
-    readonly username: FieldRef<"Admin", 'String'>
+    readonly email: FieldRef<"Admin", 'String'>
     readonly password: FieldRef<"Admin", 'String'>
   }
     
@@ -2215,6 +2298,922 @@ export namespace Prisma {
      * Omit specific fields from the Admin
      */
     omit?: AdminOmit<ExtArgs> | null
+  }
+
+
+  /**
+   * Model SignUp
+   */
+
+  export type AggregateSignUp = {
+    _count: SignUpCountAggregateOutputType | null
+    _avg: SignUpAvgAggregateOutputType | null
+    _sum: SignUpSumAggregateOutputType | null
+    _min: SignUpMinAggregateOutputType | null
+    _max: SignUpMaxAggregateOutputType | null
+  }
+
+  export type SignUpAvgAggregateOutputType = {
+    id: number | null
+  }
+
+  export type SignUpSumAggregateOutputType = {
+    id: number | null
+  }
+
+  export type SignUpMinAggregateOutputType = {
+    id: number | null
+    username: string | null
+    password: string | null
+    email: string | null
+    created_at: Date | null
+  }
+
+  export type SignUpMaxAggregateOutputType = {
+    id: number | null
+    username: string | null
+    password: string | null
+    email: string | null
+    created_at: Date | null
+  }
+
+  export type SignUpCountAggregateOutputType = {
+    id: number
+    username: number
+    password: number
+    email: number
+    created_at: number
+    _all: number
+  }
+
+
+  export type SignUpAvgAggregateInputType = {
+    id?: true
+  }
+
+  export type SignUpSumAggregateInputType = {
+    id?: true
+  }
+
+  export type SignUpMinAggregateInputType = {
+    id?: true
+    username?: true
+    password?: true
+    email?: true
+    created_at?: true
+  }
+
+  export type SignUpMaxAggregateInputType = {
+    id?: true
+    username?: true
+    password?: true
+    email?: true
+    created_at?: true
+  }
+
+  export type SignUpCountAggregateInputType = {
+    id?: true
+    username?: true
+    password?: true
+    email?: true
+    created_at?: true
+    _all?: true
+  }
+
+  export type SignUpAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which SignUp to aggregate.
+     */
+    where?: SignUpWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SignUps to fetch.
+     */
+    orderBy?: SignUpOrderByWithRelationInput | SignUpOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: SignUpWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SignUps from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SignUps.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned SignUps
+    **/
+    _count?: true | SignUpCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: SignUpAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: SignUpSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: SignUpMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: SignUpMaxAggregateInputType
+  }
+
+  export type GetSignUpAggregateType<T extends SignUpAggregateArgs> = {
+        [P in keyof T & keyof AggregateSignUp]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateSignUp[P]>
+      : GetScalarType<T[P], AggregateSignUp[P]>
+  }
+
+
+
+
+  export type SignUpGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SignUpWhereInput
+    orderBy?: SignUpOrderByWithAggregationInput | SignUpOrderByWithAggregationInput[]
+    by: SignUpScalarFieldEnum[] | SignUpScalarFieldEnum
+    having?: SignUpScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: SignUpCountAggregateInputType | true
+    _avg?: SignUpAvgAggregateInputType
+    _sum?: SignUpSumAggregateInputType
+    _min?: SignUpMinAggregateInputType
+    _max?: SignUpMaxAggregateInputType
+  }
+
+  export type SignUpGroupByOutputType = {
+    id: number
+    username: string
+    password: string
+    email: string
+    created_at: Date
+    _count: SignUpCountAggregateOutputType | null
+    _avg: SignUpAvgAggregateOutputType | null
+    _sum: SignUpSumAggregateOutputType | null
+    _min: SignUpMinAggregateOutputType | null
+    _max: SignUpMaxAggregateOutputType | null
+  }
+
+  type GetSignUpGroupByPayload<T extends SignUpGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<SignUpGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof SignUpGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], SignUpGroupByOutputType[P]>
+            : GetScalarType<T[P], SignUpGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type SignUpSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    username?: boolean
+    password?: boolean
+    email?: boolean
+    created_at?: boolean
+  }, ExtArgs["result"]["signUp"]>
+
+
+
+  export type SignUpSelectScalar = {
+    id?: boolean
+    username?: boolean
+    password?: boolean
+    email?: boolean
+    created_at?: boolean
+  }
+
+  export type SignUpOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "username" | "password" | "email" | "created_at", ExtArgs["result"]["signUp"]>
+
+  export type $SignUpPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "SignUp"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      username: string
+      password: string
+      email: string
+      created_at: Date
+    }, ExtArgs["result"]["signUp"]>
+    composites: {}
+  }
+
+  type SignUpGetPayload<S extends boolean | null | undefined | SignUpDefaultArgs> = $Result.GetResult<Prisma.$SignUpPayload, S>
+
+  type SignUpCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<SignUpFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: SignUpCountAggregateInputType | true
+    }
+
+  export interface SignUpDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['SignUp'], meta: { name: 'SignUp' } }
+    /**
+     * Find zero or one SignUp that matches the filter.
+     * @param {SignUpFindUniqueArgs} args - Arguments to find a SignUp
+     * @example
+     * // Get one SignUp
+     * const signUp = await prisma.signUp.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends SignUpFindUniqueArgs>(args: SelectSubset<T, SignUpFindUniqueArgs<ExtArgs>>): Prisma__SignUpClient<$Result.GetResult<Prisma.$SignUpPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one SignUp that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {SignUpFindUniqueOrThrowArgs} args - Arguments to find a SignUp
+     * @example
+     * // Get one SignUp
+     * const signUp = await prisma.signUp.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends SignUpFindUniqueOrThrowArgs>(args: SelectSubset<T, SignUpFindUniqueOrThrowArgs<ExtArgs>>): Prisma__SignUpClient<$Result.GetResult<Prisma.$SignUpPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first SignUp that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SignUpFindFirstArgs} args - Arguments to find a SignUp
+     * @example
+     * // Get one SignUp
+     * const signUp = await prisma.signUp.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends SignUpFindFirstArgs>(args?: SelectSubset<T, SignUpFindFirstArgs<ExtArgs>>): Prisma__SignUpClient<$Result.GetResult<Prisma.$SignUpPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first SignUp that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SignUpFindFirstOrThrowArgs} args - Arguments to find a SignUp
+     * @example
+     * // Get one SignUp
+     * const signUp = await prisma.signUp.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends SignUpFindFirstOrThrowArgs>(args?: SelectSubset<T, SignUpFindFirstOrThrowArgs<ExtArgs>>): Prisma__SignUpClient<$Result.GetResult<Prisma.$SignUpPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more SignUps that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SignUpFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all SignUps
+     * const signUps = await prisma.signUp.findMany()
+     * 
+     * // Get first 10 SignUps
+     * const signUps = await prisma.signUp.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const signUpWithIdOnly = await prisma.signUp.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends SignUpFindManyArgs>(args?: SelectSubset<T, SignUpFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SignUpPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a SignUp.
+     * @param {SignUpCreateArgs} args - Arguments to create a SignUp.
+     * @example
+     * // Create one SignUp
+     * const SignUp = await prisma.signUp.create({
+     *   data: {
+     *     // ... data to create a SignUp
+     *   }
+     * })
+     * 
+     */
+    create<T extends SignUpCreateArgs>(args: SelectSubset<T, SignUpCreateArgs<ExtArgs>>): Prisma__SignUpClient<$Result.GetResult<Prisma.$SignUpPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many SignUps.
+     * @param {SignUpCreateManyArgs} args - Arguments to create many SignUps.
+     * @example
+     * // Create many SignUps
+     * const signUp = await prisma.signUp.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends SignUpCreateManyArgs>(args?: SelectSubset<T, SignUpCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a SignUp.
+     * @param {SignUpDeleteArgs} args - Arguments to delete one SignUp.
+     * @example
+     * // Delete one SignUp
+     * const SignUp = await prisma.signUp.delete({
+     *   where: {
+     *     // ... filter to delete one SignUp
+     *   }
+     * })
+     * 
+     */
+    delete<T extends SignUpDeleteArgs>(args: SelectSubset<T, SignUpDeleteArgs<ExtArgs>>): Prisma__SignUpClient<$Result.GetResult<Prisma.$SignUpPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one SignUp.
+     * @param {SignUpUpdateArgs} args - Arguments to update one SignUp.
+     * @example
+     * // Update one SignUp
+     * const signUp = await prisma.signUp.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends SignUpUpdateArgs>(args: SelectSubset<T, SignUpUpdateArgs<ExtArgs>>): Prisma__SignUpClient<$Result.GetResult<Prisma.$SignUpPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more SignUps.
+     * @param {SignUpDeleteManyArgs} args - Arguments to filter SignUps to delete.
+     * @example
+     * // Delete a few SignUps
+     * const { count } = await prisma.signUp.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends SignUpDeleteManyArgs>(args?: SelectSubset<T, SignUpDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more SignUps.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SignUpUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many SignUps
+     * const signUp = await prisma.signUp.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends SignUpUpdateManyArgs>(args: SelectSubset<T, SignUpUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one SignUp.
+     * @param {SignUpUpsertArgs} args - Arguments to update or create a SignUp.
+     * @example
+     * // Update or create a SignUp
+     * const signUp = await prisma.signUp.upsert({
+     *   create: {
+     *     // ... data to create a SignUp
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the SignUp we want to update
+     *   }
+     * })
+     */
+    upsert<T extends SignUpUpsertArgs>(args: SelectSubset<T, SignUpUpsertArgs<ExtArgs>>): Prisma__SignUpClient<$Result.GetResult<Prisma.$SignUpPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of SignUps.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SignUpCountArgs} args - Arguments to filter SignUps to count.
+     * @example
+     * // Count the number of SignUps
+     * const count = await prisma.signUp.count({
+     *   where: {
+     *     // ... the filter for the SignUps we want to count
+     *   }
+     * })
+    **/
+    count<T extends SignUpCountArgs>(
+      args?: Subset<T, SignUpCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], SignUpCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a SignUp.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SignUpAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends SignUpAggregateArgs>(args: Subset<T, SignUpAggregateArgs>): Prisma.PrismaPromise<GetSignUpAggregateType<T>>
+
+    /**
+     * Group by SignUp.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SignUpGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends SignUpGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: SignUpGroupByArgs['orderBy'] }
+        : { orderBy?: SignUpGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, SignUpGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetSignUpGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the SignUp model
+   */
+  readonly fields: SignUpFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for SignUp.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__SignUpClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the SignUp model
+   */
+  interface SignUpFieldRefs {
+    readonly id: FieldRef<"SignUp", 'Int'>
+    readonly username: FieldRef<"SignUp", 'String'>
+    readonly password: FieldRef<"SignUp", 'String'>
+    readonly email: FieldRef<"SignUp", 'String'>
+    readonly created_at: FieldRef<"SignUp", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * SignUp findUnique
+   */
+  export type SignUpFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SignUp
+     */
+    select?: SignUpSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SignUp
+     */
+    omit?: SignUpOmit<ExtArgs> | null
+    /**
+     * Filter, which SignUp to fetch.
+     */
+    where: SignUpWhereUniqueInput
+  }
+
+  /**
+   * SignUp findUniqueOrThrow
+   */
+  export type SignUpFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SignUp
+     */
+    select?: SignUpSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SignUp
+     */
+    omit?: SignUpOmit<ExtArgs> | null
+    /**
+     * Filter, which SignUp to fetch.
+     */
+    where: SignUpWhereUniqueInput
+  }
+
+  /**
+   * SignUp findFirst
+   */
+  export type SignUpFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SignUp
+     */
+    select?: SignUpSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SignUp
+     */
+    omit?: SignUpOmit<ExtArgs> | null
+    /**
+     * Filter, which SignUp to fetch.
+     */
+    where?: SignUpWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SignUps to fetch.
+     */
+    orderBy?: SignUpOrderByWithRelationInput | SignUpOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for SignUps.
+     */
+    cursor?: SignUpWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SignUps from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SignUps.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of SignUps.
+     */
+    distinct?: SignUpScalarFieldEnum | SignUpScalarFieldEnum[]
+  }
+
+  /**
+   * SignUp findFirstOrThrow
+   */
+  export type SignUpFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SignUp
+     */
+    select?: SignUpSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SignUp
+     */
+    omit?: SignUpOmit<ExtArgs> | null
+    /**
+     * Filter, which SignUp to fetch.
+     */
+    where?: SignUpWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SignUps to fetch.
+     */
+    orderBy?: SignUpOrderByWithRelationInput | SignUpOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for SignUps.
+     */
+    cursor?: SignUpWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SignUps from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SignUps.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of SignUps.
+     */
+    distinct?: SignUpScalarFieldEnum | SignUpScalarFieldEnum[]
+  }
+
+  /**
+   * SignUp findMany
+   */
+  export type SignUpFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SignUp
+     */
+    select?: SignUpSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SignUp
+     */
+    omit?: SignUpOmit<ExtArgs> | null
+    /**
+     * Filter, which SignUps to fetch.
+     */
+    where?: SignUpWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SignUps to fetch.
+     */
+    orderBy?: SignUpOrderByWithRelationInput | SignUpOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing SignUps.
+     */
+    cursor?: SignUpWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SignUps from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SignUps.
+     */
+    skip?: number
+    distinct?: SignUpScalarFieldEnum | SignUpScalarFieldEnum[]
+  }
+
+  /**
+   * SignUp create
+   */
+  export type SignUpCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SignUp
+     */
+    select?: SignUpSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SignUp
+     */
+    omit?: SignUpOmit<ExtArgs> | null
+    /**
+     * The data needed to create a SignUp.
+     */
+    data: XOR<SignUpCreateInput, SignUpUncheckedCreateInput>
+  }
+
+  /**
+   * SignUp createMany
+   */
+  export type SignUpCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many SignUps.
+     */
+    data: SignUpCreateManyInput | SignUpCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * SignUp update
+   */
+  export type SignUpUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SignUp
+     */
+    select?: SignUpSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SignUp
+     */
+    omit?: SignUpOmit<ExtArgs> | null
+    /**
+     * The data needed to update a SignUp.
+     */
+    data: XOR<SignUpUpdateInput, SignUpUncheckedUpdateInput>
+    /**
+     * Choose, which SignUp to update.
+     */
+    where: SignUpWhereUniqueInput
+  }
+
+  /**
+   * SignUp updateMany
+   */
+  export type SignUpUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update SignUps.
+     */
+    data: XOR<SignUpUpdateManyMutationInput, SignUpUncheckedUpdateManyInput>
+    /**
+     * Filter which SignUps to update
+     */
+    where?: SignUpWhereInput
+    /**
+     * Limit how many SignUps to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * SignUp upsert
+   */
+  export type SignUpUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SignUp
+     */
+    select?: SignUpSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SignUp
+     */
+    omit?: SignUpOmit<ExtArgs> | null
+    /**
+     * The filter to search for the SignUp to update in case it exists.
+     */
+    where: SignUpWhereUniqueInput
+    /**
+     * In case the SignUp found by the `where` argument doesn't exist, create a new SignUp with this data.
+     */
+    create: XOR<SignUpCreateInput, SignUpUncheckedCreateInput>
+    /**
+     * In case the SignUp was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<SignUpUpdateInput, SignUpUncheckedUpdateInput>
+  }
+
+  /**
+   * SignUp delete
+   */
+  export type SignUpDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SignUp
+     */
+    select?: SignUpSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SignUp
+     */
+    omit?: SignUpOmit<ExtArgs> | null
+    /**
+     * Filter which SignUp to delete.
+     */
+    where: SignUpWhereUniqueInput
+  }
+
+  /**
+   * SignUp deleteMany
+   */
+  export type SignUpDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which SignUps to delete
+     */
+    where?: SignUpWhereInput
+    /**
+     * Limit how many SignUps to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * SignUp without action
+   */
+  export type SignUpDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SignUp
+     */
+    select?: SignUpSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SignUp
+     */
+    omit?: SignUpOmit<ExtArgs> | null
   }
 
 
@@ -7035,11 +8034,22 @@ export namespace Prisma {
 
   export const AdminScalarFieldEnum: {
     id: 'id',
-    username: 'username',
+    email: 'email',
     password: 'password'
   };
 
   export type AdminScalarFieldEnum = (typeof AdminScalarFieldEnum)[keyof typeof AdminScalarFieldEnum]
+
+
+  export const SignUpScalarFieldEnum: {
+    id: 'id',
+    username: 'username',
+    password: 'password',
+    email: 'email',
+    created_at: 'created_at'
+  };
+
+  export type SignUpScalarFieldEnum = (typeof SignUpScalarFieldEnum)[keyof typeof SignUpScalarFieldEnum]
 
 
   export const ElevationScalarFieldEnum: {
@@ -7099,11 +8109,20 @@ export namespace Prisma {
 
 
   export const AdminOrderByRelevanceFieldEnum: {
-    username: 'username',
+    email: 'email',
     password: 'password'
   };
 
   export type AdminOrderByRelevanceFieldEnum = (typeof AdminOrderByRelevanceFieldEnum)[keyof typeof AdminOrderByRelevanceFieldEnum]
+
+
+  export const SignUpOrderByRelevanceFieldEnum: {
+    username: 'username',
+    password: 'password',
+    email: 'email'
+  };
+
+  export type SignUpOrderByRelevanceFieldEnum = (typeof SignUpOrderByRelevanceFieldEnum)[keyof typeof SignUpOrderByRelevanceFieldEnum]
 
 
   export const HardwareOrderByRelevanceFieldEnum: {
@@ -7148,16 +8167,16 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'Float'
+   * Reference to a field of type 'DateTime'
    */
-  export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
+  export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
     
 
 
   /**
-   * Reference to a field of type 'DateTime'
+   * Reference to a field of type 'Float'
    */
-  export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
+  export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
     
   /**
    * Deep Input Types
@@ -7169,29 +8188,29 @@ export namespace Prisma {
     OR?: AdminWhereInput[]
     NOT?: AdminWhereInput | AdminWhereInput[]
     id?: IntFilter<"Admin"> | number
-    username?: StringFilter<"Admin"> | string
+    email?: StringFilter<"Admin"> | string
     password?: StringFilter<"Admin"> | string
   }
 
   export type AdminOrderByWithRelationInput = {
     id?: SortOrder
-    username?: SortOrder
+    email?: SortOrder
     password?: SortOrder
     _relevance?: AdminOrderByRelevanceInput
   }
 
   export type AdminWhereUniqueInput = Prisma.AtLeast<{
     id?: number
-    username?: string
+    email?: string
     AND?: AdminWhereInput | AdminWhereInput[]
     OR?: AdminWhereInput[]
     NOT?: AdminWhereInput | AdminWhereInput[]
     password?: StringFilter<"Admin"> | string
-  }, "id" | "username">
+  }, "id" | "email">
 
   export type AdminOrderByWithAggregationInput = {
     id?: SortOrder
-    username?: SortOrder
+    email?: SortOrder
     password?: SortOrder
     _count?: AdminCountOrderByAggregateInput
     _avg?: AdminAvgOrderByAggregateInput
@@ -7205,8 +8224,63 @@ export namespace Prisma {
     OR?: AdminScalarWhereWithAggregatesInput[]
     NOT?: AdminScalarWhereWithAggregatesInput | AdminScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"Admin"> | number
-    username?: StringWithAggregatesFilter<"Admin"> | string
+    email?: StringWithAggregatesFilter<"Admin"> | string
     password?: StringWithAggregatesFilter<"Admin"> | string
+  }
+
+  export type SignUpWhereInput = {
+    AND?: SignUpWhereInput | SignUpWhereInput[]
+    OR?: SignUpWhereInput[]
+    NOT?: SignUpWhereInput | SignUpWhereInput[]
+    id?: IntFilter<"SignUp"> | number
+    username?: StringFilter<"SignUp"> | string
+    password?: StringFilter<"SignUp"> | string
+    email?: StringFilter<"SignUp"> | string
+    created_at?: DateTimeFilter<"SignUp"> | Date | string
+  }
+
+  export type SignUpOrderByWithRelationInput = {
+    id?: SortOrder
+    username?: SortOrder
+    password?: SortOrder
+    email?: SortOrder
+    created_at?: SortOrder
+    _relevance?: SignUpOrderByRelevanceInput
+  }
+
+  export type SignUpWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    username?: string
+    email?: string
+    AND?: SignUpWhereInput | SignUpWhereInput[]
+    OR?: SignUpWhereInput[]
+    NOT?: SignUpWhereInput | SignUpWhereInput[]
+    password?: StringFilter<"SignUp"> | string
+    created_at?: DateTimeFilter<"SignUp"> | Date | string
+  }, "id" | "username" | "email">
+
+  export type SignUpOrderByWithAggregationInput = {
+    id?: SortOrder
+    username?: SortOrder
+    password?: SortOrder
+    email?: SortOrder
+    created_at?: SortOrder
+    _count?: SignUpCountOrderByAggregateInput
+    _avg?: SignUpAvgOrderByAggregateInput
+    _max?: SignUpMaxOrderByAggregateInput
+    _min?: SignUpMinOrderByAggregateInput
+    _sum?: SignUpSumOrderByAggregateInput
+  }
+
+  export type SignUpScalarWhereWithAggregatesInput = {
+    AND?: SignUpScalarWhereWithAggregatesInput | SignUpScalarWhereWithAggregatesInput[]
+    OR?: SignUpScalarWhereWithAggregatesInput[]
+    NOT?: SignUpScalarWhereWithAggregatesInput | SignUpScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"SignUp"> | number
+    username?: StringWithAggregatesFilter<"SignUp"> | string
+    password?: StringWithAggregatesFilter<"SignUp"> | string
+    email?: StringWithAggregatesFilter<"SignUp"> | string
+    created_at?: DateTimeWithAggregatesFilter<"SignUp"> | Date | string
   }
 
   export type ElevationWhereInput = {
@@ -7466,42 +8540,95 @@ export namespace Prisma {
   }
 
   export type AdminCreateInput = {
-    username: string
+    email: string
     password: string
   }
 
   export type AdminUncheckedCreateInput = {
     id?: number
-    username: string
+    email: string
     password: string
   }
 
   export type AdminUpdateInput = {
-    username?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
   }
 
   export type AdminUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
-    username?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
   }
 
   export type AdminCreateManyInput = {
     id?: number
-    username: string
+    email: string
     password: string
   }
 
   export type AdminUpdateManyMutationInput = {
-    username?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
   }
 
   export type AdminUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type SignUpCreateInput = {
+    username: string
+    password: string
+    email: string
+    created_at?: Date | string
+  }
+
+  export type SignUpUncheckedCreateInput = {
+    id?: number
+    username: string
+    password: string
+    email: string
+    created_at?: Date | string
+  }
+
+  export type SignUpUpdateInput = {
     username?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SignUpUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    username?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SignUpCreateManyInput = {
+    id?: number
+    username: string
+    password: string
+    email: string
+    created_at?: Date | string
+  }
+
+  export type SignUpUpdateManyMutationInput = {
+    username?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SignUpUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    username?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ElevationCreateInput = {
@@ -7763,7 +8890,7 @@ export namespace Prisma {
 
   export type AdminCountOrderByAggregateInput = {
     id?: SortOrder
-    username?: SortOrder
+    email?: SortOrder
     password?: SortOrder
   }
 
@@ -7773,13 +8900,13 @@ export namespace Prisma {
 
   export type AdminMaxOrderByAggregateInput = {
     id?: SortOrder
-    username?: SortOrder
+    email?: SortOrder
     password?: SortOrder
   }
 
   export type AdminMinOrderByAggregateInput = {
     id?: SortOrder
-    username?: SortOrder
+    email?: SortOrder
     password?: SortOrder
   }
 
@@ -7821,17 +8948,6 @@ export namespace Prisma {
     _max?: NestedStringFilter<$PrismaModel>
   }
 
-  export type FloatFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[]
-    notIn?: number[]
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatFilter<$PrismaModel> | number
-  }
-
   export type DateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[]
@@ -7841,6 +8957,69 @@ export namespace Prisma {
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
+  export type SignUpOrderByRelevanceInput = {
+    fields: SignUpOrderByRelevanceFieldEnum | SignUpOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type SignUpCountOrderByAggregateInput = {
+    id?: SortOrder
+    username?: SortOrder
+    password?: SortOrder
+    email?: SortOrder
+    created_at?: SortOrder
+  }
+
+  export type SignUpAvgOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type SignUpMaxOrderByAggregateInput = {
+    id?: SortOrder
+    username?: SortOrder
+    password?: SortOrder
+    email?: SortOrder
+    created_at?: SortOrder
+  }
+
+  export type SignUpMinOrderByAggregateInput = {
+    id?: SortOrder
+    username?: SortOrder
+    password?: SortOrder
+    email?: SortOrder
+    created_at?: SortOrder
+  }
+
+  export type SignUpSumOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[]
+    notIn?: Date[] | string[]
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type FloatFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[]
+    notIn?: number[]
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatFilter<$PrismaModel> | number
   }
 
   export type HardwareScalarRelationFilter = {
@@ -7895,20 +9074,6 @@ export namespace Prisma {
     _sum?: NestedFloatFilter<$PrismaModel>
     _min?: NestedFloatFilter<$PrismaModel>
     _max?: NestedFloatFilter<$PrismaModel>
-  }
-
-  export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[]
-    notIn?: Date[] | string[]
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedDateTimeFilter<$PrismaModel>
-    _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
   export type ElevationListRelationFilter = {
@@ -8091,6 +9256,10 @@ export namespace Prisma {
     divide?: number
   }
 
+  export type DateTimeFieldUpdateOperationsInput = {
+    set?: Date | string
+  }
+
   export type HardwareCreateNestedOneWithoutElevationInput = {
     create?: XOR<HardwareCreateWithoutElevationInput, HardwareUncheckedCreateWithoutElevationInput>
     connectOrCreate?: HardwareCreateOrConnectWithoutElevationInput
@@ -8103,10 +9272,6 @@ export namespace Prisma {
     decrement?: number
     multiply?: number
     divide?: number
-  }
-
-  export type DateTimeFieldUpdateOperationsInput = {
-    set?: Date | string
   }
 
   export type HardwareUpdateOneRequiredWithoutElevationNestedInput = {
@@ -8353,6 +9518,20 @@ export namespace Prisma {
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
+  export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[]
+    notIn?: Date[] | string[]
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
   export type NestedFloatWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | FloatFieldRefInput<$PrismaModel>
     in?: number[]
@@ -8367,20 +9546,6 @@ export namespace Prisma {
     _sum?: NestedFloatFilter<$PrismaModel>
     _min?: NestedFloatFilter<$PrismaModel>
     _max?: NestedFloatFilter<$PrismaModel>
-  }
-
-  export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[]
-    notIn?: Date[] | string[]
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedDateTimeFilter<$PrismaModel>
-    _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
   export type HardwareCreateWithoutElevationInput = {

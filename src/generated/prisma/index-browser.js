@@ -122,8 +122,16 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
 
 exports.Prisma.AdminScalarFieldEnum = {
   id: 'id',
-  username: 'username',
+  email: 'email',
   password: 'password'
+};
+
+exports.Prisma.SignUpScalarFieldEnum = {
+  id: 'id',
+  username: 'username',
+  password: 'password',
+  email: 'email',
+  created_at: 'created_at'
 };
 
 exports.Prisma.ElevationScalarFieldEnum = {
@@ -165,8 +173,14 @@ exports.Prisma.SortOrder = {
 };
 
 exports.Prisma.AdminOrderByRelevanceFieldEnum = {
-  username: 'username',
+  email: 'email',
   password: 'password'
+};
+
+exports.Prisma.SignUpOrderByRelevanceFieldEnum = {
+  username: 'username',
+  password: 'password',
+  email: 'email'
 };
 
 exports.Prisma.HardwareOrderByRelevanceFieldEnum = {
@@ -185,6 +199,7 @@ exports.Prisma.WhatsappOrderByRelevanceFieldEnum = {
 
 exports.Prisma.ModelName = {
   Admin: 'Admin',
+  SignUp: 'SignUp',
   Elevation: 'Elevation',
   Hardware: 'Hardware',
   Location: 'Location',
