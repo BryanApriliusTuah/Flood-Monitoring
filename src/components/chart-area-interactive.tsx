@@ -3,7 +3,6 @@ import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { useState, useEffect } from "react";
 import { Area, AreaChart, CartesianGrid, XAxis } from "recharts";
 import chartConfig from "@/domain/entities/chart-config.type";
-import ElevationType from "@/domain/entities/elevation.type";
 import { useIsMobile } from "@/hooks/use-mobile";
 import {
 	Select,
@@ -25,12 +24,12 @@ import {
 	ChartTooltip,
 	ChartTooltipContent,
 } from "@/components/ui/chart";
-// import dataset_bmkg from "@/app/Dataset_BMKG.json";
+import { ChartType } from "@/domain/entities/dashboard.type";
 
 export const description = "An interactive area chart";
 const URL = process.env.NEXT_PUBLIC_URL;
 
-export function ChartAreaInteractive({ data }: { data: ElevationType }) {
+export function ChartAreaInteractive({ data }: { data: ChartType }) {
 	const isMobile = useIsMobile();
 	const [timeRange, setTimeRange] = useState("90");
 	const [elevation, setElevation] = useState(
@@ -41,20 +40,6 @@ export function ChartAreaInteractive({ data }: { data: ElevationType }) {
 			setTimeRange("7");
 		}
 	}, [isMobile]);
-
-	// const filteredData = dataset_bmkg
-	// 	.filter((item) => {
-	// 		const [day, month, year] = item.Date.split("/").map(Number);
-	// 		return year === 2020;
-	// 	})
-	// 	.map((item) => {
-	// 		const [day, month, year] = item.Date.split("/").map(Number);
-	// 		const date = new Date(year, month - 1, day).toString();
-	// 		return {
-	// 			date: date,
-	// 			elevation: item.Average,
-	// 		};
-	// 	});
 
 	const filteredData = elevation
 		.sort(
