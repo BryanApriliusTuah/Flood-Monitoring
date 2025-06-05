@@ -19,7 +19,7 @@ export default async function middleware(req: NextRequest) {
 
 	const cookie = (await cookies()).get("session")?.value;
 	const isAuthenticated = (await decrypt(cookie)) !== undefined;
-	console.log("Verify session:", isAuthenticated);
+	console.log("Verify session Middleware :", isAuthenticated);
 
 	if (isProtectedRoute && !isAuthenticated) {
 		return NextResponse.redirect(new URL("/login", req.nextUrl));

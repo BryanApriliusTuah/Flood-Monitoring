@@ -1,8 +1,4 @@
 "use client";
-import { IconInnerShadowTop } from "@tabler/icons-react";
-import navMainData from "@/domain/entities/nav-main.type";
-import { NavMain } from "@/components/nav-main";
-import { NavUser } from "@/components/nav-user";
 import {
 	Sidebar,
 	SidebarContent,
@@ -12,33 +8,23 @@ import {
 	SidebarMenuButton,
 	SidebarMenuItem,
 } from "@/components/ui/sidebar";
+import { useContext } from "react";
 import { Button } from "./ui/button";
-import axios from "axios";
 import { useRouter } from "next/navigation";
+import { NavMain } from "@/components/nav-main";
+import { NavUser } from "@/components/nav-user";
+import { IconInnerShadowTop } from "@tabler/icons-react";
+import navMainData from "@/domain/entities/nav-main.type";
+import { DashboardContext } from "@/components/dashboardClient";
 
 const URL = process.env.NEXT_PUBLIC_URL;
 
-const verify = async (): Promise<boolean> => {
-	const verify = await axios
-		.get(`${URL}/verify`)
-		.then((res) => res.data)
-		.catch(() => "Not Authenticated");
-	return verify === "Authenticated";
-};
-
-import React, { useEffect, useState } from "react";
+import React from "react";
+import { ContextType } from "@/domain/entities/dashboard.type";
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 	const router = useRouter();
-	const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
-
-	useEffect(() => {
-		const authStatus = async () => {
-			const authStatus = await verify();
-			setIsAuthenticated(authStatus);
-		};
-		authStatus();
-	}, []);
+	const { isAuthenticated } = useContext(DashboardContext) as ContextType;
 
 	return (
 		<Sidebar collapsible="offcanvas" {...props}>

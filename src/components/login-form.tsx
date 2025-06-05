@@ -22,7 +22,7 @@ export function LoginForm({
 	...props
 }: React.ComponentProps<"div">) {
 	const router = useRouter();
-	const [username, setUsername] = useState("");
+	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [loading, setLoading] = useState(false);
 	const [error, setError] = useState("");
@@ -31,7 +31,7 @@ export function LoginForm({
 		setLoading(true);
 		await delay(500);
 		const login = await axios
-			.post(`${URL}/login`, { username, password })
+			.post(`${URL}/login`, { email, password })
 			.then((res) => res.data);
 		console.log(login);
 		if (login === "Success Login") {
@@ -48,7 +48,7 @@ export function LoginForm({
 				<CardHeader className="text-center">
 					<CardTitle className="text-xl">Welcome back</CardTitle>
 					<CardDescription>
-						Login with your Username and Password
+						Login with your email and Password
 					</CardDescription>
 				</CardHeader>
 				<CardContent>
@@ -56,13 +56,13 @@ export function LoginForm({
 						<div className="grid gap-6">
 							<div className="grid gap-6">
 								<div className="grid gap-3">
-									<Label htmlFor="username">Username</Label>
+									<Label htmlFor="email">Email</Label>
 									<Input
-										id="username"
+										id="email"
 										type="text"
-										value={username}
+										value={email}
 										onChange={(e) =>
-											setUsername(e.target.value)
+											setEmail(e.target.value)
 										}
 										required
 									/>

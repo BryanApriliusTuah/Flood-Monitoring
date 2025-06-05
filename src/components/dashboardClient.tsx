@@ -11,10 +11,11 @@ import { DataTable } from "@/components/data-table";
 import { SiteHeader } from "@/components/SiteHeader";
 import { AppSidebar } from "@/components/app-sidebar";
 import { SectionCards } from "@/components/section-cards";
-import { createContext, CSSProperties, useState, use } from "react";
+import { createContext, CSSProperties, useState, use, useEffect } from "react";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { ChartAreaInteractive } from "@/components/chart-area-interactive";
 import SignUpType from "@/domain/entities/signup.type";
+import axios from "axios";
 
 export const DashboardContext = createContext<ContextType | null>(null);
 
@@ -31,6 +32,20 @@ export default function dashboardClient({
 	promiseLocation: Promise<MapType>;
 	promiseSignUp: Promise<SignUpType[]>;
 }) {
+	const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
+	useEffect(() => {
+		const checking = async () => {
+			const check = await axios
+				.get(`${process.env.NEXT_PUBLIC_URL}/verify`)
+				.then((res) => ({ isAuthenticated: res.data }))
+				.catch(() => ({ isAuthenticated: "Not Authenticated" }));
+			(await check.isAuthenticated) === "Authenticated"
+				? setIsAuthenticated(true)
+				: setIsAuthenticated(false);
+		};
+
+		checking();
+	}, []);
 	const elevationData = use(promiseTable).Elevation;
 	const locationData = use(promiseLocation);
 	const earlyWarning = use(promiseTable).Whatsapp;
@@ -50,6 +65,7 @@ export default function dashboardClient({
 			value={{
 				user,
 				header,
+				isAuthenticated,
 				setDashboard,
 				setMap,
 				setChart,

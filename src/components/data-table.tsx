@@ -46,18 +46,23 @@ import {
 } from "@/components/ui/table";
 import { z } from "zod";
 import Mapping from "./map";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { AddDialog } from "@/components/add-dialog";
-import { MapType } from "@/domain/entities/dashboard.type";
+import { ContextType, MapType } from "@/domain/entities/dashboard.type";
 import {
 	elevationSchema,
 	earlyWarningSchema,
 	signUpSchema,
 } from "@/domain/entities/schema.type";
-import { elevationTable, earlyWarningTable, signUpTable } from "./interface";
+import {
+	elevationTable as baseElevationTable,
+	earlyWarningTable as baseEarlyWarningTable,
+	signUpTable,
+} from "./interface";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { DashboardContext } from "./dashboardClient";
 
 export function DataTable({
 	elevation,
@@ -75,8 +80,9 @@ export function DataTable({
 		() => earlyWarning
 	);
 	const [dataSignUp, setdataSignUp] = useState(() => signUp);
-	const [rowSelection, setRowSelection] = useState({});
 	const [tabValue, setTabValue] = useState("elevation");
+
+	const [rowSelection, setRowSelection] = useState({});
 	const [sorting, setSorting] = useState<SortingState>([]);
 	const [pagination, setPagination] = useState({
 		pageIndex: 0,
@@ -87,9 +93,18 @@ export function DataTable({
 		{}
 	);
 
+	const { isAuthenticated } = useContext(DashboardContext) as ContextType;
+
+	const elevationColumns = isAuthenticated
+		? baseElevationTable
+		: baseElevationTable.filter((col) => col.id !== "actions");
+	const earlyWarningColumns = isAuthenticated
+		? baseEarlyWarningTable
+		: baseEarlyWarningTable.filter((col) => col.id !== "actions");
+
 	const table = useReactTable({
 		data: dataElevation,
-		columns: elevationTable,
+		columns: elevationColumns,
 		state: {
 			sorting,
 			columnVisibility,
@@ -114,7 +129,7 @@ export function DataTable({
 
 	const table2 = useReactTable({
 		data: dataEarlyWarning,
-		columns: earlyWarningTable,
+		columns: earlyWarningColumns,
 		state: {
 			sorting,
 			columnVisibility,
@@ -192,7 +207,11 @@ export function DataTable({
 							Early Warning
 						</SelectItem>
 						<SelectItem value="location">Location</SelectItem>
-						<SelectItem value="sign-up">Sign Up Request</SelectItem>
+						{isAuthenticated && (
+							<SelectItem value="sign-up">
+								Sign Up Request
+							</SelectItem>
+						)}
 					</SelectContent>
 				</Select>
 				<TabsList className="**:data-[slot=badge]:bg-muted-foreground/30 hidden **:data-[slot=badge]:size-5 **:data-[slot=badge]:rounded-full **:data-[slot=badge]:px-1 @4xl/main:flex">
@@ -205,9 +224,11 @@ export function DataTable({
 					<TabsTrigger value="location">
 						Location <Badge variant="secondary">3</Badge>
 					</TabsTrigger>
-					<TabsTrigger value="sign-up">
-						Sign Up Request <Badge variant="secondary">4</Badge>
-					</TabsTrigger>
+					{isAuthenticated && (
+						<TabsTrigger value="sign-up">
+							Sign Up Request <Badge variant="secondary">4</Badge>
+						</TabsTrigger>
+					)}
 				</TabsList>
 				<div className="flex items-center gap-2">
 					<DropdownMenu>
@@ -250,25 +271,27 @@ export function DataTable({
 								})}
 						</DropdownMenuContent>
 					</DropdownMenu>
-					{tabValue != "sign-up" && tabValue != "location" && (
-						<>
-							<Button
-								variant="outline"
-								size="sm"
-								onClick={() => setOpen(true)}
-							>
-								<IconPlus />
-								<span className="hidden lg:inline">
-									Add Section
-								</span>
-							</Button>
-							<AddDialog
-								open={open}
-								setOpen={setOpen}
-								tab={tabValue}
-							/>
-						</>
-					)}
+					{isAuthenticated &&
+						tabValue != "sign-up" &&
+						tabValue != "location" && (
+							<>
+								<Button
+									variant="outline"
+									size="sm"
+									onClick={() => setOpen(true)}
+								>
+									<IconPlus />
+									<span className="hidden lg:inline">
+										Add Section
+									</span>
+								</Button>
+								<AddDialog
+									open={open}
+									setOpen={setOpen}
+									tab={tabValue}
+								/>
+							</>
+						)}
 				</div>
 			</div>
 			<TabsContent
@@ -322,7 +345,7 @@ export function DataTable({
 							) : (
 								<TableRow>
 									<TableCell
-										colSpan={elevationTable.length}
+										colSpan={elevationColumns.length}
 										className="h-24 text-center"
 									>
 										No results.
@@ -482,7 +505,7 @@ export function DataTable({
 							) : (
 								<TableRow>
 									<TableCell
-										colSpan={elevationTable.length}
+										colSpan={earlyWarningColumns.length}
 										className="h-24 text-center"
 									>
 										No results.
@@ -651,7 +674,7 @@ export function DataTable({
 							) : (
 								<TableRow>
 									<TableCell
-										colSpan={elevationTable.length}
+										colSpan={signUpTable.length}
 										className="h-24 text-center"
 									>
 										No results.

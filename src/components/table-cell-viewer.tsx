@@ -9,11 +9,6 @@ import {
 	DrawerTrigger,
 } from "@/components/ui/drawer";
 import {
-	ChartContainer,
-	ChartTooltip,
-	ChartTooltipContent,
-} from "@/components/ui/chart";
-import {
 	TableCellElevation,
 	TableCellEarlyWarning,
 } from "@/domain/entities/table-cell.type";
@@ -25,15 +20,8 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { Separator } from "@/components/ui/separator";
-import { Area, AreaChart, CartesianGrid, XAxis } from "recharts";
-import chartConfig from "@/domain/entities/chart-config.type";
 
 export const URL = process.env.NEXT_PUBLIC_URL;
-
-const chartData = await axios
-	.get(`${URL}/chart`)
-	.then((res) => res.data.elevation);
 
 export function TableCellViewerElevation({
 	item,
@@ -63,65 +51,10 @@ export function TableCellViewerElevation({
 				<DrawerHeader className="gap-1">
 					<DrawerTitle>Edit Data</DrawerTitle>
 					<DrawerDescription>
-						{!isMobile && <>Showing total elevations</>}
+						Edit Water Elevation, Latitude, and Longitude
 					</DrawerDescription>
 				</DrawerHeader>
 				<div className="flex flex-col gap-4 overflow-y-auto px-4 text-sm">
-					{!isMobile && (
-						<>
-							<ChartContainer config={chartConfig}>
-								<AreaChart
-									accessibilityLayer
-									data={chartData}
-									margin={{
-										left: 0,
-										right: 10,
-									}}
-								>
-									<CartesianGrid vertical={false} />
-									<XAxis
-										dataKey="created_at"
-										tickLine={false}
-										axisLine={false}
-										tickMargin={8}
-										tickFormatter={(value) => value}
-										hide
-									/>
-									<ChartTooltip
-										cursor={false}
-										defaultIndex={isMobile ? -1 : 10}
-										content={
-											<ChartTooltipContent
-												labelFormatter={(value) => {
-													return new Date(
-														value
-													).toLocaleDateString(
-														"en-US",
-														{
-															month: "short",
-															day: "numeric",
-															hour: "2-digit",
-															minute: "2-digit",
-														}
-													);
-												}}
-												indicator="dot"
-											/>
-										}
-									/>
-									<Area
-										dataKey="water_elevation"
-										type="natural"
-										fill="var(--color-elevation)"
-										fillOpacity={0.1}
-										stroke="var(--color-elevation)"
-										stackId="a"
-									/>
-								</AreaChart>
-							</ChartContainer>
-							<Separator />
-						</>
-					)}
 					<form
 						id="edit-elevation-form"
 						className="flex flex-col gap-4"

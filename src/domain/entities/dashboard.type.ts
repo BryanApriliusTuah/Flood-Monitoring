@@ -58,6 +58,7 @@ export interface ContextType {
 		avatar: string;
 	} | null;
 	header: { title: string };
+	isAuthenticated: boolean;
 	setDashboard: (value: boolean) => void;
 	setMap: (value: boolean) => void;
 	setChart: (value: boolean) => void;

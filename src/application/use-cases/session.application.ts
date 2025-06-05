@@ -6,10 +6,10 @@ export const Verify = (infra: SessionRepository) => {
 
 export const Login = (
 	infra: SessionRepository,
-	username: string,
+	email: string,
 	password: string
 ) => {
-	return infra.login(username, password);
+	return infra.login(email, password);
 };
 
 export const Logout = (infra: SessionRepository) => {

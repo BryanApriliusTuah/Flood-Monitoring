@@ -13,7 +13,9 @@ export default async function DashboardPage() {
 		.get(`${URL}/sectionCard`)
 		.then((res) => res.data);
 
-	const location = axios.get(`${URL}/location`).then((res) => res.data);
+	const location = axios.get(`${URL}/map`).then((res) => res.data);
+
+	const dataSignUp = axios.get(`${URL}/signup`).then((res) => res.data);
 
 	return (
 		<Suspense fallback={<>Wait Bro...</>}>
@@ -22,6 +24,7 @@ export default async function DashboardPage() {
 				promiseChart={dataChart}
 				promiseSectionCard={dataSectionCard}
 				promiseLocation={location}
+				promiseSignUp={dataSignUp}
 			/>
 		</Suspense>
 	);

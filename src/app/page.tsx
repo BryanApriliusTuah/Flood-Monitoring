@@ -17,6 +17,11 @@ export default async function DashboardPage() {
 
 	const dataSignUp = axios.get(`${URL}/signup`).then((res) => res.data);
 
+	const verify = axios
+		.get(`${URL}/verify`)
+		.then((res) => res.data)
+		.catch(() => "Not Authenticated");
+
 	return (
 		<Suspense fallback={<>Wait Bro...</>}>
 			<DashboardClient
@@ -25,6 +30,7 @@ export default async function DashboardPage() {
 				promiseSectionCard={dataSectionCard}
 				promiseLocation={location}
 				promiseSignUp={dataSignUp}
+				promiseVerify={verify}
 			/>
 		</Suspense>
 	);

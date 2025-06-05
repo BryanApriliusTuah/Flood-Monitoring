@@ -1,4 +1,10 @@
 "use client";
+import {
+	DropdownMenu,
+	DropdownMenuContent,
+	DropdownMenuItem,
+	DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { SidebarTrigger } from "@/components/ui/sidebar";
@@ -7,12 +13,6 @@ import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import { ContextType } from "@/domain/entities/dashboard.type";
 import { DashboardContext } from "@/components/dashboardClient";
-import {
-	DropdownMenu,
-	DropdownMenuContent,
-	DropdownMenuItem,
-	DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 
 export function SiteHeader() {
 	const { header } = useContext(DashboardContext) as ContextType;

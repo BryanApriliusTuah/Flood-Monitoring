@@ -17,6 +17,11 @@ import {
 	TableCellViewerElevation,
 	TableCellViewerEarlyWarning,
 } from "./table-cell-viewer";
+import {
+	elevationSchema,
+	earlyWarningSchema,
+	signUpSchema,
+} from "@/domain/entities/schema.type";
 import axios from "axios";
 import { z } from "zod";
 import { toast } from "sonner";
@@ -29,11 +34,6 @@ import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import type { ColumnDef } from "@tanstack/react-table";
 import { DeleteAlert } from "@/components/delete-alert";
-import {
-	elevationSchema,
-	earlyWarningSchema,
-	signUpSchema,
-} from "@/domain/entities/schema.type";
 
 export const URL = process.env.NEXT_PUBLIC_URL;
 
