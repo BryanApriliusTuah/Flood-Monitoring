@@ -4,8 +4,6 @@ import {
 	getElevations,
 	updateElevation,
 } from "@/application/use-cases/elevation.application";
-import { decrypt } from "@/lib/session";
-import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 import { ElevationInfrastructure } from "@/infrastructure/repositories/elevation.infrastructure";
 
@@ -32,8 +30,13 @@ export async function POST(request: Request) {
 	// if (!userId)
 	// 	return NextResponse.json({ error: "Not Authorized" }, { status: 401 });
 	try {
-		const { elevation } = await request.json();
-		const add = await addElevation(ElevationInfrastructure, elevation);
+		const { elevation, latitude, longitude } = await request.json();
+		const add = await addElevation(
+			ElevationInfrastructure,
+			elevation,
+			latitude,
+			longitude
+		);
 		return NextResponse.json(add, { status: 201 });
 	} catch (error) {
 		if (error instanceof Error) {
@@ -54,11 +57,17 @@ export async function PATCH(request: Request) {
 	// if (!userId)
 	// 	return NextResponse.json({ error: "Not Authorized" }, { status: 401 });
 	try {
-		const { id, elevation } = await request.json();
+		const { id, elevation, latitude, longitude } = await request.json();
+		// return NextResponse.json(
+		// 	{ id, elevation, latitude, longitude },
+		// 	{ status: 200 }
+		// );
 		const update = await updateElevation(
 			ElevationInfrastructure,
 			id,
-			elevation
+			elevation,
+			latitude,
+			longitude
 		);
 		return NextResponse.json(update, { status: 200 });
 	} catch (error) {

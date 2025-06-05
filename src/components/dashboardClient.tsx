@@ -31,11 +31,11 @@ export default function dashboardClient({
 	promiseLocation: Promise<MapType>;
 	promiseSignUp: Promise<SignUpType[]>;
 }) {
-	const elevationData = use(promiseTable).Combined;
+	const elevationData = use(promiseTable).Elevation;
+	const locationData = use(promiseLocation);
 	const earlyWarning = use(promiseTable).Whatsapp;
 	const chartData = use(promiseChart);
 	const sectionCardData = use(promiseSectionCard);
-	const locationData = use(promiseLocation);
 	const signUpData = use(promiseSignUp);
 
 	const [user, setUser] = useState<UserType | null>(null);

@@ -31,20 +31,23 @@ export function DeleteAlert({
 		const schemaResult = elevationSchema.safeParse(item);
 		const earlySchemaResult = earlyWarningSchema.safeParse(item);
 
-		let data: any;
+		if (!schemaResult.success && !earlySchemaResult.success) {
+			console.error(
+				"Zod error:",
+				schemaResult.error || earlySchemaResult.error
+			);
+			return toast.error(
+				"Failed to parse item. Please check the data format."
+			);
+		}
 
 		if (schemaResult.success) {
 			const parsed = schemaResult.data;
-			data = {
-				idElevation: parsed.idElevation,
-				idLocation: parsed.idLocation,
-			};
-
 			toast.promise(
 				async () => {
 					await new Promise((resolve) => setTimeout(resolve, 1000));
 					return axios.delete(`${URL}/dataTable`, {
-						data: data,
+						data: { id: parsed.id },
 					});
 				},
 				{
@@ -55,16 +58,11 @@ export function DeleteAlert({
 			);
 		} else if (earlySchemaResult.success) {
 			const parsed = earlySchemaResult.data;
-
-			data = {
-				idWhatsapp: parsed.id,
-			};
-
 			toast.promise(
 				async () => {
 					await new Promise((resolve) => setTimeout(resolve, 1000));
 					return axios.delete(`${URL}/whatsapp`, {
-						data: data,
+						data: { id: parsed.id },
 					});
 				},
 				{
@@ -73,9 +71,6 @@ export function DeleteAlert({
 					error: "Failed to delete.",
 				}
 			);
-		} else {
-			toast.error("Invalid data format.");
-			return;
 		}
 	};
 

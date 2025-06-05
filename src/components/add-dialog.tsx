@@ -114,10 +114,9 @@ function ElevationForm({ className }: React.ComponentProps<"form">) {
 	const [status, setStatus] = useState<string>(
 		parseFloat(elevation) > Level.Normal
 			? "Normal"
-			: parseFloat(elevation) <= Level.Siaga &&
-			  parseFloat(elevation) >= Level.Banjir
-			? "Siaga"
-			: "Banjir"
+			: parseFloat(elevation) < Level.Banjir
+			? "Banjir"
+			: "Siaga"
 	);
 	const [latitude, setLatitude] = useState<string>("");
 	const [longitude, setLongitude] = useState<string>("");
@@ -163,9 +162,9 @@ function ElevationForm({ className }: React.ComponentProps<"form">) {
 								const stat =
 									v > Level.Normal
 										? "Normal"
-										: v <= Level.Siaga && v >= Level.Banjir
-										? "Siaga"
-										: "Banjir";
+										: v < Level.Banjir
+										? "Banjir"
+										: "Siaga";
 								setStatus(stat);
 							}}
 						/>

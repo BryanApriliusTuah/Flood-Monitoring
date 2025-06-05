@@ -2,7 +2,7 @@ import SignupRepository from "@/domain/repositories/signup.repository";
 import { prisma } from "@/lib/prisma";
 
 const getSignUps = async (): Promise<Response> => {
-	const signUps = await prisma.signUp.findMany({
+	const signUps = await prisma.signup.findMany({
 		select: {
 			id: true,
 			username: true,
@@ -29,7 +29,7 @@ const signUp = async (
 	password: string
 ): Promise<Response> => {
 	try {
-		await prisma.signUp.create({
+		await prisma.signup.create({
 			data: {
 				username,
 				email,
@@ -49,7 +49,7 @@ const signUp = async (
 
 const deleteSignUp = async (id: number): Promise<Response> => {
 	try {
-		await prisma.signUp.delete({
+		await prisma.signup.delete({
 			where: { id },
 		});
 		return new Response("Deleted successfully", { status: 200 });

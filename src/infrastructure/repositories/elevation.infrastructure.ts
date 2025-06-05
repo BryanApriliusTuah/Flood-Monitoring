@@ -15,11 +15,15 @@ const getElevations = async (): Promise<ElevationType[]> => {
 };
 
 const addElevation = async (
-	water_elevation: number
+	water_elevation: number,
+	latitude: string,
+	longitude: string
 ): Promise<ElevationType> => {
 	const add = await prisma.elevation.create({
 		data: {
 			water_elevation: water_elevation,
+			latitude: latitude,
+			longitude: longitude,
 			hardwareId: 1,
 		},
 	});
@@ -30,11 +34,15 @@ const addElevation = async (
 
 const updateElevation = async (
 	id: number,
-	new_water_elevation: number
+	new_water_elevation: number,
+	new_latitude: string,
+	new_longitude: string
 ): Promise<ElevationType> => {
 	const update = await prisma.elevation.update({
 		data: {
 			water_elevation: new_water_elevation,
+			latitude: new_latitude,
+			longitude: new_longitude,
 		},
 		where: {
 			id: id,
@@ -57,8 +65,13 @@ const deleteElevation = async (id: number): Promise<ElevationType> => {
 
 export const ElevationInfrastructure: ElevationRepository = {
 	getElevations: async () => getElevations(),
-	addElevation: async (water_elevation) => addElevation(water_elevation),
-	updateElevation: async (id, new_water_elevation) =>
-		updateElevation(id, new_water_elevation),
+	addElevation: async (water_elevation, latitude, longitude) =>
+		addElevation(water_elevation, latitude, longitude),
+	updateElevation: async (
+		id,
+		new_water_elevation,
+		new_latitude,
+		new_longitude
+	) => updateElevation(id, new_water_elevation, new_latitude, new_longitude),
 	deleteElevation: async (id) => deleteElevation(id),
 };

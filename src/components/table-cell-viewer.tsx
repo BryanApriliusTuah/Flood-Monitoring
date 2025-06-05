@@ -47,10 +47,9 @@ export function TableCellViewerElevation({
 	const [status, setStatus] = useState<string>(
 		parseFloat(elevation) > Level.Normal
 			? "Normal"
-			: parseFloat(elevation) <= Level.Siaga &&
-			  parseFloat(elevation) >= Level.Banjir
-			? "Siaga"
-			: "Banjir"
+			: parseFloat(elevation) < Level.Banjir
+			? "Banjir"
+			: "Siaga"
 	);
 	const [latitude, setLatitude] = useState<string>(item.latitude);
 	const [longitude, setLongitude] = useState<string>(item.longitude);
@@ -129,8 +128,7 @@ export function TableCellViewerElevation({
 						onSubmit={async (e) => {
 							e.preventDefault();
 							const data = JSON.stringify({
-								idElevation: item.idElevation,
-								idLocation: item.idLocation,
+								id: item.id,
 								elevation: elevation,
 								latitude: latitude,
 								longitude: longitude,
@@ -164,10 +162,9 @@ export function TableCellViewerElevation({
 										const d =
 											val > Level.Normal
 												? "Normal"
-												: val <= Level.Siaga &&
-												  val >= Level.Banjir
-												? "Siaga"
-												: "Banjir";
+												: val < Level.Banjir
+												? "Banjir"
+												: "Siaga";
 										setStatus(d);
 									}}
 								/>

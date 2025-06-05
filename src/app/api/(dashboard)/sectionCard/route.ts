@@ -1,5 +1,3 @@
-import { cookies } from "next/headers";
-import { decrypt } from "@/lib/session";
 import { NextResponse } from "next/server";
 import { getSectionCard } from "@/application/use-cases/dashboard.application";
 import { SectionCardsInfrastructure } from "@/infrastructure/repositories/dashboard.infrastructure";

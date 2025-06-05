@@ -1,11 +1,10 @@
 export interface DataTableType {
-	Combined: {
-		idElevation: number;
+	Elevation: {
+		id: number;
 		water_elevation: number;
-		created_at: string;
-		idLocation: number;
 		latitude: string;
 		longitude: string;
+		created_at: Date;
 	}[];
 	Whatsapp: {
 		id: number;

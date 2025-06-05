@@ -3,7 +3,7 @@ import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { useState, useEffect } from "react";
 import { Area, AreaChart, CartesianGrid, XAxis } from "recharts";
 import chartConfig from "@/domain/entities/chart-config.type";
-import { ElevationType } from "@/domain/entities/dashboard.type";
+import ElevationType from "@/domain/entities/elevation.type";
 import { useIsMobile } from "@/hooks/use-mobile";
 import {
 	Select,
@@ -25,7 +25,7 @@ import {
 	ChartTooltip,
 	ChartTooltipContent,
 } from "@/components/ui/chart";
-import dataset_bmkg from "@/app/Dataset_BMKG.json";
+// import dataset_bmkg from "@/app/Dataset_BMKG.json";
 
 export const description = "An interactive area chart";
 const URL = process.env.NEXT_PUBLIC_URL;

@@ -1,6 +1,4 @@
 import { NextResponse } from "next/server";
-import { decrypt } from "@/lib/session";
-import { cookies } from "next/headers";
 import { prisma } from "@/lib/prisma";
 
 export async function POST(request: Request) {
@@ -57,11 +55,11 @@ export async function DELETE(request: Request) {
 
 	// if (!userId)
 	// 	return NextResponse.json({ error: "Not Authorized" }, { status: 401 });
-	const { idWhatsapp } = await request.json();
+	const { id } = await request.json();
 
 	const deleteWhatsapp = await prisma.whatsapp.delete({
 		where: {
-			id: idWhatsapp,
+			id: id,
 		},
 	});
 

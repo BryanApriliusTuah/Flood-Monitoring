@@ -16,14 +16,13 @@ import Level from "@/components/level";
 
 const DataTable = async (): Promise<DataTableType> => {
 	const data: DataTableType = {
-		Combined: [
+		Elevation: [
 			{
-				idElevation: 0,
+				id: 0,
 				water_elevation: 0,
-				created_at: new Date().toISOString(),
-				idLocation: 0,
 				latitude: "",
 				longitude: "",
+				created_at: new Date(),
 			},
 		],
 		Whatsapp: [
@@ -39,15 +38,6 @@ const DataTable = async (): Promise<DataTableType> => {
 				select: {
 					id: true,
 					water_elevation: true,
-					created_at: true,
-				},
-				orderBy: {
-					created_at: "desc",
-				},
-			},
-			Location: {
-				select: {
-					id: true,
 					latitude: true,
 					longitude: true,
 					created_at: true,
@@ -70,56 +60,7 @@ const DataTable = async (): Promise<DataTableType> => {
 
 	if (!dataTable.length) return data;
 
-	const filteredData = dataTable
-		.map((item) => {
-			const isSameHour = (a: Date, b: Date): boolean =>
-				a.getFullYear() === b.getFullYear() &&
-				a.getMonth() === b.getMonth() &&
-				a.getDate() === b.getDate() &&
-				a.getHours() === b.getHours() &&
-				a.getMinutes() === b.getMinutes();
-
-			const matchedElevations = item.Elevation.filter((e) =>
-				item.Location.some((l) =>
-					isSameHour(e.created_at, l.created_at)
-				)
-			);
-
-			const matchedLocations = item.Location.filter((l) =>
-				item.Elevation.some((e) =>
-					isSameHour(l.created_at, e.created_at)
-				)
-			);
-
-			return {
-				Elevation: matchedElevations,
-				Location: matchedLocations,
-				Whatsapp: item.Whatsapp,
-			};
-		})
-		.map((item) => {
-			const { Elevation, Location, Whatsapp } = item;
-			const minLength = Math.min(Elevation.length, Location.length);
-			const Combined: DataTableType["Combined"] = [];
-
-			for (let i = 0; i < minLength; i++) {
-				Combined.push({
-					idElevation: Elevation[i].id,
-					water_elevation: Elevation[i].water_elevation,
-					created_at: String(
-						Elevation[i].created_at || Location[i].created_at
-					),
-					idLocation: Location[i].id,
-					latitude: Location[i].latitude,
-					longitude: Location[i].longitude,
-				});
-			}
-			return { Combined, Whatsapp };
-		});
-
-	if (!filteredData.length) throw new Error("Filtered Data");
-
-	return filteredData[0];
+	return dataTable[0];
 };
 
 const Chart = async (): Promise<ChartType[]> => {
@@ -161,10 +102,13 @@ const SectionCards = async (): Promise<SectionCardType> => {
 		prediction: "0",
 		predictPersentage: "0",
 	};
+
 	// Status
 	const index = await prisma.elevation.findFirst({
 		select: {
 			water_elevation: true,
+			latitude: true,
+			longitude: true,
 		},
 		orderBy: {
 			created_at: "desc",
@@ -174,27 +118,13 @@ const SectionCards = async (): Promise<SectionCardType> => {
 	if (!index) return data;
 
 	const status =
-		index.water_elevation > Level.Normal
+		index.water_elevation < Level.Banjir
+			? "BANJIR"
+			: index.water_elevation > Level.Normal
 			? "NORMAL"
-			: index.water_elevation <= Level.Siaga &&
-			  index.water_elevation >= Level.Banjir
-			? "SIAGA"
-			: "BANJIR";
+			: "SIAGA";
 
-	// Location
-	const latAndLon = await prisma.location.findFirst({
-		select: {
-			latitude: true,
-			longitude: true,
-		},
-		orderBy: {
-			created_at: "desc",
-		},
-	});
-
-	if (!latAndLon) throw new Error("Location");
-
-	const { latitude, longitude } = latAndLon;
+	const { latitude, longitude } = index;
 
 	const location = await axios
 		.get(
@@ -231,8 +161,8 @@ const SectionCards = async (): Promise<SectionCardType> => {
 			waterIndexLevel = {
 				water1: waterIndex[0].water_elevation,
 				created_at1: String(waterIndex[0].created_at),
-				water2: 0,
-				created_at2: "",
+				water2: waterIndex[0].water_elevation,
+				created_at2: String(waterIndex[0].created_at),
 				persentage: parseFloat(waterIndexPersentage.toFixed(2)),
 				time: minutesHour,
 			};
@@ -317,7 +247,7 @@ const SectionCards = async (): Promise<SectionCardType> => {
 };
 
 const Map = async (): Promise<MapType> => {
-	const location = await prisma.location.findFirst({
+	const location = await prisma.elevation.findFirst({
 		select: {
 			latitude: true,
 			longitude: true,
@@ -327,7 +257,7 @@ const Map = async (): Promise<MapType> => {
 		},
 	});
 
-	if (!location) throw new Error("Location");
+	if (!location) throw new Error("Map");
 
 	return location;
 };

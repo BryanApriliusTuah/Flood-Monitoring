@@ -1,12 +1,11 @@
 import { z } from "zod";
 
 export const elevationSchema = z.object({
-	idElevation: z.number(),
+	id: z.number(),
 	water_elevation: z.number(),
-	created_at: z.string(),
-	idLocation: z.number(),
 	latitude: z.string(),
 	longitude: z.string(),
+	created_at: z.date(),
 });
 
 export const earlyWarningSchema = z.object({

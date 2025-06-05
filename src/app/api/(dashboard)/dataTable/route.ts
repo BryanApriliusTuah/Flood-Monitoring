@@ -1,14 +1,12 @@
 import { NextResponse } from "next/server";
-import { decrypt } from "@/lib/session";
-import { cookies } from "next/headers";
 import { prisma } from "@/lib/prisma";
 import { getDataTable } from "@/application/use-cases/dashboard.application";
 import { DataTableInfrastructure } from "@/infrastructure/repositories/dashboard.infrastructure";
 
 export async function GET() {
 	try {
-		const filteredData = await getDataTable(DataTableInfrastructure);
-		return NextResponse.json(filteredData, { status: 200 });
+		const dataTable = await getDataTable(DataTableInfrastructure);
+		return NextResponse.json(dataTable, { status: 200 });
 	} catch (error) {
 		if (error instanceof Error) {
 			console.error("Router Data Table: ", error.message);
@@ -26,18 +24,13 @@ export async function POST(request: Request) {
 	const newElevation = await prisma.elevation.create({
 		data: {
 			water_elevation: parseFloat(elevation),
-			hardwareId: 1,
-		},
-	});
-	const newLocation = await prisma.location.create({
-		data: {
 			latitude: latitude,
 			longitude: longitude,
 			hardwareId: 1,
 		},
 	});
 
-	if (!newElevation || !newLocation)
+	if (!newElevation)
 		return NextResponse.json({ error: "I dont know" }, { status: 400 });
 
 	return NextResponse.json({ success: true });
@@ -52,12 +45,10 @@ export async function PUT(request: Request) {
 
 	try {
 		const body = await request.json();
-		const { idElevation, idLocation, elevation, latitude, longitude } =
-			body;
+		const { id, elevation, latitude, longitude } = body;
 
 		if (
-			typeof idElevation === "undefined" ||
-			typeof idLocation === "undefined" ||
+			typeof id === "undefined" ||
 			typeof elevation === "undefined" ||
 			typeof latitude === "undefined" ||
 			typeof longitude === "undefined"
@@ -70,30 +61,14 @@ export async function PUT(request: Request) {
 			);
 		}
 
-		const updateData = await prisma.hardware.update({
+		const updateData = await prisma.elevation.update({
 			where: {
-				id: 1,
+				id: id,
 			},
 			data: {
-				Elevation: {
-					update: {
-						where: { id: idElevation },
-						data: {
-							water_elevation: parseFloat(elevation),
-						},
-					},
-				},
-				Location: {
-					update: {
-						where: {
-							id: idLocation,
-						},
-						data: {
-							latitude: latitude,
-							longitude: longitude,
-						},
-					},
-				},
+				water_elevation: parseFloat(elevation),
+				latitude: latitude,
+				longitude: longitude,
 			},
 		});
 
@@ -119,29 +94,17 @@ export async function DELETE(request: Request) {
 
 	// if (!userId) return NextResponse.error();
 
-	const { idElevation, idLocation } = await request.json();
+	const { id } = await request.json();
 
 	const deleteElevation = await prisma.elevation.delete({
 		where: {
-			id: idElevation,
+			id: id,
 		},
 	});
 
 	if (!deleteElevation)
 		return NextResponse.json(
 			{ error: "Failed to delete Elevation" },
-			{ status: 400 }
-		);
-
-	const deleteLocation = await prisma.location.delete({
-		where: {
-			id: idLocation,
-		},
-	});
-
-	if (!deleteLocation)
-		return NextResponse.json(
-			{ error: "Failed to delete Location" },
 			{ status: 400 }
 		);
 

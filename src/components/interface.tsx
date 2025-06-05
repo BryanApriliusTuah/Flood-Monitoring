@@ -87,15 +87,17 @@ export const elevationTable: ColumnDef<z.infer<typeof elevationSchema>>[] = [
 					onSubmit={(e) => {
 						e.preventDefault();
 						const data = {
-							id: row.original.idElevation,
+							id: row.original.id,
 							elevation: parseFloat(elevation),
+							latitude: row.original.latitude,
+							longitude: row.original.longitude,
 						};
 						toast.promise(
 							async () => {
 								await new Promise((resolve) =>
 									setTimeout(resolve, 1000)
 								);
-								return axios.patch(`${URL}/elevation`, data);
+								return axios.patch(`${URL}/elevations`, data);
 							},
 							{
 								loading: `Updating...`,
@@ -106,7 +108,7 @@ export const elevationTable: ColumnDef<z.infer<typeof elevationSchema>>[] = [
 					}}
 				>
 					<Label
-						htmlFor={`${row.original.idElevation}-elevation`}
+						htmlFor={`${row.original.id}-elevation`}
 						className="sr-only"
 					>
 						Elevation
@@ -122,7 +124,7 @@ export const elevationTable: ColumnDef<z.infer<typeof elevationSchema>>[] = [
 								setElevation(value);
 							}
 						}}
-						id={`${row.original.idElevation}-elevation`}
+						id={`${row.original.id}-elevation`}
 					/>
 					<span className="ml-1 text-muted-foreground select-none">
 						cm
@@ -142,24 +144,22 @@ export const elevationTable: ColumnDef<z.infer<typeof elevationSchema>>[] = [
 				>
 					{row.original.water_elevation > Level.Normal ? (
 						<IconCircleCheckFilled color="rgb(34 197 94)" />
-					) : row.original.water_elevation <= Level.Siaga &&
-					  row.original.water_elevation >= Level.Banjir ? (
-						<IconAlertHexagonFilled color="rgb(249 115 22)" />
-					) : (
+					) : row.original.water_elevation < Level.Banjir ? (
 						<IconAlertHexagonFilled color="rgb(153 27 27)" />
+					) : (
+						<IconAlertHexagonFilled color="rgb(249 115 22)" />
 					)}
 					{row.original.water_elevation > Level.Normal ? (
 						<div className="text-green-500 tracking-wider">
 							NORMAL
 						</div>
-					) : row.original.water_elevation <= Level.Siaga &&
-					  row.original.water_elevation >= Level.Banjir ? (
-						<div className="text-orange-500 tracking-wider">
-							SIAGA
-						</div>
-					) : (
+					) : row.original.water_elevation < Level.Banjir ? (
 						<div className="text-red-500 tracking-wider">
 							BANJIR
+						</div>
+					) : (
+						<div className="text-orange-500 tracking-wider">
+							SIAGA
 						</div>
 					)}
 				</Badge>
@@ -177,15 +177,17 @@ export const elevationTable: ColumnDef<z.infer<typeof elevationSchema>>[] = [
 					onSubmit={(e) => {
 						e.preventDefault();
 						const data = {
-							id: row.original.idLocation,
+							id: row.original.id,
+							elevation: row.original.water_elevation,
 							latitude: latitude,
+							longitude: row.original.longitude,
 						};
 						toast.promise(
 							async () => {
 								await new Promise((resolve) =>
 									setTimeout(resolve, 1000)
 								);
-								return axios.patch(`${URL}/location`, data);
+								return axios.patch(`${URL}/elevations`, data);
 							},
 							{
 								loading: `Updating...`,
@@ -196,7 +198,7 @@ export const elevationTable: ColumnDef<z.infer<typeof elevationSchema>>[] = [
 					}}
 				>
 					<Label
-						htmlFor={`${row.original.idElevation}-latitude`}
+						htmlFor={`${row.original.latitude}-latitude`}
 						className="sr-only"
 					>
 						Latitude
@@ -205,7 +207,7 @@ export const elevationTable: ColumnDef<z.infer<typeof elevationSchema>>[] = [
 						className="hover:bg-input/30 focus-visible:bg-background dark:hover:bg-input/30 dark:focus-visible:bg-input/30 h-8 w-24 border-transparent bg-transparent text-center shadow-none focus-visible:border dark:bg-transparent"
 						value={latitude}
 						onChange={(e) => setLatitude(e.target.value)}
-						id={`${row.original.idElevation}-latitude`}
+						id={`${row.original.latitude}-latitude`}
 					/>
 				</form>
 			);
@@ -222,7 +224,9 @@ export const elevationTable: ColumnDef<z.infer<typeof elevationSchema>>[] = [
 					onSubmit={(e) => {
 						e.preventDefault();
 						const data = {
-							id: row.original.idLocation,
+							id: row.original.id,
+							elevation: row.original.water_elevation,
+							latitude: row.original.latitude,
 							longitude: longitude,
 						};
 						toast.promise(
@@ -230,7 +234,7 @@ export const elevationTable: ColumnDef<z.infer<typeof elevationSchema>>[] = [
 								await new Promise((resolve) =>
 									setTimeout(resolve, 1000)
 								);
-								return axios.patch(`${URL}/location`, data);
+								return axios.patch(`${URL}/elevations`, data);
 							},
 							{
 								loading: `Saving ${row.original.longitude}...`,
@@ -241,7 +245,7 @@ export const elevationTable: ColumnDef<z.infer<typeof elevationSchema>>[] = [
 					}}
 				>
 					<Label
-						htmlFor={`${row.original.idElevation}-longitude`}
+						htmlFor={`${row.original.id}-longitude`}
 						className="sr-only"
 					>
 						Longitude
@@ -250,7 +254,7 @@ export const elevationTable: ColumnDef<z.infer<typeof elevationSchema>>[] = [
 						className="hover:bg-input/30 focus-visible:bg-background dark:hover:bg-input/30 dark:focus-visible:bg-input/30 h-8 w-24 border-transparent bg-transparent text-center shadow-none focus-visible:border dark:bg-transparent"
 						value={longitude}
 						onChange={(e) => setLongitude(e.target.value)}
-						id={`${row.original.idElevation}-longitude`}
+						id={`${row.original.id}-longitude`}
 					/>
 				</form>
 			);
@@ -277,7 +281,10 @@ export const elevationTable: ColumnDef<z.infer<typeof elevationSchema>>[] = [
 			return (
 				<div className="w-full flex justify-center items-center">
 					<DeleteAlert
-						item={row.original}
+						item={{
+							...row.original,
+							created_at: new Date(row.original.created_at),
+						}}
 						open={openDelete}
 						setOpen={setOpenDelete}
 					/>
@@ -299,9 +306,9 @@ export const elevationTable: ColumnDef<z.infer<typeof elevationSchema>>[] = [
 						</DropdownMenuTrigger>
 						<DropdownMenuContent align="end" className="w-32">
 							<DropdownMenuItem
-								onClick={() =>
-									setTimeout(() => setOpen(true), 10)
-								}
+								onClick={() => {
+									setTimeout(() => setOpen(true), 10);
+								}}
 							>
 								Edit
 							</DropdownMenuItem>

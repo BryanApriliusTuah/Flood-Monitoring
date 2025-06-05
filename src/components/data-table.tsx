@@ -97,7 +97,7 @@ export function DataTable({
 			columnFilters,
 			pagination,
 		},
-		getRowId: (row) => row.idElevation.toString(),
+		getRowId: (row) => row.id.toString(),
 		enableRowSelection: true,
 		onRowSelectionChange: setRowSelection,
 		onSortingChange: setSorting,
