@@ -123,20 +123,25 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
 exports.Prisma.AdminScalarFieldEnum = {
   id: 'id',
   email: 'email',
-  password: 'password'
+  password: 'password',
+  role: 'role',
+  created_at: 'created_at'
 };
 
-exports.Prisma.SignUpScalarFieldEnum = {
+exports.Prisma.SignupScalarFieldEnum = {
   id: 'id',
   username: 'username',
   password: 'password',
   email: 'email',
+  accepted: 'accepted',
   created_at: 'created_at'
 };
 
 exports.Prisma.ElevationScalarFieldEnum = {
   id: 'id',
   water_elevation: 'water_elevation',
+  latitude: 'latitude',
+  longitude: 'longitude',
   created_at: 'created_at',
   hardwareId: 'hardwareId'
 };
@@ -144,14 +149,6 @@ exports.Prisma.ElevationScalarFieldEnum = {
 exports.Prisma.HardwareScalarFieldEnum = {
   id: 'id',
   name: 'name'
-};
-
-exports.Prisma.LocationScalarFieldEnum = {
-  id: 'id',
-  longitude: 'longitude',
-  latitude: 'latitude',
-  created_at: 'created_at',
-  hardwareId: 'hardwareId'
 };
 
 exports.Prisma.WhatsappScalarFieldEnum = {
@@ -163,7 +160,6 @@ exports.Prisma.WhatsappScalarFieldEnum = {
 exports.Prisma.LevelScalarFieldEnum = {
   id: 'id',
   Normal: 'Normal',
-  Siaga: 'Siaga',
   Banjir: 'Banjir'
 };
 
@@ -174,22 +170,23 @@ exports.Prisma.SortOrder = {
 
 exports.Prisma.AdminOrderByRelevanceFieldEnum = {
   email: 'email',
-  password: 'password'
+  password: 'password',
+  role: 'role'
 };
 
-exports.Prisma.SignUpOrderByRelevanceFieldEnum = {
+exports.Prisma.SignupOrderByRelevanceFieldEnum = {
   username: 'username',
   password: 'password',
   email: 'email'
 };
 
-exports.Prisma.HardwareOrderByRelevanceFieldEnum = {
-  name: 'name'
+exports.Prisma.ElevationOrderByRelevanceFieldEnum = {
+  latitude: 'latitude',
+  longitude: 'longitude'
 };
 
-exports.Prisma.LocationOrderByRelevanceFieldEnum = {
-  longitude: 'longitude',
-  latitude: 'latitude'
+exports.Prisma.HardwareOrderByRelevanceFieldEnum = {
+  name: 'name'
 };
 
 exports.Prisma.WhatsappOrderByRelevanceFieldEnum = {
@@ -199,10 +196,9 @@ exports.Prisma.WhatsappOrderByRelevanceFieldEnum = {
 
 exports.Prisma.ModelName = {
   Admin: 'Admin',
-  SignUp: 'SignUp',
+  Signup: 'Signup',
   Elevation: 'Elevation',
   Hardware: 'Hardware',
-  Location: 'Location',
   Whatsapp: 'Whatsapp',
   Level: 'Level'
 };

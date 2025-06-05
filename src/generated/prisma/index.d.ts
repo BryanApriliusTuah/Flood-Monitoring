@@ -19,10 +19,10 @@ export type PrismaPromise<T> = $Public.PrismaPromise<T>
  */
 export type Admin = $Result.DefaultSelection<Prisma.$AdminPayload>
 /**
- * Model SignUp
+ * Model Signup
  * 
  */
-export type SignUp = $Result.DefaultSelection<Prisma.$SignUpPayload>
+export type Signup = $Result.DefaultSelection<Prisma.$SignupPayload>
 /**
  * Model Elevation
  * 
@@ -33,11 +33,6 @@ export type Elevation = $Result.DefaultSelection<Prisma.$ElevationPayload>
  * 
  */
 export type Hardware = $Result.DefaultSelection<Prisma.$HardwarePayload>
-/**
- * Model Location
- * 
- */
-export type Location = $Result.DefaultSelection<Prisma.$LocationPayload>
 /**
  * Model Whatsapp
  * 
@@ -185,14 +180,14 @@ export class PrismaClient<
   get admin(): Prisma.AdminDelegate<ExtArgs, ClientOptions>;
 
   /**
-   * `prisma.signUp`: Exposes CRUD operations for the **SignUp** model.
+   * `prisma.signup`: Exposes CRUD operations for the **Signup** model.
     * Example usage:
     * ```ts
-    * // Fetch zero or more SignUps
-    * const signUps = await prisma.signUp.findMany()
+    * // Fetch zero or more Signups
+    * const signups = await prisma.signup.findMany()
     * ```
     */
-  get signUp(): Prisma.SignUpDelegate<ExtArgs, ClientOptions>;
+  get signup(): Prisma.SignupDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.elevation`: Exposes CRUD operations for the **Elevation** model.
@@ -213,16 +208,6 @@ export class PrismaClient<
     * ```
     */
   get hardware(): Prisma.HardwareDelegate<ExtArgs, ClientOptions>;
-
-  /**
-   * `prisma.location`: Exposes CRUD operations for the **Location** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more Locations
-    * const locations = await prisma.location.findMany()
-    * ```
-    */
-  get location(): Prisma.LocationDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.whatsapp`: Exposes CRUD operations for the **Whatsapp** model.
@@ -684,10 +669,9 @@ export namespace Prisma {
 
   export const ModelName: {
     Admin: 'Admin',
-    SignUp: 'SignUp',
+    Signup: 'Signup',
     Elevation: 'Elevation',
     Hardware: 'Hardware',
-    Location: 'Location',
     Whatsapp: 'Whatsapp',
     Level: 'Level'
   };
@@ -708,7 +692,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "admin" | "signUp" | "elevation" | "hardware" | "location" | "whatsapp" | "level"
+      modelProps: "admin" | "signup" | "elevation" | "hardware" | "whatsapp" | "level"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -778,69 +762,69 @@ export namespace Prisma {
           }
         }
       }
-      SignUp: {
-        payload: Prisma.$SignUpPayload<ExtArgs>
-        fields: Prisma.SignUpFieldRefs
+      Signup: {
+        payload: Prisma.$SignupPayload<ExtArgs>
+        fields: Prisma.SignupFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.SignUpFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SignUpPayload> | null
+            args: Prisma.SignupFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SignupPayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.SignUpFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SignUpPayload>
+            args: Prisma.SignupFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SignupPayload>
           }
           findFirst: {
-            args: Prisma.SignUpFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SignUpPayload> | null
+            args: Prisma.SignupFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SignupPayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.SignUpFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SignUpPayload>
+            args: Prisma.SignupFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SignupPayload>
           }
           findMany: {
-            args: Prisma.SignUpFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SignUpPayload>[]
+            args: Prisma.SignupFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SignupPayload>[]
           }
           create: {
-            args: Prisma.SignUpCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SignUpPayload>
+            args: Prisma.SignupCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SignupPayload>
           }
           createMany: {
-            args: Prisma.SignUpCreateManyArgs<ExtArgs>
+            args: Prisma.SignupCreateManyArgs<ExtArgs>
             result: BatchPayload
           }
           delete: {
-            args: Prisma.SignUpDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SignUpPayload>
+            args: Prisma.SignupDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SignupPayload>
           }
           update: {
-            args: Prisma.SignUpUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SignUpPayload>
+            args: Prisma.SignupUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SignupPayload>
           }
           deleteMany: {
-            args: Prisma.SignUpDeleteManyArgs<ExtArgs>
+            args: Prisma.SignupDeleteManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateMany: {
-            args: Prisma.SignUpUpdateManyArgs<ExtArgs>
+            args: Prisma.SignupUpdateManyArgs<ExtArgs>
             result: BatchPayload
           }
           upsert: {
-            args: Prisma.SignUpUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SignUpPayload>
+            args: Prisma.SignupUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SignupPayload>
           }
           aggregate: {
-            args: Prisma.SignUpAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateSignUp>
+            args: Prisma.SignupAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateSignup>
           }
           groupBy: {
-            args: Prisma.SignUpGroupByArgs<ExtArgs>
-            result: $Utils.Optional<SignUpGroupByOutputType>[]
+            args: Prisma.SignupGroupByArgs<ExtArgs>
+            result: $Utils.Optional<SignupGroupByOutputType>[]
           }
           count: {
-            args: Prisma.SignUpCountArgs<ExtArgs>
-            result: $Utils.Optional<SignUpCountAggregateOutputType> | number
+            args: Prisma.SignupCountArgs<ExtArgs>
+            result: $Utils.Optional<SignupCountAggregateOutputType> | number
           }
         }
       }
@@ -973,72 +957,6 @@ export namespace Prisma {
           count: {
             args: Prisma.HardwareCountArgs<ExtArgs>
             result: $Utils.Optional<HardwareCountAggregateOutputType> | number
-          }
-        }
-      }
-      Location: {
-        payload: Prisma.$LocationPayload<ExtArgs>
-        fields: Prisma.LocationFieldRefs
-        operations: {
-          findUnique: {
-            args: Prisma.LocationFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$LocationPayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.LocationFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$LocationPayload>
-          }
-          findFirst: {
-            args: Prisma.LocationFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$LocationPayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.LocationFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$LocationPayload>
-          }
-          findMany: {
-            args: Prisma.LocationFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$LocationPayload>[]
-          }
-          create: {
-            args: Prisma.LocationCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$LocationPayload>
-          }
-          createMany: {
-            args: Prisma.LocationCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          delete: {
-            args: Prisma.LocationDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$LocationPayload>
-          }
-          update: {
-            args: Prisma.LocationUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$LocationPayload>
-          }
-          deleteMany: {
-            args: Prisma.LocationDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateMany: {
-            args: Prisma.LocationUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          upsert: {
-            args: Prisma.LocationUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$LocationPayload>
-          }
-          aggregate: {
-            args: Prisma.LocationAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateLocation>
-          }
-          groupBy: {
-            args: Prisma.LocationGroupByArgs<ExtArgs>
-            result: $Utils.Optional<LocationGroupByOutputType>[]
-          }
-          count: {
-            args: Prisma.LocationCountArgs<ExtArgs>
-            result: $Utils.Optional<LocationCountAggregateOutputType> | number
           }
         }
       }
@@ -1259,10 +1177,9 @@ export namespace Prisma {
   }
   export type GlobalOmitConfig = {
     admin?: AdminOmit
-    signUp?: SignUpOmit
+    signup?: SignupOmit
     elevation?: ElevationOmit
     hardware?: HardwareOmit
-    location?: LocationOmit
     whatsapp?: WhatsappOmit
     level?: LevelOmit
   }
@@ -1360,13 +1277,11 @@ export namespace Prisma {
 
   export type HardwareCountOutputType = {
     Elevation: number
-    Location: number
     Whatsapp: number
   }
 
   export type HardwareCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     Elevation?: boolean | HardwareCountOutputTypeCountElevationArgs
-    Location?: boolean | HardwareCountOutputTypeCountLocationArgs
     Whatsapp?: boolean | HardwareCountOutputTypeCountWhatsappArgs
   }
 
@@ -1386,13 +1301,6 @@ export namespace Prisma {
    */
   export type HardwareCountOutputTypeCountElevationArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ElevationWhereInput
-  }
-
-  /**
-   * HardwareCountOutputType without action
-   */
-  export type HardwareCountOutputTypeCountLocationArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: LocationWhereInput
   }
 
   /**
@@ -1431,18 +1339,24 @@ export namespace Prisma {
     id: number | null
     email: string | null
     password: string | null
+    role: string | null
+    created_at: Date | null
   }
 
   export type AdminMaxAggregateOutputType = {
     id: number | null
     email: string | null
     password: string | null
+    role: string | null
+    created_at: Date | null
   }
 
   export type AdminCountAggregateOutputType = {
     id: number
     email: number
     password: number
+    role: number
+    created_at: number
     _all: number
   }
 
@@ -1459,18 +1373,24 @@ export namespace Prisma {
     id?: true
     email?: true
     password?: true
+    role?: true
+    created_at?: true
   }
 
   export type AdminMaxAggregateInputType = {
     id?: true
     email?: true
     password?: true
+    role?: true
+    created_at?: true
   }
 
   export type AdminCountAggregateInputType = {
     id?: true
     email?: true
     password?: true
+    role?: true
+    created_at?: true
     _all?: true
   }
 
@@ -1564,6 +1484,8 @@ export namespace Prisma {
     id: number
     email: string
     password: string
+    role: string
+    created_at: Date
     _count: AdminCountAggregateOutputType | null
     _avg: AdminAvgAggregateOutputType | null
     _sum: AdminSumAggregateOutputType | null
@@ -1589,6 +1511,8 @@ export namespace Prisma {
     id?: boolean
     email?: boolean
     password?: boolean
+    role?: boolean
+    created_at?: boolean
   }, ExtArgs["result"]["admin"]>
 
 
@@ -1597,9 +1521,11 @@ export namespace Prisma {
     id?: boolean
     email?: boolean
     password?: boolean
+    role?: boolean
+    created_at?: boolean
   }
 
-  export type AdminOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "password", ExtArgs["result"]["admin"]>
+  export type AdminOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "password" | "role" | "created_at", ExtArgs["result"]["admin"]>
 
   export type $AdminPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Admin"
@@ -1608,6 +1534,8 @@ export namespace Prisma {
       id: number
       email: string
       password: string
+      role: string
+      created_at: Date
     }, ExtArgs["result"]["admin"]>
     composites: {}
   }
@@ -1980,6 +1908,8 @@ export namespace Prisma {
     readonly id: FieldRef<"Admin", 'Int'>
     readonly email: FieldRef<"Admin", 'String'>
     readonly password: FieldRef<"Admin", 'String'>
+    readonly role: FieldRef<"Admin", 'String'>
+    readonly created_at: FieldRef<"Admin", 'DateTime'>
   }
     
 
@@ -2302,363 +2232,373 @@ export namespace Prisma {
 
 
   /**
-   * Model SignUp
+   * Model Signup
    */
 
-  export type AggregateSignUp = {
-    _count: SignUpCountAggregateOutputType | null
-    _avg: SignUpAvgAggregateOutputType | null
-    _sum: SignUpSumAggregateOutputType | null
-    _min: SignUpMinAggregateOutputType | null
-    _max: SignUpMaxAggregateOutputType | null
+  export type AggregateSignup = {
+    _count: SignupCountAggregateOutputType | null
+    _avg: SignupAvgAggregateOutputType | null
+    _sum: SignupSumAggregateOutputType | null
+    _min: SignupMinAggregateOutputType | null
+    _max: SignupMaxAggregateOutputType | null
   }
 
-  export type SignUpAvgAggregateOutputType = {
+  export type SignupAvgAggregateOutputType = {
     id: number | null
   }
 
-  export type SignUpSumAggregateOutputType = {
+  export type SignupSumAggregateOutputType = {
     id: number | null
   }
 
-  export type SignUpMinAggregateOutputType = {
-    id: number | null
-    username: string | null
-    password: string | null
-    email: string | null
-    created_at: Date | null
-  }
-
-  export type SignUpMaxAggregateOutputType = {
+  export type SignupMinAggregateOutputType = {
     id: number | null
     username: string | null
     password: string | null
     email: string | null
+    accepted: boolean | null
     created_at: Date | null
   }
 
-  export type SignUpCountAggregateOutputType = {
+  export type SignupMaxAggregateOutputType = {
+    id: number | null
+    username: string | null
+    password: string | null
+    email: string | null
+    accepted: boolean | null
+    created_at: Date | null
+  }
+
+  export type SignupCountAggregateOutputType = {
     id: number
     username: number
     password: number
     email: number
+    accepted: number
     created_at: number
     _all: number
   }
 
 
-  export type SignUpAvgAggregateInputType = {
+  export type SignupAvgAggregateInputType = {
     id?: true
   }
 
-  export type SignUpSumAggregateInputType = {
+  export type SignupSumAggregateInputType = {
     id?: true
   }
 
-  export type SignUpMinAggregateInputType = {
+  export type SignupMinAggregateInputType = {
     id?: true
     username?: true
     password?: true
     email?: true
+    accepted?: true
     created_at?: true
   }
 
-  export type SignUpMaxAggregateInputType = {
+  export type SignupMaxAggregateInputType = {
     id?: true
     username?: true
     password?: true
     email?: true
+    accepted?: true
     created_at?: true
   }
 
-  export type SignUpCountAggregateInputType = {
+  export type SignupCountAggregateInputType = {
     id?: true
     username?: true
     password?: true
     email?: true
+    accepted?: true
     created_at?: true
     _all?: true
   }
 
-  export type SignUpAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type SignupAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which SignUp to aggregate.
+     * Filter which Signup to aggregate.
      */
-    where?: SignUpWhereInput
+    where?: SignupWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of SignUps to fetch.
+     * Determine the order of Signups to fetch.
      */
-    orderBy?: SignUpOrderByWithRelationInput | SignUpOrderByWithRelationInput[]
+    orderBy?: SignupOrderByWithRelationInput | SignupOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the start position
      */
-    cursor?: SignUpWhereUniqueInput
+    cursor?: SignupWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` SignUps from the position of the cursor.
+     * Take `±n` Signups from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` SignUps.
+     * Skip the first `n` Signups.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Count returned SignUps
+     * Count returned Signups
     **/
-    _count?: true | SignUpCountAggregateInputType
+    _count?: true | SignupCountAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to average
     **/
-    _avg?: SignUpAvgAggregateInputType
+    _avg?: SignupAvgAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to sum
     **/
-    _sum?: SignUpSumAggregateInputType
+    _sum?: SignupSumAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the minimum value
     **/
-    _min?: SignUpMinAggregateInputType
+    _min?: SignupMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the maximum value
     **/
-    _max?: SignUpMaxAggregateInputType
+    _max?: SignupMaxAggregateInputType
   }
 
-  export type GetSignUpAggregateType<T extends SignUpAggregateArgs> = {
-        [P in keyof T & keyof AggregateSignUp]: P extends '_count' | 'count'
+  export type GetSignupAggregateType<T extends SignupAggregateArgs> = {
+        [P in keyof T & keyof AggregateSignup]: P extends '_count' | 'count'
       ? T[P] extends true
         ? number
-        : GetScalarType<T[P], AggregateSignUp[P]>
-      : GetScalarType<T[P], AggregateSignUp[P]>
+        : GetScalarType<T[P], AggregateSignup[P]>
+      : GetScalarType<T[P], AggregateSignup[P]>
   }
 
 
 
 
-  export type SignUpGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: SignUpWhereInput
-    orderBy?: SignUpOrderByWithAggregationInput | SignUpOrderByWithAggregationInput[]
-    by: SignUpScalarFieldEnum[] | SignUpScalarFieldEnum
-    having?: SignUpScalarWhereWithAggregatesInput
+  export type SignupGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SignupWhereInput
+    orderBy?: SignupOrderByWithAggregationInput | SignupOrderByWithAggregationInput[]
+    by: SignupScalarFieldEnum[] | SignupScalarFieldEnum
+    having?: SignupScalarWhereWithAggregatesInput
     take?: number
     skip?: number
-    _count?: SignUpCountAggregateInputType | true
-    _avg?: SignUpAvgAggregateInputType
-    _sum?: SignUpSumAggregateInputType
-    _min?: SignUpMinAggregateInputType
-    _max?: SignUpMaxAggregateInputType
+    _count?: SignupCountAggregateInputType | true
+    _avg?: SignupAvgAggregateInputType
+    _sum?: SignupSumAggregateInputType
+    _min?: SignupMinAggregateInputType
+    _max?: SignupMaxAggregateInputType
   }
 
-  export type SignUpGroupByOutputType = {
+  export type SignupGroupByOutputType = {
     id: number
     username: string
     password: string
     email: string
+    accepted: boolean
     created_at: Date
-    _count: SignUpCountAggregateOutputType | null
-    _avg: SignUpAvgAggregateOutputType | null
-    _sum: SignUpSumAggregateOutputType | null
-    _min: SignUpMinAggregateOutputType | null
-    _max: SignUpMaxAggregateOutputType | null
+    _count: SignupCountAggregateOutputType | null
+    _avg: SignupAvgAggregateOutputType | null
+    _sum: SignupSumAggregateOutputType | null
+    _min: SignupMinAggregateOutputType | null
+    _max: SignupMaxAggregateOutputType | null
   }
 
-  type GetSignUpGroupByPayload<T extends SignUpGroupByArgs> = Prisma.PrismaPromise<
+  type GetSignupGroupByPayload<T extends SignupGroupByArgs> = Prisma.PrismaPromise<
     Array<
-      PickEnumerable<SignUpGroupByOutputType, T['by']> &
+      PickEnumerable<SignupGroupByOutputType, T['by']> &
         {
-          [P in ((keyof T) & (keyof SignUpGroupByOutputType))]: P extends '_count'
+          [P in ((keyof T) & (keyof SignupGroupByOutputType))]: P extends '_count'
             ? T[P] extends boolean
               ? number
-              : GetScalarType<T[P], SignUpGroupByOutputType[P]>
-            : GetScalarType<T[P], SignUpGroupByOutputType[P]>
+              : GetScalarType<T[P], SignupGroupByOutputType[P]>
+            : GetScalarType<T[P], SignupGroupByOutputType[P]>
         }
       >
     >
 
 
-  export type SignUpSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type SignupSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     username?: boolean
     password?: boolean
     email?: boolean
+    accepted?: boolean
     created_at?: boolean
-  }, ExtArgs["result"]["signUp"]>
+  }, ExtArgs["result"]["signup"]>
 
 
 
-  export type SignUpSelectScalar = {
+  export type SignupSelectScalar = {
     id?: boolean
     username?: boolean
     password?: boolean
     email?: boolean
+    accepted?: boolean
     created_at?: boolean
   }
 
-  export type SignUpOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "username" | "password" | "email" | "created_at", ExtArgs["result"]["signUp"]>
+  export type SignupOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "username" | "password" | "email" | "accepted" | "created_at", ExtArgs["result"]["signup"]>
 
-  export type $SignUpPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "SignUp"
+  export type $SignupPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Signup"
     objects: {}
     scalars: $Extensions.GetPayloadResult<{
       id: number
       username: string
       password: string
       email: string
+      accepted: boolean
       created_at: Date
-    }, ExtArgs["result"]["signUp"]>
+    }, ExtArgs["result"]["signup"]>
     composites: {}
   }
 
-  type SignUpGetPayload<S extends boolean | null | undefined | SignUpDefaultArgs> = $Result.GetResult<Prisma.$SignUpPayload, S>
+  type SignupGetPayload<S extends boolean | null | undefined | SignupDefaultArgs> = $Result.GetResult<Prisma.$SignupPayload, S>
 
-  type SignUpCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<SignUpFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: SignUpCountAggregateInputType | true
+  type SignupCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<SignupFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: SignupCountAggregateInputType | true
     }
 
-  export interface SignUpDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['SignUp'], meta: { name: 'SignUp' } }
+  export interface SignupDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Signup'], meta: { name: 'Signup' } }
     /**
-     * Find zero or one SignUp that matches the filter.
-     * @param {SignUpFindUniqueArgs} args - Arguments to find a SignUp
+     * Find zero or one Signup that matches the filter.
+     * @param {SignupFindUniqueArgs} args - Arguments to find a Signup
      * @example
-     * // Get one SignUp
-     * const signUp = await prisma.signUp.findUnique({
+     * // Get one Signup
+     * const signup = await prisma.signup.findUnique({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUnique<T extends SignUpFindUniqueArgs>(args: SelectSubset<T, SignUpFindUniqueArgs<ExtArgs>>): Prisma__SignUpClient<$Result.GetResult<Prisma.$SignUpPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findUnique<T extends SignupFindUniqueArgs>(args: SelectSubset<T, SignupFindUniqueArgs<ExtArgs>>): Prisma__SignupClient<$Result.GetResult<Prisma.$SignupPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find one SignUp that matches the filter or throw an error with `error.code='P2025'`
+     * Find one Signup that matches the filter or throw an error with `error.code='P2025'`
      * if no matches were found.
-     * @param {SignUpFindUniqueOrThrowArgs} args - Arguments to find a SignUp
+     * @param {SignupFindUniqueOrThrowArgs} args - Arguments to find a Signup
      * @example
-     * // Get one SignUp
-     * const signUp = await prisma.signUp.findUniqueOrThrow({
+     * // Get one Signup
+     * const signup = await prisma.signup.findUniqueOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUniqueOrThrow<T extends SignUpFindUniqueOrThrowArgs>(args: SelectSubset<T, SignUpFindUniqueOrThrowArgs<ExtArgs>>): Prisma__SignUpClient<$Result.GetResult<Prisma.$SignUpPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findUniqueOrThrow<T extends SignupFindUniqueOrThrowArgs>(args: SelectSubset<T, SignupFindUniqueOrThrowArgs<ExtArgs>>): Prisma__SignupClient<$Result.GetResult<Prisma.$SignupPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first SignUp that matches the filter.
+     * Find the first Signup that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {SignUpFindFirstArgs} args - Arguments to find a SignUp
+     * @param {SignupFindFirstArgs} args - Arguments to find a Signup
      * @example
-     * // Get one SignUp
-     * const signUp = await prisma.signUp.findFirst({
+     * // Get one Signup
+     * const signup = await prisma.signup.findFirst({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirst<T extends SignUpFindFirstArgs>(args?: SelectSubset<T, SignUpFindFirstArgs<ExtArgs>>): Prisma__SignUpClient<$Result.GetResult<Prisma.$SignUpPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findFirst<T extends SignupFindFirstArgs>(args?: SelectSubset<T, SignupFindFirstArgs<ExtArgs>>): Prisma__SignupClient<$Result.GetResult<Prisma.$SignupPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first SignUp that matches the filter or
+     * Find the first Signup that matches the filter or
      * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {SignUpFindFirstOrThrowArgs} args - Arguments to find a SignUp
+     * @param {SignupFindFirstOrThrowArgs} args - Arguments to find a Signup
      * @example
-     * // Get one SignUp
-     * const signUp = await prisma.signUp.findFirstOrThrow({
+     * // Get one Signup
+     * const signup = await prisma.signup.findFirstOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirstOrThrow<T extends SignUpFindFirstOrThrowArgs>(args?: SelectSubset<T, SignUpFindFirstOrThrowArgs<ExtArgs>>): Prisma__SignUpClient<$Result.GetResult<Prisma.$SignUpPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findFirstOrThrow<T extends SignupFindFirstOrThrowArgs>(args?: SelectSubset<T, SignupFindFirstOrThrowArgs<ExtArgs>>): Prisma__SignupClient<$Result.GetResult<Prisma.$SignupPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find zero or more SignUps that matches the filter.
+     * Find zero or more Signups that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {SignUpFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @param {SignupFindManyArgs} args - Arguments to filter and select certain fields only.
      * @example
-     * // Get all SignUps
-     * const signUps = await prisma.signUp.findMany()
+     * // Get all Signups
+     * const signups = await prisma.signup.findMany()
      * 
-     * // Get first 10 SignUps
-     * const signUps = await prisma.signUp.findMany({ take: 10 })
+     * // Get first 10 Signups
+     * const signups = await prisma.signup.findMany({ take: 10 })
      * 
      * // Only select the `id`
-     * const signUpWithIdOnly = await prisma.signUp.findMany({ select: { id: true } })
+     * const signupWithIdOnly = await prisma.signup.findMany({ select: { id: true } })
      * 
      */
-    findMany<T extends SignUpFindManyArgs>(args?: SelectSubset<T, SignUpFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SignUpPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+    findMany<T extends SignupFindManyArgs>(args?: SelectSubset<T, SignupFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SignupPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
     /**
-     * Create a SignUp.
-     * @param {SignUpCreateArgs} args - Arguments to create a SignUp.
+     * Create a Signup.
+     * @param {SignupCreateArgs} args - Arguments to create a Signup.
      * @example
-     * // Create one SignUp
-     * const SignUp = await prisma.signUp.create({
+     * // Create one Signup
+     * const Signup = await prisma.signup.create({
      *   data: {
-     *     // ... data to create a SignUp
+     *     // ... data to create a Signup
      *   }
      * })
      * 
      */
-    create<T extends SignUpCreateArgs>(args: SelectSubset<T, SignUpCreateArgs<ExtArgs>>): Prisma__SignUpClient<$Result.GetResult<Prisma.$SignUpPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    create<T extends SignupCreateArgs>(args: SelectSubset<T, SignupCreateArgs<ExtArgs>>): Prisma__SignupClient<$Result.GetResult<Prisma.$SignupPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Create many SignUps.
-     * @param {SignUpCreateManyArgs} args - Arguments to create many SignUps.
+     * Create many Signups.
+     * @param {SignupCreateManyArgs} args - Arguments to create many Signups.
      * @example
-     * // Create many SignUps
-     * const signUp = await prisma.signUp.createMany({
+     * // Create many Signups
+     * const signup = await prisma.signup.createMany({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      *     
      */
-    createMany<T extends SignUpCreateManyArgs>(args?: SelectSubset<T, SignUpCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    createMany<T extends SignupCreateManyArgs>(args?: SelectSubset<T, SignupCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Delete a SignUp.
-     * @param {SignUpDeleteArgs} args - Arguments to delete one SignUp.
+     * Delete a Signup.
+     * @param {SignupDeleteArgs} args - Arguments to delete one Signup.
      * @example
-     * // Delete one SignUp
-     * const SignUp = await prisma.signUp.delete({
+     * // Delete one Signup
+     * const Signup = await prisma.signup.delete({
      *   where: {
-     *     // ... filter to delete one SignUp
+     *     // ... filter to delete one Signup
      *   }
      * })
      * 
      */
-    delete<T extends SignUpDeleteArgs>(args: SelectSubset<T, SignUpDeleteArgs<ExtArgs>>): Prisma__SignUpClient<$Result.GetResult<Prisma.$SignUpPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    delete<T extends SignupDeleteArgs>(args: SelectSubset<T, SignupDeleteArgs<ExtArgs>>): Prisma__SignupClient<$Result.GetResult<Prisma.$SignupPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Update one SignUp.
-     * @param {SignUpUpdateArgs} args - Arguments to update one SignUp.
+     * Update one Signup.
+     * @param {SignupUpdateArgs} args - Arguments to update one Signup.
      * @example
-     * // Update one SignUp
-     * const signUp = await prisma.signUp.update({
+     * // Update one Signup
+     * const signup = await prisma.signup.update({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -2668,30 +2608,30 @@ export namespace Prisma {
      * })
      * 
      */
-    update<T extends SignUpUpdateArgs>(args: SelectSubset<T, SignUpUpdateArgs<ExtArgs>>): Prisma__SignUpClient<$Result.GetResult<Prisma.$SignUpPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    update<T extends SignupUpdateArgs>(args: SelectSubset<T, SignupUpdateArgs<ExtArgs>>): Prisma__SignupClient<$Result.GetResult<Prisma.$SignupPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Delete zero or more SignUps.
-     * @param {SignUpDeleteManyArgs} args - Arguments to filter SignUps to delete.
+     * Delete zero or more Signups.
+     * @param {SignupDeleteManyArgs} args - Arguments to filter Signups to delete.
      * @example
-     * // Delete a few SignUps
-     * const { count } = await prisma.signUp.deleteMany({
+     * // Delete a few Signups
+     * const { count } = await prisma.signup.deleteMany({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      * 
      */
-    deleteMany<T extends SignUpDeleteManyArgs>(args?: SelectSubset<T, SignUpDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    deleteMany<T extends SignupDeleteManyArgs>(args?: SelectSubset<T, SignupDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more SignUps.
+     * Update zero or more Signups.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {SignUpUpdateManyArgs} args - Arguments to update one or more rows.
+     * @param {SignupUpdateManyArgs} args - Arguments to update one or more rows.
      * @example
-     * // Update many SignUps
-     * const signUp = await prisma.signUp.updateMany({
+     * // Update many Signups
+     * const signup = await prisma.signup.updateMany({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -2701,56 +2641,56 @@ export namespace Prisma {
      * })
      * 
      */
-    updateMany<T extends SignUpUpdateManyArgs>(args: SelectSubset<T, SignUpUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    updateMany<T extends SignupUpdateManyArgs>(args: SelectSubset<T, SignupUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Create or update one SignUp.
-     * @param {SignUpUpsertArgs} args - Arguments to update or create a SignUp.
+     * Create or update one Signup.
+     * @param {SignupUpsertArgs} args - Arguments to update or create a Signup.
      * @example
-     * // Update or create a SignUp
-     * const signUp = await prisma.signUp.upsert({
+     * // Update or create a Signup
+     * const signup = await prisma.signup.upsert({
      *   create: {
-     *     // ... data to create a SignUp
+     *     // ... data to create a Signup
      *   },
      *   update: {
      *     // ... in case it already exists, update
      *   },
      *   where: {
-     *     // ... the filter for the SignUp we want to update
+     *     // ... the filter for the Signup we want to update
      *   }
      * })
      */
-    upsert<T extends SignUpUpsertArgs>(args: SelectSubset<T, SignUpUpsertArgs<ExtArgs>>): Prisma__SignUpClient<$Result.GetResult<Prisma.$SignUpPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    upsert<T extends SignupUpsertArgs>(args: SelectSubset<T, SignupUpsertArgs<ExtArgs>>): Prisma__SignupClient<$Result.GetResult<Prisma.$SignupPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
 
     /**
-     * Count the number of SignUps.
+     * Count the number of Signups.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {SignUpCountArgs} args - Arguments to filter SignUps to count.
+     * @param {SignupCountArgs} args - Arguments to filter Signups to count.
      * @example
-     * // Count the number of SignUps
-     * const count = await prisma.signUp.count({
+     * // Count the number of Signups
+     * const count = await prisma.signup.count({
      *   where: {
-     *     // ... the filter for the SignUps we want to count
+     *     // ... the filter for the Signups we want to count
      *   }
      * })
     **/
-    count<T extends SignUpCountArgs>(
-      args?: Subset<T, SignUpCountArgs>,
+    count<T extends SignupCountArgs>(
+      args?: Subset<T, SignupCountArgs>,
     ): Prisma.PrismaPromise<
       T extends $Utils.Record<'select', any>
         ? T['select'] extends true
           ? number
-          : GetScalarType<T['select'], SignUpCountAggregateOutputType>
+          : GetScalarType<T['select'], SignupCountAggregateOutputType>
         : number
     >
 
     /**
-     * Allows you to perform aggregations operations on a SignUp.
+     * Allows you to perform aggregations operations on a Signup.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {SignUpAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @param {SignupAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
      * @example
      * // Ordered by age ascending
      * // Where email contains prisma.io
@@ -2770,13 +2710,13 @@ export namespace Prisma {
      *   take: 10,
      * })
     **/
-    aggregate<T extends SignUpAggregateArgs>(args: Subset<T, SignUpAggregateArgs>): Prisma.PrismaPromise<GetSignUpAggregateType<T>>
+    aggregate<T extends SignupAggregateArgs>(args: Subset<T, SignupAggregateArgs>): Prisma.PrismaPromise<GetSignupAggregateType<T>>
 
     /**
-     * Group by SignUp.
+     * Group by Signup.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {SignUpGroupByArgs} args - Group by arguments.
+     * @param {SignupGroupByArgs} args - Group by arguments.
      * @example
      * // Group by city, order by createdAt, get count
      * const result = await prisma.user.groupBy({
@@ -2791,14 +2731,14 @@ export namespace Prisma {
      * 
     **/
     groupBy<
-      T extends SignUpGroupByArgs,
+      T extends SignupGroupByArgs,
       HasSelectOrTake extends Or<
         Extends<'skip', Keys<T>>,
         Extends<'take', Keys<T>>
       >,
       OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: SignUpGroupByArgs['orderBy'] }
-        : { orderBy?: SignUpGroupByArgs['orderBy'] },
+        ? { orderBy: SignupGroupByArgs['orderBy'] }
+        : { orderBy?: SignupGroupByArgs['orderBy'] },
       OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
       ByFields extends MaybeTupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
@@ -2847,20 +2787,20 @@ export namespace Prisma {
             ? never
             : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
         }[OrderFields]
-    >(args: SubsetIntersection<T, SignUpGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetSignUpGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+    >(args: SubsetIntersection<T, SignupGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetSignupGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
   /**
-   * Fields of the SignUp model
+   * Fields of the Signup model
    */
-  readonly fields: SignUpFieldRefs;
+  readonly fields: SignupFieldRefs;
   }
 
   /**
-   * The delegate class that acts as a "Promise-like" for SignUp.
+   * The delegate class that acts as a "Promise-like" for Signup.
    * Why is this prefixed with `Prisma__`?
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__SignUpClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__SignupClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -2888,332 +2828,333 @@ export namespace Prisma {
 
 
   /**
-   * Fields of the SignUp model
+   * Fields of the Signup model
    */
-  interface SignUpFieldRefs {
-    readonly id: FieldRef<"SignUp", 'Int'>
-    readonly username: FieldRef<"SignUp", 'String'>
-    readonly password: FieldRef<"SignUp", 'String'>
-    readonly email: FieldRef<"SignUp", 'String'>
-    readonly created_at: FieldRef<"SignUp", 'DateTime'>
+  interface SignupFieldRefs {
+    readonly id: FieldRef<"Signup", 'Int'>
+    readonly username: FieldRef<"Signup", 'String'>
+    readonly password: FieldRef<"Signup", 'String'>
+    readonly email: FieldRef<"Signup", 'String'>
+    readonly accepted: FieldRef<"Signup", 'Boolean'>
+    readonly created_at: FieldRef<"Signup", 'DateTime'>
   }
     
 
   // Custom InputTypes
   /**
-   * SignUp findUnique
+   * Signup findUnique
    */
-  export type SignUpFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type SignupFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the SignUp
+     * Select specific fields to fetch from the Signup
      */
-    select?: SignUpSelect<ExtArgs> | null
+    select?: SignupSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the SignUp
+     * Omit specific fields from the Signup
      */
-    omit?: SignUpOmit<ExtArgs> | null
+    omit?: SignupOmit<ExtArgs> | null
     /**
-     * Filter, which SignUp to fetch.
+     * Filter, which Signup to fetch.
      */
-    where: SignUpWhereUniqueInput
+    where: SignupWhereUniqueInput
   }
 
   /**
-   * SignUp findUniqueOrThrow
+   * Signup findUniqueOrThrow
    */
-  export type SignUpFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type SignupFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the SignUp
+     * Select specific fields to fetch from the Signup
      */
-    select?: SignUpSelect<ExtArgs> | null
+    select?: SignupSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the SignUp
+     * Omit specific fields from the Signup
      */
-    omit?: SignUpOmit<ExtArgs> | null
+    omit?: SignupOmit<ExtArgs> | null
     /**
-     * Filter, which SignUp to fetch.
+     * Filter, which Signup to fetch.
      */
-    where: SignUpWhereUniqueInput
+    where: SignupWhereUniqueInput
   }
 
   /**
-   * SignUp findFirst
+   * Signup findFirst
    */
-  export type SignUpFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type SignupFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the SignUp
+     * Select specific fields to fetch from the Signup
      */
-    select?: SignUpSelect<ExtArgs> | null
+    select?: SignupSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the SignUp
+     * Omit specific fields from the Signup
      */
-    omit?: SignUpOmit<ExtArgs> | null
+    omit?: SignupOmit<ExtArgs> | null
     /**
-     * Filter, which SignUp to fetch.
+     * Filter, which Signup to fetch.
      */
-    where?: SignUpWhereInput
+    where?: SignupWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of SignUps to fetch.
+     * Determine the order of Signups to fetch.
      */
-    orderBy?: SignUpOrderByWithRelationInput | SignUpOrderByWithRelationInput[]
+    orderBy?: SignupOrderByWithRelationInput | SignupOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for SignUps.
+     * Sets the position for searching for Signups.
      */
-    cursor?: SignUpWhereUniqueInput
+    cursor?: SignupWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` SignUps from the position of the cursor.
+     * Take `±n` Signups from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` SignUps.
+     * Skip the first `n` Signups.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of SignUps.
+     * Filter by unique combinations of Signups.
      */
-    distinct?: SignUpScalarFieldEnum | SignUpScalarFieldEnum[]
+    distinct?: SignupScalarFieldEnum | SignupScalarFieldEnum[]
   }
 
   /**
-   * SignUp findFirstOrThrow
+   * Signup findFirstOrThrow
    */
-  export type SignUpFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type SignupFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the SignUp
+     * Select specific fields to fetch from the Signup
      */
-    select?: SignUpSelect<ExtArgs> | null
+    select?: SignupSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the SignUp
+     * Omit specific fields from the Signup
      */
-    omit?: SignUpOmit<ExtArgs> | null
+    omit?: SignupOmit<ExtArgs> | null
     /**
-     * Filter, which SignUp to fetch.
+     * Filter, which Signup to fetch.
      */
-    where?: SignUpWhereInput
+    where?: SignupWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of SignUps to fetch.
+     * Determine the order of Signups to fetch.
      */
-    orderBy?: SignUpOrderByWithRelationInput | SignUpOrderByWithRelationInput[]
+    orderBy?: SignupOrderByWithRelationInput | SignupOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for SignUps.
+     * Sets the position for searching for Signups.
      */
-    cursor?: SignUpWhereUniqueInput
+    cursor?: SignupWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` SignUps from the position of the cursor.
+     * Take `±n` Signups from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` SignUps.
+     * Skip the first `n` Signups.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of SignUps.
+     * Filter by unique combinations of Signups.
      */
-    distinct?: SignUpScalarFieldEnum | SignUpScalarFieldEnum[]
+    distinct?: SignupScalarFieldEnum | SignupScalarFieldEnum[]
   }
 
   /**
-   * SignUp findMany
+   * Signup findMany
    */
-  export type SignUpFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type SignupFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the SignUp
+     * Select specific fields to fetch from the Signup
      */
-    select?: SignUpSelect<ExtArgs> | null
+    select?: SignupSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the SignUp
+     * Omit specific fields from the Signup
      */
-    omit?: SignUpOmit<ExtArgs> | null
+    omit?: SignupOmit<ExtArgs> | null
     /**
-     * Filter, which SignUps to fetch.
+     * Filter, which Signups to fetch.
      */
-    where?: SignUpWhereInput
+    where?: SignupWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of SignUps to fetch.
+     * Determine the order of Signups to fetch.
      */
-    orderBy?: SignUpOrderByWithRelationInput | SignUpOrderByWithRelationInput[]
+    orderBy?: SignupOrderByWithRelationInput | SignupOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for listing SignUps.
+     * Sets the position for listing Signups.
      */
-    cursor?: SignUpWhereUniqueInput
+    cursor?: SignupWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` SignUps from the position of the cursor.
+     * Take `±n` Signups from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` SignUps.
+     * Skip the first `n` Signups.
      */
     skip?: number
-    distinct?: SignUpScalarFieldEnum | SignUpScalarFieldEnum[]
+    distinct?: SignupScalarFieldEnum | SignupScalarFieldEnum[]
   }
 
   /**
-   * SignUp create
+   * Signup create
    */
-  export type SignUpCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type SignupCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the SignUp
+     * Select specific fields to fetch from the Signup
      */
-    select?: SignUpSelect<ExtArgs> | null
+    select?: SignupSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the SignUp
+     * Omit specific fields from the Signup
      */
-    omit?: SignUpOmit<ExtArgs> | null
+    omit?: SignupOmit<ExtArgs> | null
     /**
-     * The data needed to create a SignUp.
+     * The data needed to create a Signup.
      */
-    data: XOR<SignUpCreateInput, SignUpUncheckedCreateInput>
+    data: XOR<SignupCreateInput, SignupUncheckedCreateInput>
   }
 
   /**
-   * SignUp createMany
+   * Signup createMany
    */
-  export type SignUpCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type SignupCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to create many SignUps.
+     * The data used to create many Signups.
      */
-    data: SignUpCreateManyInput | SignUpCreateManyInput[]
+    data: SignupCreateManyInput | SignupCreateManyInput[]
     skipDuplicates?: boolean
   }
 
   /**
-   * SignUp update
+   * Signup update
    */
-  export type SignUpUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type SignupUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the SignUp
+     * Select specific fields to fetch from the Signup
      */
-    select?: SignUpSelect<ExtArgs> | null
+    select?: SignupSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the SignUp
+     * Omit specific fields from the Signup
      */
-    omit?: SignUpOmit<ExtArgs> | null
+    omit?: SignupOmit<ExtArgs> | null
     /**
-     * The data needed to update a SignUp.
+     * The data needed to update a Signup.
      */
-    data: XOR<SignUpUpdateInput, SignUpUncheckedUpdateInput>
+    data: XOR<SignupUpdateInput, SignupUncheckedUpdateInput>
     /**
-     * Choose, which SignUp to update.
+     * Choose, which Signup to update.
      */
-    where: SignUpWhereUniqueInput
+    where: SignupWhereUniqueInput
   }
 
   /**
-   * SignUp updateMany
+   * Signup updateMany
    */
-  export type SignUpUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type SignupUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to update SignUps.
+     * The data used to update Signups.
      */
-    data: XOR<SignUpUpdateManyMutationInput, SignUpUncheckedUpdateManyInput>
+    data: XOR<SignupUpdateManyMutationInput, SignupUncheckedUpdateManyInput>
     /**
-     * Filter which SignUps to update
+     * Filter which Signups to update
      */
-    where?: SignUpWhereInput
+    where?: SignupWhereInput
     /**
-     * Limit how many SignUps to update.
+     * Limit how many Signups to update.
      */
     limit?: number
   }
 
   /**
-   * SignUp upsert
+   * Signup upsert
    */
-  export type SignUpUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type SignupUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the SignUp
+     * Select specific fields to fetch from the Signup
      */
-    select?: SignUpSelect<ExtArgs> | null
+    select?: SignupSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the SignUp
+     * Omit specific fields from the Signup
      */
-    omit?: SignUpOmit<ExtArgs> | null
+    omit?: SignupOmit<ExtArgs> | null
     /**
-     * The filter to search for the SignUp to update in case it exists.
+     * The filter to search for the Signup to update in case it exists.
      */
-    where: SignUpWhereUniqueInput
+    where: SignupWhereUniqueInput
     /**
-     * In case the SignUp found by the `where` argument doesn't exist, create a new SignUp with this data.
+     * In case the Signup found by the `where` argument doesn't exist, create a new Signup with this data.
      */
-    create: XOR<SignUpCreateInput, SignUpUncheckedCreateInput>
+    create: XOR<SignupCreateInput, SignupUncheckedCreateInput>
     /**
-     * In case the SignUp was found with the provided `where` argument, update it with this data.
+     * In case the Signup was found with the provided `where` argument, update it with this data.
      */
-    update: XOR<SignUpUpdateInput, SignUpUncheckedUpdateInput>
+    update: XOR<SignupUpdateInput, SignupUncheckedUpdateInput>
   }
 
   /**
-   * SignUp delete
+   * Signup delete
    */
-  export type SignUpDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type SignupDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the SignUp
+     * Select specific fields to fetch from the Signup
      */
-    select?: SignUpSelect<ExtArgs> | null
+    select?: SignupSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the SignUp
+     * Omit specific fields from the Signup
      */
-    omit?: SignUpOmit<ExtArgs> | null
+    omit?: SignupOmit<ExtArgs> | null
     /**
-     * Filter which SignUp to delete.
+     * Filter which Signup to delete.
      */
-    where: SignUpWhereUniqueInput
+    where: SignupWhereUniqueInput
   }
 
   /**
-   * SignUp deleteMany
+   * Signup deleteMany
    */
-  export type SignUpDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type SignupDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which SignUps to delete
+     * Filter which Signups to delete
      */
-    where?: SignUpWhereInput
+    where?: SignupWhereInput
     /**
-     * Limit how many SignUps to delete.
+     * Limit how many Signups to delete.
      */
     limit?: number
   }
 
   /**
-   * SignUp without action
+   * Signup without action
    */
-  export type SignUpDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type SignupDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the SignUp
+     * Select specific fields to fetch from the Signup
      */
-    select?: SignUpSelect<ExtArgs> | null
+    select?: SignupSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the SignUp
+     * Omit specific fields from the Signup
      */
-    omit?: SignUpOmit<ExtArgs> | null
+    omit?: SignupOmit<ExtArgs> | null
   }
 
 
@@ -3244,6 +3185,8 @@ export namespace Prisma {
   export type ElevationMinAggregateOutputType = {
     id: number | null
     water_elevation: number | null
+    latitude: string | null
+    longitude: string | null
     created_at: Date | null
     hardwareId: number | null
   }
@@ -3251,6 +3194,8 @@ export namespace Prisma {
   export type ElevationMaxAggregateOutputType = {
     id: number | null
     water_elevation: number | null
+    latitude: string | null
+    longitude: string | null
     created_at: Date | null
     hardwareId: number | null
   }
@@ -3258,6 +3203,8 @@ export namespace Prisma {
   export type ElevationCountAggregateOutputType = {
     id: number
     water_elevation: number
+    latitude: number
+    longitude: number
     created_at: number
     hardwareId: number
     _all: number
@@ -3279,6 +3226,8 @@ export namespace Prisma {
   export type ElevationMinAggregateInputType = {
     id?: true
     water_elevation?: true
+    latitude?: true
+    longitude?: true
     created_at?: true
     hardwareId?: true
   }
@@ -3286,6 +3235,8 @@ export namespace Prisma {
   export type ElevationMaxAggregateInputType = {
     id?: true
     water_elevation?: true
+    latitude?: true
+    longitude?: true
     created_at?: true
     hardwareId?: true
   }
@@ -3293,6 +3244,8 @@ export namespace Prisma {
   export type ElevationCountAggregateInputType = {
     id?: true
     water_elevation?: true
+    latitude?: true
+    longitude?: true
     created_at?: true
     hardwareId?: true
     _all?: true
@@ -3387,6 +3340,8 @@ export namespace Prisma {
   export type ElevationGroupByOutputType = {
     id: number
     water_elevation: number
+    latitude: string
+    longitude: string
     created_at: Date
     hardwareId: number
     _count: ElevationCountAggregateOutputType | null
@@ -3413,6 +3368,8 @@ export namespace Prisma {
   export type ElevationSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     water_elevation?: boolean
+    latitude?: boolean
+    longitude?: boolean
     created_at?: boolean
     hardwareId?: boolean
     Hardware?: boolean | HardwareDefaultArgs<ExtArgs>
@@ -3423,11 +3380,13 @@ export namespace Prisma {
   export type ElevationSelectScalar = {
     id?: boolean
     water_elevation?: boolean
+    latitude?: boolean
+    longitude?: boolean
     created_at?: boolean
     hardwareId?: boolean
   }
 
-  export type ElevationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "water_elevation" | "created_at" | "hardwareId", ExtArgs["result"]["elevation"]>
+  export type ElevationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "water_elevation" | "latitude" | "longitude" | "created_at" | "hardwareId", ExtArgs["result"]["elevation"]>
   export type ElevationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     Hardware?: boolean | HardwareDefaultArgs<ExtArgs>
   }
@@ -3440,6 +3399,8 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: number
       water_elevation: number
+      latitude: string
+      longitude: string
       created_at: Date
       hardwareId: number
     }, ExtArgs["result"]["elevation"]>
@@ -3814,6 +3775,8 @@ export namespace Prisma {
   interface ElevationFieldRefs {
     readonly id: FieldRef<"Elevation", 'Int'>
     readonly water_elevation: FieldRef<"Elevation", 'Float'>
+    readonly latitude: FieldRef<"Elevation", 'String'>
+    readonly longitude: FieldRef<"Elevation", 'String'>
     readonly created_at: FieldRef<"Elevation", 'DateTime'>
     readonly hardwareId: FieldRef<"Elevation", 'Int'>
   }
@@ -4352,7 +4315,6 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     Elevation?: boolean | Hardware$ElevationArgs<ExtArgs>
-    Location?: boolean | Hardware$LocationArgs<ExtArgs>
     Whatsapp?: boolean | Hardware$WhatsappArgs<ExtArgs>
     _count?: boolean | HardwareCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["hardware"]>
@@ -4367,7 +4329,6 @@ export namespace Prisma {
   export type HardwareOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name", ExtArgs["result"]["hardware"]>
   export type HardwareInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     Elevation?: boolean | Hardware$ElevationArgs<ExtArgs>
-    Location?: boolean | Hardware$LocationArgs<ExtArgs>
     Whatsapp?: boolean | Hardware$WhatsappArgs<ExtArgs>
     _count?: boolean | HardwareCountOutputTypeDefaultArgs<ExtArgs>
   }
@@ -4376,7 +4337,6 @@ export namespace Prisma {
     name: "Hardware"
     objects: {
       Elevation: Prisma.$ElevationPayload<ExtArgs>[]
-      Location: Prisma.$LocationPayload<ExtArgs>[]
       Whatsapp: Prisma.$WhatsappPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
@@ -4723,7 +4683,6 @@ export namespace Prisma {
   export interface Prisma__HardwareClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     Elevation<T extends Hardware$ElevationArgs<ExtArgs> = {}>(args?: Subset<T, Hardware$ElevationArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ElevationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    Location<T extends Hardware$LocationArgs<ExtArgs> = {}>(args?: Subset<T, Hardware$LocationArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LocationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     Whatsapp<T extends Hardware$WhatsappArgs<ExtArgs> = {}>(args?: Subset<T, Hardware$WhatsappArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$WhatsappPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -5123,30 +5082,6 @@ export namespace Prisma {
   }
 
   /**
-   * Hardware.Location
-   */
-  export type Hardware$LocationArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Location
-     */
-    select?: LocationSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Location
-     */
-    omit?: LocationOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: LocationInclude<ExtArgs> | null
-    where?: LocationWhereInput
-    orderBy?: LocationOrderByWithRelationInput | LocationOrderByWithRelationInput[]
-    cursor?: LocationWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: LocationScalarFieldEnum | LocationScalarFieldEnum[]
-  }
-
-  /**
    * Hardware.Whatsapp
    */
   export type Hardware$WhatsappArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -5186,973 +5121,6 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: HardwareInclude<ExtArgs> | null
-  }
-
-
-  /**
-   * Model Location
-   */
-
-  export type AggregateLocation = {
-    _count: LocationCountAggregateOutputType | null
-    _avg: LocationAvgAggregateOutputType | null
-    _sum: LocationSumAggregateOutputType | null
-    _min: LocationMinAggregateOutputType | null
-    _max: LocationMaxAggregateOutputType | null
-  }
-
-  export type LocationAvgAggregateOutputType = {
-    id: number | null
-    hardwareId: number | null
-  }
-
-  export type LocationSumAggregateOutputType = {
-    id: number | null
-    hardwareId: number | null
-  }
-
-  export type LocationMinAggregateOutputType = {
-    id: number | null
-    longitude: string | null
-    latitude: string | null
-    created_at: Date | null
-    hardwareId: number | null
-  }
-
-  export type LocationMaxAggregateOutputType = {
-    id: number | null
-    longitude: string | null
-    latitude: string | null
-    created_at: Date | null
-    hardwareId: number | null
-  }
-
-  export type LocationCountAggregateOutputType = {
-    id: number
-    longitude: number
-    latitude: number
-    created_at: number
-    hardwareId: number
-    _all: number
-  }
-
-
-  export type LocationAvgAggregateInputType = {
-    id?: true
-    hardwareId?: true
-  }
-
-  export type LocationSumAggregateInputType = {
-    id?: true
-    hardwareId?: true
-  }
-
-  export type LocationMinAggregateInputType = {
-    id?: true
-    longitude?: true
-    latitude?: true
-    created_at?: true
-    hardwareId?: true
-  }
-
-  export type LocationMaxAggregateInputType = {
-    id?: true
-    longitude?: true
-    latitude?: true
-    created_at?: true
-    hardwareId?: true
-  }
-
-  export type LocationCountAggregateInputType = {
-    id?: true
-    longitude?: true
-    latitude?: true
-    created_at?: true
-    hardwareId?: true
-    _all?: true
-  }
-
-  export type LocationAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which Location to aggregate.
-     */
-    where?: LocationWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Locations to fetch.
-     */
-    orderBy?: LocationOrderByWithRelationInput | LocationOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: LocationWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Locations from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Locations.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned Locations
-    **/
-    _count?: true | LocationCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to average
-    **/
-    _avg?: LocationAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: LocationSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: LocationMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: LocationMaxAggregateInputType
-  }
-
-  export type GetLocationAggregateType<T extends LocationAggregateArgs> = {
-        [P in keyof T & keyof AggregateLocation]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregateLocation[P]>
-      : GetScalarType<T[P], AggregateLocation[P]>
-  }
-
-
-
-
-  export type LocationGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: LocationWhereInput
-    orderBy?: LocationOrderByWithAggregationInput | LocationOrderByWithAggregationInput[]
-    by: LocationScalarFieldEnum[] | LocationScalarFieldEnum
-    having?: LocationScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: LocationCountAggregateInputType | true
-    _avg?: LocationAvgAggregateInputType
-    _sum?: LocationSumAggregateInputType
-    _min?: LocationMinAggregateInputType
-    _max?: LocationMaxAggregateInputType
-  }
-
-  export type LocationGroupByOutputType = {
-    id: number
-    longitude: string
-    latitude: string
-    created_at: Date
-    hardwareId: number
-    _count: LocationCountAggregateOutputType | null
-    _avg: LocationAvgAggregateOutputType | null
-    _sum: LocationSumAggregateOutputType | null
-    _min: LocationMinAggregateOutputType | null
-    _max: LocationMaxAggregateOutputType | null
-  }
-
-  type GetLocationGroupByPayload<T extends LocationGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<LocationGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof LocationGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], LocationGroupByOutputType[P]>
-            : GetScalarType<T[P], LocationGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type LocationSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    longitude?: boolean
-    latitude?: boolean
-    created_at?: boolean
-    hardwareId?: boolean
-    Hardware?: boolean | HardwareDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["location"]>
-
-
-
-  export type LocationSelectScalar = {
-    id?: boolean
-    longitude?: boolean
-    latitude?: boolean
-    created_at?: boolean
-    hardwareId?: boolean
-  }
-
-  export type LocationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "longitude" | "latitude" | "created_at" | "hardwareId", ExtArgs["result"]["location"]>
-  export type LocationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    Hardware?: boolean | HardwareDefaultArgs<ExtArgs>
-  }
-
-  export type $LocationPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "Location"
-    objects: {
-      Hardware: Prisma.$HardwarePayload<ExtArgs>
-    }
-    scalars: $Extensions.GetPayloadResult<{
-      id: number
-      longitude: string
-      latitude: string
-      created_at: Date
-      hardwareId: number
-    }, ExtArgs["result"]["location"]>
-    composites: {}
-  }
-
-  type LocationGetPayload<S extends boolean | null | undefined | LocationDefaultArgs> = $Result.GetResult<Prisma.$LocationPayload, S>
-
-  type LocationCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<LocationFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: LocationCountAggregateInputType | true
-    }
-
-  export interface LocationDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Location'], meta: { name: 'Location' } }
-    /**
-     * Find zero or one Location that matches the filter.
-     * @param {LocationFindUniqueArgs} args - Arguments to find a Location
-     * @example
-     * // Get one Location
-     * const location = await prisma.location.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUnique<T extends LocationFindUniqueArgs>(args: SelectSubset<T, LocationFindUniqueArgs<ExtArgs>>): Prisma__LocationClient<$Result.GetResult<Prisma.$LocationPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find one Location that matches the filter or throw an error with `error.code='P2025'`
-     * if no matches were found.
-     * @param {LocationFindUniqueOrThrowArgs} args - Arguments to find a Location
-     * @example
-     * // Get one Location
-     * const location = await prisma.location.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUniqueOrThrow<T extends LocationFindUniqueOrThrowArgs>(args: SelectSubset<T, LocationFindUniqueOrThrowArgs<ExtArgs>>): Prisma__LocationClient<$Result.GetResult<Prisma.$LocationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first Location that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {LocationFindFirstArgs} args - Arguments to find a Location
-     * @example
-     * // Get one Location
-     * const location = await prisma.location.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirst<T extends LocationFindFirstArgs>(args?: SelectSubset<T, LocationFindFirstArgs<ExtArgs>>): Prisma__LocationClient<$Result.GetResult<Prisma.$LocationPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first Location that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {LocationFindFirstOrThrowArgs} args - Arguments to find a Location
-     * @example
-     * // Get one Location
-     * const location = await prisma.location.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirstOrThrow<T extends LocationFindFirstOrThrowArgs>(args?: SelectSubset<T, LocationFindFirstOrThrowArgs<ExtArgs>>): Prisma__LocationClient<$Result.GetResult<Prisma.$LocationPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find zero or more Locations that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {LocationFindManyArgs} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all Locations
-     * const locations = await prisma.location.findMany()
-     * 
-     * // Get first 10 Locations
-     * const locations = await prisma.location.findMany({ take: 10 })
-     * 
-     * // Only select the `id`
-     * const locationWithIdOnly = await prisma.location.findMany({ select: { id: true } })
-     * 
-     */
-    findMany<T extends LocationFindManyArgs>(args?: SelectSubset<T, LocationFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LocationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
-
-    /**
-     * Create a Location.
-     * @param {LocationCreateArgs} args - Arguments to create a Location.
-     * @example
-     * // Create one Location
-     * const Location = await prisma.location.create({
-     *   data: {
-     *     // ... data to create a Location
-     *   }
-     * })
-     * 
-     */
-    create<T extends LocationCreateArgs>(args: SelectSubset<T, LocationCreateArgs<ExtArgs>>): Prisma__LocationClient<$Result.GetResult<Prisma.$LocationPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Create many Locations.
-     * @param {LocationCreateManyArgs} args - Arguments to create many Locations.
-     * @example
-     * // Create many Locations
-     * const location = await prisma.location.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends LocationCreateManyArgs>(args?: SelectSubset<T, LocationCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Delete a Location.
-     * @param {LocationDeleteArgs} args - Arguments to delete one Location.
-     * @example
-     * // Delete one Location
-     * const Location = await prisma.location.delete({
-     *   where: {
-     *     // ... filter to delete one Location
-     *   }
-     * })
-     * 
-     */
-    delete<T extends LocationDeleteArgs>(args: SelectSubset<T, LocationDeleteArgs<ExtArgs>>): Prisma__LocationClient<$Result.GetResult<Prisma.$LocationPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Update one Location.
-     * @param {LocationUpdateArgs} args - Arguments to update one Location.
-     * @example
-     * // Update one Location
-     * const location = await prisma.location.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends LocationUpdateArgs>(args: SelectSubset<T, LocationUpdateArgs<ExtArgs>>): Prisma__LocationClient<$Result.GetResult<Prisma.$LocationPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Delete zero or more Locations.
-     * @param {LocationDeleteManyArgs} args - Arguments to filter Locations to delete.
-     * @example
-     * // Delete a few Locations
-     * const { count } = await prisma.location.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends LocationDeleteManyArgs>(args?: SelectSubset<T, LocationDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more Locations.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {LocationUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many Locations
-     * const location = await prisma.location.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends LocationUpdateManyArgs>(args: SelectSubset<T, LocationUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create or update one Location.
-     * @param {LocationUpsertArgs} args - Arguments to update or create a Location.
-     * @example
-     * // Update or create a Location
-     * const location = await prisma.location.upsert({
-     *   create: {
-     *     // ... data to create a Location
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the Location we want to update
-     *   }
-     * })
-     */
-    upsert<T extends LocationUpsertArgs>(args: SelectSubset<T, LocationUpsertArgs<ExtArgs>>): Prisma__LocationClient<$Result.GetResult<Prisma.$LocationPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-
-    /**
-     * Count the number of Locations.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {LocationCountArgs} args - Arguments to filter Locations to count.
-     * @example
-     * // Count the number of Locations
-     * const count = await prisma.location.count({
-     *   where: {
-     *     // ... the filter for the Locations we want to count
-     *   }
-     * })
-    **/
-    count<T extends LocationCountArgs>(
-      args?: Subset<T, LocationCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], LocationCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a Location.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {LocationAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends LocationAggregateArgs>(args: Subset<T, LocationAggregateArgs>): Prisma.PrismaPromise<GetLocationAggregateType<T>>
-
-    /**
-     * Group by Location.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {LocationGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends LocationGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: LocationGroupByArgs['orderBy'] }
-        : { orderBy?: LocationGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, LocationGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetLocationGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the Location model
-   */
-  readonly fields: LocationFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for Location.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__LocationClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    Hardware<T extends HardwareDefaultArgs<ExtArgs> = {}>(args?: Subset<T, HardwareDefaultArgs<ExtArgs>>): Prisma__HardwareClient<$Result.GetResult<Prisma.$HardwarePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
-  }
-
-
-
-
-  /**
-   * Fields of the Location model
-   */
-  interface LocationFieldRefs {
-    readonly id: FieldRef<"Location", 'Int'>
-    readonly longitude: FieldRef<"Location", 'String'>
-    readonly latitude: FieldRef<"Location", 'String'>
-    readonly created_at: FieldRef<"Location", 'DateTime'>
-    readonly hardwareId: FieldRef<"Location", 'Int'>
-  }
-    
-
-  // Custom InputTypes
-  /**
-   * Location findUnique
-   */
-  export type LocationFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Location
-     */
-    select?: LocationSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Location
-     */
-    omit?: LocationOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: LocationInclude<ExtArgs> | null
-    /**
-     * Filter, which Location to fetch.
-     */
-    where: LocationWhereUniqueInput
-  }
-
-  /**
-   * Location findUniqueOrThrow
-   */
-  export type LocationFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Location
-     */
-    select?: LocationSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Location
-     */
-    omit?: LocationOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: LocationInclude<ExtArgs> | null
-    /**
-     * Filter, which Location to fetch.
-     */
-    where: LocationWhereUniqueInput
-  }
-
-  /**
-   * Location findFirst
-   */
-  export type LocationFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Location
-     */
-    select?: LocationSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Location
-     */
-    omit?: LocationOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: LocationInclude<ExtArgs> | null
-    /**
-     * Filter, which Location to fetch.
-     */
-    where?: LocationWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Locations to fetch.
-     */
-    orderBy?: LocationOrderByWithRelationInput | LocationOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for Locations.
-     */
-    cursor?: LocationWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Locations from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Locations.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of Locations.
-     */
-    distinct?: LocationScalarFieldEnum | LocationScalarFieldEnum[]
-  }
-
-  /**
-   * Location findFirstOrThrow
-   */
-  export type LocationFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Location
-     */
-    select?: LocationSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Location
-     */
-    omit?: LocationOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: LocationInclude<ExtArgs> | null
-    /**
-     * Filter, which Location to fetch.
-     */
-    where?: LocationWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Locations to fetch.
-     */
-    orderBy?: LocationOrderByWithRelationInput | LocationOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for Locations.
-     */
-    cursor?: LocationWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Locations from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Locations.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of Locations.
-     */
-    distinct?: LocationScalarFieldEnum | LocationScalarFieldEnum[]
-  }
-
-  /**
-   * Location findMany
-   */
-  export type LocationFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Location
-     */
-    select?: LocationSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Location
-     */
-    omit?: LocationOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: LocationInclude<ExtArgs> | null
-    /**
-     * Filter, which Locations to fetch.
-     */
-    where?: LocationWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Locations to fetch.
-     */
-    orderBy?: LocationOrderByWithRelationInput | LocationOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing Locations.
-     */
-    cursor?: LocationWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Locations from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Locations.
-     */
-    skip?: number
-    distinct?: LocationScalarFieldEnum | LocationScalarFieldEnum[]
-  }
-
-  /**
-   * Location create
-   */
-  export type LocationCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Location
-     */
-    select?: LocationSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Location
-     */
-    omit?: LocationOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: LocationInclude<ExtArgs> | null
-    /**
-     * The data needed to create a Location.
-     */
-    data: XOR<LocationCreateInput, LocationUncheckedCreateInput>
-  }
-
-  /**
-   * Location createMany
-   */
-  export type LocationCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many Locations.
-     */
-    data: LocationCreateManyInput | LocationCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * Location update
-   */
-  export type LocationUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Location
-     */
-    select?: LocationSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Location
-     */
-    omit?: LocationOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: LocationInclude<ExtArgs> | null
-    /**
-     * The data needed to update a Location.
-     */
-    data: XOR<LocationUpdateInput, LocationUncheckedUpdateInput>
-    /**
-     * Choose, which Location to update.
-     */
-    where: LocationWhereUniqueInput
-  }
-
-  /**
-   * Location updateMany
-   */
-  export type LocationUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update Locations.
-     */
-    data: XOR<LocationUpdateManyMutationInput, LocationUncheckedUpdateManyInput>
-    /**
-     * Filter which Locations to update
-     */
-    where?: LocationWhereInput
-    /**
-     * Limit how many Locations to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * Location upsert
-   */
-  export type LocationUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Location
-     */
-    select?: LocationSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Location
-     */
-    omit?: LocationOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: LocationInclude<ExtArgs> | null
-    /**
-     * The filter to search for the Location to update in case it exists.
-     */
-    where: LocationWhereUniqueInput
-    /**
-     * In case the Location found by the `where` argument doesn't exist, create a new Location with this data.
-     */
-    create: XOR<LocationCreateInput, LocationUncheckedCreateInput>
-    /**
-     * In case the Location was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<LocationUpdateInput, LocationUncheckedUpdateInput>
-  }
-
-  /**
-   * Location delete
-   */
-  export type LocationDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Location
-     */
-    select?: LocationSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Location
-     */
-    omit?: LocationOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: LocationInclude<ExtArgs> | null
-    /**
-     * Filter which Location to delete.
-     */
-    where: LocationWhereUniqueInput
-  }
-
-  /**
-   * Location deleteMany
-   */
-  export type LocationDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which Locations to delete
-     */
-    where?: LocationWhereInput
-    /**
-     * Limit how many Locations to delete.
-     */
-    limit?: number
-  }
-
-  /**
-   * Location without action
-   */
-  export type LocationDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Location
-     */
-    select?: LocationSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Location
-     */
-    omit?: LocationOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: LocationInclude<ExtArgs> | null
   }
 
 
@@ -7116,35 +6084,30 @@ export namespace Prisma {
   export type LevelAvgAggregateOutputType = {
     id: number | null
     Normal: number | null
-    Siaga: number | null
     Banjir: number | null
   }
 
   export type LevelSumAggregateOutputType = {
     id: number | null
     Normal: number | null
-    Siaga: number | null
     Banjir: number | null
   }
 
   export type LevelMinAggregateOutputType = {
     id: number | null
     Normal: number | null
-    Siaga: number | null
     Banjir: number | null
   }
 
   export type LevelMaxAggregateOutputType = {
     id: number | null
     Normal: number | null
-    Siaga: number | null
     Banjir: number | null
   }
 
   export type LevelCountAggregateOutputType = {
     id: number
     Normal: number
-    Siaga: number
     Banjir: number
     _all: number
   }
@@ -7153,35 +6116,30 @@ export namespace Prisma {
   export type LevelAvgAggregateInputType = {
     id?: true
     Normal?: true
-    Siaga?: true
     Banjir?: true
   }
 
   export type LevelSumAggregateInputType = {
     id?: true
     Normal?: true
-    Siaga?: true
     Banjir?: true
   }
 
   export type LevelMinAggregateInputType = {
     id?: true
     Normal?: true
-    Siaga?: true
     Banjir?: true
   }
 
   export type LevelMaxAggregateInputType = {
     id?: true
     Normal?: true
-    Siaga?: true
     Banjir?: true
   }
 
   export type LevelCountAggregateInputType = {
     id?: true
     Normal?: true
-    Siaga?: true
     Banjir?: true
     _all?: true
   }
@@ -7275,7 +6233,6 @@ export namespace Prisma {
   export type LevelGroupByOutputType = {
     id: number
     Normal: number
-    Siaga: number
     Banjir: number
     _count: LevelCountAggregateOutputType | null
     _avg: LevelAvgAggregateOutputType | null
@@ -7301,7 +6258,6 @@ export namespace Prisma {
   export type LevelSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     Normal?: boolean
-    Siaga?: boolean
     Banjir?: boolean
   }, ExtArgs["result"]["level"]>
 
@@ -7310,11 +6266,10 @@ export namespace Prisma {
   export type LevelSelectScalar = {
     id?: boolean
     Normal?: boolean
-    Siaga?: boolean
     Banjir?: boolean
   }
 
-  export type LevelOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "Normal" | "Siaga" | "Banjir", ExtArgs["result"]["level"]>
+  export type LevelOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "Normal" | "Banjir", ExtArgs["result"]["level"]>
 
   export type $LevelPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Level"
@@ -7322,7 +6277,6 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: number
       Normal: number
-      Siaga: number
       Banjir: number
     }, ExtArgs["result"]["level"]>
     composites: {}
@@ -7695,7 +6649,6 @@ export namespace Prisma {
   interface LevelFieldRefs {
     readonly id: FieldRef<"Level", 'Int'>
     readonly Normal: FieldRef<"Level", 'Int'>
-    readonly Siaga: FieldRef<"Level", 'Int'>
     readonly Banjir: FieldRef<"Level", 'Int'>
   }
     
@@ -8035,26 +6988,31 @@ export namespace Prisma {
   export const AdminScalarFieldEnum: {
     id: 'id',
     email: 'email',
-    password: 'password'
+    password: 'password',
+    role: 'role',
+    created_at: 'created_at'
   };
 
   export type AdminScalarFieldEnum = (typeof AdminScalarFieldEnum)[keyof typeof AdminScalarFieldEnum]
 
 
-  export const SignUpScalarFieldEnum: {
+  export const SignupScalarFieldEnum: {
     id: 'id',
     username: 'username',
     password: 'password',
     email: 'email',
+    accepted: 'accepted',
     created_at: 'created_at'
   };
 
-  export type SignUpScalarFieldEnum = (typeof SignUpScalarFieldEnum)[keyof typeof SignUpScalarFieldEnum]
+  export type SignupScalarFieldEnum = (typeof SignupScalarFieldEnum)[keyof typeof SignupScalarFieldEnum]
 
 
   export const ElevationScalarFieldEnum: {
     id: 'id',
     water_elevation: 'water_elevation',
+    latitude: 'latitude',
+    longitude: 'longitude',
     created_at: 'created_at',
     hardwareId: 'hardwareId'
   };
@@ -8070,17 +7028,6 @@ export namespace Prisma {
   export type HardwareScalarFieldEnum = (typeof HardwareScalarFieldEnum)[keyof typeof HardwareScalarFieldEnum]
 
 
-  export const LocationScalarFieldEnum: {
-    id: 'id',
-    longitude: 'longitude',
-    latitude: 'latitude',
-    created_at: 'created_at',
-    hardwareId: 'hardwareId'
-  };
-
-  export type LocationScalarFieldEnum = (typeof LocationScalarFieldEnum)[keyof typeof LocationScalarFieldEnum]
-
-
   export const WhatsappScalarFieldEnum: {
     id: 'id',
     whatsapp_number: 'whatsapp_number',
@@ -8093,7 +7040,6 @@ export namespace Prisma {
   export const LevelScalarFieldEnum: {
     id: 'id',
     Normal: 'Normal',
-    Siaga: 'Siaga',
     Banjir: 'Banjir'
   };
 
@@ -8110,19 +7056,28 @@ export namespace Prisma {
 
   export const AdminOrderByRelevanceFieldEnum: {
     email: 'email',
-    password: 'password'
+    password: 'password',
+    role: 'role'
   };
 
   export type AdminOrderByRelevanceFieldEnum = (typeof AdminOrderByRelevanceFieldEnum)[keyof typeof AdminOrderByRelevanceFieldEnum]
 
 
-  export const SignUpOrderByRelevanceFieldEnum: {
+  export const SignupOrderByRelevanceFieldEnum: {
     username: 'username',
     password: 'password',
     email: 'email'
   };
 
-  export type SignUpOrderByRelevanceFieldEnum = (typeof SignUpOrderByRelevanceFieldEnum)[keyof typeof SignUpOrderByRelevanceFieldEnum]
+  export type SignupOrderByRelevanceFieldEnum = (typeof SignupOrderByRelevanceFieldEnum)[keyof typeof SignupOrderByRelevanceFieldEnum]
+
+
+  export const ElevationOrderByRelevanceFieldEnum: {
+    latitude: 'latitude',
+    longitude: 'longitude'
+  };
+
+  export type ElevationOrderByRelevanceFieldEnum = (typeof ElevationOrderByRelevanceFieldEnum)[keyof typeof ElevationOrderByRelevanceFieldEnum]
 
 
   export const HardwareOrderByRelevanceFieldEnum: {
@@ -8130,14 +7085,6 @@ export namespace Prisma {
   };
 
   export type HardwareOrderByRelevanceFieldEnum = (typeof HardwareOrderByRelevanceFieldEnum)[keyof typeof HardwareOrderByRelevanceFieldEnum]
-
-
-  export const LocationOrderByRelevanceFieldEnum: {
-    longitude: 'longitude',
-    latitude: 'latitude'
-  };
-
-  export type LocationOrderByRelevanceFieldEnum = (typeof LocationOrderByRelevanceFieldEnum)[keyof typeof LocationOrderByRelevanceFieldEnum]
 
 
   export const WhatsappOrderByRelevanceFieldEnum: {
@@ -8174,6 +7121,13 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'Boolean'
+   */
+  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+    
+
+
+  /**
    * Reference to a field of type 'Float'
    */
   export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -8190,12 +7144,16 @@ export namespace Prisma {
     id?: IntFilter<"Admin"> | number
     email?: StringFilter<"Admin"> | string
     password?: StringFilter<"Admin"> | string
+    role?: StringFilter<"Admin"> | string
+    created_at?: DateTimeFilter<"Admin"> | Date | string
   }
 
   export type AdminOrderByWithRelationInput = {
     id?: SortOrder
     email?: SortOrder
     password?: SortOrder
+    role?: SortOrder
+    created_at?: SortOrder
     _relevance?: AdminOrderByRelevanceInput
   }
 
@@ -8206,12 +7164,16 @@ export namespace Prisma {
     OR?: AdminWhereInput[]
     NOT?: AdminWhereInput | AdminWhereInput[]
     password?: StringFilter<"Admin"> | string
+    role?: StringFilter<"Admin"> | string
+    created_at?: DateTimeFilter<"Admin"> | Date | string
   }, "id" | "email">
 
   export type AdminOrderByWithAggregationInput = {
     id?: SortOrder
     email?: SortOrder
     password?: SortOrder
+    role?: SortOrder
+    created_at?: SortOrder
     _count?: AdminCountOrderByAggregateInput
     _avg?: AdminAvgOrderByAggregateInput
     _max?: AdminMaxOrderByAggregateInput
@@ -8226,61 +7188,68 @@ export namespace Prisma {
     id?: IntWithAggregatesFilter<"Admin"> | number
     email?: StringWithAggregatesFilter<"Admin"> | string
     password?: StringWithAggregatesFilter<"Admin"> | string
+    role?: StringWithAggregatesFilter<"Admin"> | string
+    created_at?: DateTimeWithAggregatesFilter<"Admin"> | Date | string
   }
 
-  export type SignUpWhereInput = {
-    AND?: SignUpWhereInput | SignUpWhereInput[]
-    OR?: SignUpWhereInput[]
-    NOT?: SignUpWhereInput | SignUpWhereInput[]
-    id?: IntFilter<"SignUp"> | number
-    username?: StringFilter<"SignUp"> | string
-    password?: StringFilter<"SignUp"> | string
-    email?: StringFilter<"SignUp"> | string
-    created_at?: DateTimeFilter<"SignUp"> | Date | string
+  export type SignupWhereInput = {
+    AND?: SignupWhereInput | SignupWhereInput[]
+    OR?: SignupWhereInput[]
+    NOT?: SignupWhereInput | SignupWhereInput[]
+    id?: IntFilter<"Signup"> | number
+    username?: StringFilter<"Signup"> | string
+    password?: StringFilter<"Signup"> | string
+    email?: StringFilter<"Signup"> | string
+    accepted?: BoolFilter<"Signup"> | boolean
+    created_at?: DateTimeFilter<"Signup"> | Date | string
   }
 
-  export type SignUpOrderByWithRelationInput = {
+  export type SignupOrderByWithRelationInput = {
     id?: SortOrder
     username?: SortOrder
     password?: SortOrder
     email?: SortOrder
+    accepted?: SortOrder
     created_at?: SortOrder
-    _relevance?: SignUpOrderByRelevanceInput
+    _relevance?: SignupOrderByRelevanceInput
   }
 
-  export type SignUpWhereUniqueInput = Prisma.AtLeast<{
+  export type SignupWhereUniqueInput = Prisma.AtLeast<{
     id?: number
     username?: string
     email?: string
-    AND?: SignUpWhereInput | SignUpWhereInput[]
-    OR?: SignUpWhereInput[]
-    NOT?: SignUpWhereInput | SignUpWhereInput[]
-    password?: StringFilter<"SignUp"> | string
-    created_at?: DateTimeFilter<"SignUp"> | Date | string
+    AND?: SignupWhereInput | SignupWhereInput[]
+    OR?: SignupWhereInput[]
+    NOT?: SignupWhereInput | SignupWhereInput[]
+    password?: StringFilter<"Signup"> | string
+    accepted?: BoolFilter<"Signup"> | boolean
+    created_at?: DateTimeFilter<"Signup"> | Date | string
   }, "id" | "username" | "email">
 
-  export type SignUpOrderByWithAggregationInput = {
+  export type SignupOrderByWithAggregationInput = {
     id?: SortOrder
     username?: SortOrder
     password?: SortOrder
     email?: SortOrder
+    accepted?: SortOrder
     created_at?: SortOrder
-    _count?: SignUpCountOrderByAggregateInput
-    _avg?: SignUpAvgOrderByAggregateInput
-    _max?: SignUpMaxOrderByAggregateInput
-    _min?: SignUpMinOrderByAggregateInput
-    _sum?: SignUpSumOrderByAggregateInput
+    _count?: SignupCountOrderByAggregateInput
+    _avg?: SignupAvgOrderByAggregateInput
+    _max?: SignupMaxOrderByAggregateInput
+    _min?: SignupMinOrderByAggregateInput
+    _sum?: SignupSumOrderByAggregateInput
   }
 
-  export type SignUpScalarWhereWithAggregatesInput = {
-    AND?: SignUpScalarWhereWithAggregatesInput | SignUpScalarWhereWithAggregatesInput[]
-    OR?: SignUpScalarWhereWithAggregatesInput[]
-    NOT?: SignUpScalarWhereWithAggregatesInput | SignUpScalarWhereWithAggregatesInput[]
-    id?: IntWithAggregatesFilter<"SignUp"> | number
-    username?: StringWithAggregatesFilter<"SignUp"> | string
-    password?: StringWithAggregatesFilter<"SignUp"> | string
-    email?: StringWithAggregatesFilter<"SignUp"> | string
-    created_at?: DateTimeWithAggregatesFilter<"SignUp"> | Date | string
+  export type SignupScalarWhereWithAggregatesInput = {
+    AND?: SignupScalarWhereWithAggregatesInput | SignupScalarWhereWithAggregatesInput[]
+    OR?: SignupScalarWhereWithAggregatesInput[]
+    NOT?: SignupScalarWhereWithAggregatesInput | SignupScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"Signup"> | number
+    username?: StringWithAggregatesFilter<"Signup"> | string
+    password?: StringWithAggregatesFilter<"Signup"> | string
+    email?: StringWithAggregatesFilter<"Signup"> | string
+    accepted?: BoolWithAggregatesFilter<"Signup"> | boolean
+    created_at?: DateTimeWithAggregatesFilter<"Signup"> | Date | string
   }
 
   export type ElevationWhereInput = {
@@ -8289,6 +7258,8 @@ export namespace Prisma {
     NOT?: ElevationWhereInput | ElevationWhereInput[]
     id?: IntFilter<"Elevation"> | number
     water_elevation?: FloatFilter<"Elevation"> | number
+    latitude?: StringFilter<"Elevation"> | string
+    longitude?: StringFilter<"Elevation"> | string
     created_at?: DateTimeFilter<"Elevation"> | Date | string
     hardwareId?: IntFilter<"Elevation"> | number
     Hardware?: XOR<HardwareScalarRelationFilter, HardwareWhereInput>
@@ -8297,9 +7268,12 @@ export namespace Prisma {
   export type ElevationOrderByWithRelationInput = {
     id?: SortOrder
     water_elevation?: SortOrder
+    latitude?: SortOrder
+    longitude?: SortOrder
     created_at?: SortOrder
     hardwareId?: SortOrder
     Hardware?: HardwareOrderByWithRelationInput
+    _relevance?: ElevationOrderByRelevanceInput
   }
 
   export type ElevationWhereUniqueInput = Prisma.AtLeast<{
@@ -8308,6 +7282,8 @@ export namespace Prisma {
     OR?: ElevationWhereInput[]
     NOT?: ElevationWhereInput | ElevationWhereInput[]
     water_elevation?: FloatFilter<"Elevation"> | number
+    latitude?: StringFilter<"Elevation"> | string
+    longitude?: StringFilter<"Elevation"> | string
     created_at?: DateTimeFilter<"Elevation"> | Date | string
     hardwareId?: IntFilter<"Elevation"> | number
     Hardware?: XOR<HardwareScalarRelationFilter, HardwareWhereInput>
@@ -8316,6 +7292,8 @@ export namespace Prisma {
   export type ElevationOrderByWithAggregationInput = {
     id?: SortOrder
     water_elevation?: SortOrder
+    latitude?: SortOrder
+    longitude?: SortOrder
     created_at?: SortOrder
     hardwareId?: SortOrder
     _count?: ElevationCountOrderByAggregateInput
@@ -8331,6 +7309,8 @@ export namespace Prisma {
     NOT?: ElevationScalarWhereWithAggregatesInput | ElevationScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"Elevation"> | number
     water_elevation?: FloatWithAggregatesFilter<"Elevation"> | number
+    latitude?: StringWithAggregatesFilter<"Elevation"> | string
+    longitude?: StringWithAggregatesFilter<"Elevation"> | string
     created_at?: DateTimeWithAggregatesFilter<"Elevation"> | Date | string
     hardwareId?: IntWithAggregatesFilter<"Elevation"> | number
   }
@@ -8342,7 +7322,6 @@ export namespace Prisma {
     id?: IntFilter<"Hardware"> | number
     name?: StringFilter<"Hardware"> | string
     Elevation?: ElevationListRelationFilter
-    Location?: LocationListRelationFilter
     Whatsapp?: WhatsappListRelationFilter
   }
 
@@ -8350,7 +7329,6 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     Elevation?: ElevationOrderByRelationAggregateInput
-    Location?: LocationOrderByRelationAggregateInput
     Whatsapp?: WhatsappOrderByRelationAggregateInput
     _relevance?: HardwareOrderByRelevanceInput
   }
@@ -8362,7 +7340,6 @@ export namespace Prisma {
     NOT?: HardwareWhereInput | HardwareWhereInput[]
     name?: StringFilter<"Hardware"> | string
     Elevation?: ElevationListRelationFilter
-    Location?: LocationListRelationFilter
     Whatsapp?: WhatsappListRelationFilter
   }, "id">
 
@@ -8382,64 +7359,6 @@ export namespace Prisma {
     NOT?: HardwareScalarWhereWithAggregatesInput | HardwareScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"Hardware"> | number
     name?: StringWithAggregatesFilter<"Hardware"> | string
-  }
-
-  export type LocationWhereInput = {
-    AND?: LocationWhereInput | LocationWhereInput[]
-    OR?: LocationWhereInput[]
-    NOT?: LocationWhereInput | LocationWhereInput[]
-    id?: IntFilter<"Location"> | number
-    longitude?: StringFilter<"Location"> | string
-    latitude?: StringFilter<"Location"> | string
-    created_at?: DateTimeFilter<"Location"> | Date | string
-    hardwareId?: IntFilter<"Location"> | number
-    Hardware?: XOR<HardwareScalarRelationFilter, HardwareWhereInput>
-  }
-
-  export type LocationOrderByWithRelationInput = {
-    id?: SortOrder
-    longitude?: SortOrder
-    latitude?: SortOrder
-    created_at?: SortOrder
-    hardwareId?: SortOrder
-    Hardware?: HardwareOrderByWithRelationInput
-    _relevance?: LocationOrderByRelevanceInput
-  }
-
-  export type LocationWhereUniqueInput = Prisma.AtLeast<{
-    id?: number
-    AND?: LocationWhereInput | LocationWhereInput[]
-    OR?: LocationWhereInput[]
-    NOT?: LocationWhereInput | LocationWhereInput[]
-    longitude?: StringFilter<"Location"> | string
-    latitude?: StringFilter<"Location"> | string
-    created_at?: DateTimeFilter<"Location"> | Date | string
-    hardwareId?: IntFilter<"Location"> | number
-    Hardware?: XOR<HardwareScalarRelationFilter, HardwareWhereInput>
-  }, "id">
-
-  export type LocationOrderByWithAggregationInput = {
-    id?: SortOrder
-    longitude?: SortOrder
-    latitude?: SortOrder
-    created_at?: SortOrder
-    hardwareId?: SortOrder
-    _count?: LocationCountOrderByAggregateInput
-    _avg?: LocationAvgOrderByAggregateInput
-    _max?: LocationMaxOrderByAggregateInput
-    _min?: LocationMinOrderByAggregateInput
-    _sum?: LocationSumOrderByAggregateInput
-  }
-
-  export type LocationScalarWhereWithAggregatesInput = {
-    AND?: LocationScalarWhereWithAggregatesInput | LocationScalarWhereWithAggregatesInput[]
-    OR?: LocationScalarWhereWithAggregatesInput[]
-    NOT?: LocationScalarWhereWithAggregatesInput | LocationScalarWhereWithAggregatesInput[]
-    id?: IntWithAggregatesFilter<"Location"> | number
-    longitude?: StringWithAggregatesFilter<"Location"> | string
-    latitude?: StringWithAggregatesFilter<"Location"> | string
-    created_at?: DateTimeWithAggregatesFilter<"Location"> | Date | string
-    hardwareId?: IntWithAggregatesFilter<"Location"> | number
   }
 
   export type WhatsappWhereInput = {
@@ -8496,14 +7415,12 @@ export namespace Prisma {
     NOT?: LevelWhereInput | LevelWhereInput[]
     id?: IntFilter<"Level"> | number
     Normal?: IntFilter<"Level"> | number
-    Siaga?: IntFilter<"Level"> | number
     Banjir?: IntFilter<"Level"> | number
   }
 
   export type LevelOrderByWithRelationInput = {
     id?: SortOrder
     Normal?: SortOrder
-    Siaga?: SortOrder
     Banjir?: SortOrder
   }
 
@@ -8513,14 +7430,12 @@ export namespace Prisma {
     OR?: LevelWhereInput[]
     NOT?: LevelWhereInput | LevelWhereInput[]
     Normal?: IntFilter<"Level"> | number
-    Siaga?: IntFilter<"Level"> | number
     Banjir?: IntFilter<"Level"> | number
   }, "id">
 
   export type LevelOrderByWithAggregationInput = {
     id?: SortOrder
     Normal?: SortOrder
-    Siaga?: SortOrder
     Banjir?: SortOrder
     _count?: LevelCountOrderByAggregateInput
     _avg?: LevelAvgOrderByAggregateInput
@@ -8535,104 +7450,126 @@ export namespace Prisma {
     NOT?: LevelScalarWhereWithAggregatesInput | LevelScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"Level"> | number
     Normal?: IntWithAggregatesFilter<"Level"> | number
-    Siaga?: IntWithAggregatesFilter<"Level"> | number
     Banjir?: IntWithAggregatesFilter<"Level"> | number
   }
 
   export type AdminCreateInput = {
     email: string
     password: string
+    role?: string
+    created_at?: Date | string
   }
 
   export type AdminUncheckedCreateInput = {
     id?: number
     email: string
     password: string
+    role?: string
+    created_at?: Date | string
   }
 
   export type AdminUpdateInput = {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
+    role?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type AdminUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
+    role?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type AdminCreateManyInput = {
     id?: number
     email: string
     password: string
+    role?: string
+    created_at?: Date | string
   }
 
   export type AdminUpdateManyMutationInput = {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
+    role?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type AdminUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
+    role?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type SignUpCreateInput = {
+  export type SignupCreateInput = {
     username: string
     password: string
     email: string
+    accepted?: boolean
     created_at?: Date | string
   }
 
-  export type SignUpUncheckedCreateInput = {
+  export type SignupUncheckedCreateInput = {
     id?: number
     username: string
     password: string
     email: string
+    accepted?: boolean
     created_at?: Date | string
   }
 
-  export type SignUpUpdateInput = {
+  export type SignupUpdateInput = {
     username?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
+    accepted?: BoolFieldUpdateOperationsInput | boolean
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type SignUpUncheckedUpdateInput = {
+  export type SignupUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     username?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
+    accepted?: BoolFieldUpdateOperationsInput | boolean
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type SignUpCreateManyInput = {
+  export type SignupCreateManyInput = {
     id?: number
     username: string
     password: string
     email: string
+    accepted?: boolean
     created_at?: Date | string
   }
 
-  export type SignUpUpdateManyMutationInput = {
+  export type SignupUpdateManyMutationInput = {
     username?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
+    accepted?: BoolFieldUpdateOperationsInput | boolean
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type SignUpUncheckedUpdateManyInput = {
+  export type SignupUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     username?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
+    accepted?: BoolFieldUpdateOperationsInput | boolean
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ElevationCreateInput = {
     water_elevation: number
+    latitude: string
+    longitude: string
     created_at?: Date | string
     Hardware: HardwareCreateNestedOneWithoutElevationInput
   }
@@ -8640,12 +7577,16 @@ export namespace Prisma {
   export type ElevationUncheckedCreateInput = {
     id?: number
     water_elevation: number
+    latitude: string
+    longitude: string
     created_at?: Date | string
     hardwareId: number
   }
 
   export type ElevationUpdateInput = {
     water_elevation?: FloatFieldUpdateOperationsInput | number
+    latitude?: StringFieldUpdateOperationsInput | string
+    longitude?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     Hardware?: HardwareUpdateOneRequiredWithoutElevationNestedInput
   }
@@ -8653,6 +7594,8 @@ export namespace Prisma {
   export type ElevationUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     water_elevation?: FloatFieldUpdateOperationsInput | number
+    latitude?: StringFieldUpdateOperationsInput | string
+    longitude?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     hardwareId?: IntFieldUpdateOperationsInput | number
   }
@@ -8660,18 +7603,24 @@ export namespace Prisma {
   export type ElevationCreateManyInput = {
     id?: number
     water_elevation: number
+    latitude: string
+    longitude: string
     created_at?: Date | string
     hardwareId: number
   }
 
   export type ElevationUpdateManyMutationInput = {
     water_elevation?: FloatFieldUpdateOperationsInput | number
+    latitude?: StringFieldUpdateOperationsInput | string
+    longitude?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ElevationUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     water_elevation?: FloatFieldUpdateOperationsInput | number
+    latitude?: StringFieldUpdateOperationsInput | string
+    longitude?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     hardwareId?: IntFieldUpdateOperationsInput | number
   }
@@ -8679,7 +7628,6 @@ export namespace Prisma {
   export type HardwareCreateInput = {
     name: string
     Elevation?: ElevationCreateNestedManyWithoutHardwareInput
-    Location?: LocationCreateNestedManyWithoutHardwareInput
     Whatsapp?: WhatsappCreateNestedManyWithoutHardwareInput
   }
 
@@ -8687,14 +7635,12 @@ export namespace Prisma {
     id?: number
     name: string
     Elevation?: ElevationUncheckedCreateNestedManyWithoutHardwareInput
-    Location?: LocationUncheckedCreateNestedManyWithoutHardwareInput
     Whatsapp?: WhatsappUncheckedCreateNestedManyWithoutHardwareInput
   }
 
   export type HardwareUpdateInput = {
     name?: StringFieldUpdateOperationsInput | string
     Elevation?: ElevationUpdateManyWithoutHardwareNestedInput
-    Location?: LocationUpdateManyWithoutHardwareNestedInput
     Whatsapp?: WhatsappUpdateManyWithoutHardwareNestedInput
   }
 
@@ -8702,7 +7648,6 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     Elevation?: ElevationUncheckedUpdateManyWithoutHardwareNestedInput
-    Location?: LocationUncheckedUpdateManyWithoutHardwareNestedInput
     Whatsapp?: WhatsappUncheckedUpdateManyWithoutHardwareNestedInput
   }
 
@@ -8718,58 +7663,6 @@ export namespace Prisma {
   export type HardwareUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type LocationCreateInput = {
-    longitude: string
-    latitude: string
-    created_at?: Date | string
-    Hardware: HardwareCreateNestedOneWithoutLocationInput
-  }
-
-  export type LocationUncheckedCreateInput = {
-    id?: number
-    longitude: string
-    latitude: string
-    created_at?: Date | string
-    hardwareId: number
-  }
-
-  export type LocationUpdateInput = {
-    longitude?: StringFieldUpdateOperationsInput | string
-    latitude?: StringFieldUpdateOperationsInput | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    Hardware?: HardwareUpdateOneRequiredWithoutLocationNestedInput
-  }
-
-  export type LocationUncheckedUpdateInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    longitude?: StringFieldUpdateOperationsInput | string
-    latitude?: StringFieldUpdateOperationsInput | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    hardwareId?: IntFieldUpdateOperationsInput | number
-  }
-
-  export type LocationCreateManyInput = {
-    id?: number
-    longitude: string
-    latitude: string
-    created_at?: Date | string
-    hardwareId: number
-  }
-
-  export type LocationUpdateManyMutationInput = {
-    longitude?: StringFieldUpdateOperationsInput | string
-    latitude?: StringFieldUpdateOperationsInput | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type LocationUncheckedUpdateManyInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    longitude?: StringFieldUpdateOperationsInput | string
-    latitude?: StringFieldUpdateOperationsInput | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    hardwareId?: IntFieldUpdateOperationsInput | number
   }
 
   export type WhatsappCreateInput = {
@@ -8812,47 +7705,40 @@ export namespace Prisma {
 
   export type LevelCreateInput = {
     Normal: number
-    Siaga: number
     Banjir: number
   }
 
   export type LevelUncheckedCreateInput = {
     id?: number
     Normal: number
-    Siaga: number
     Banjir: number
   }
 
   export type LevelUpdateInput = {
     Normal?: IntFieldUpdateOperationsInput | number
-    Siaga?: IntFieldUpdateOperationsInput | number
     Banjir?: IntFieldUpdateOperationsInput | number
   }
 
   export type LevelUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     Normal?: IntFieldUpdateOperationsInput | number
-    Siaga?: IntFieldUpdateOperationsInput | number
     Banjir?: IntFieldUpdateOperationsInput | number
   }
 
   export type LevelCreateManyInput = {
     id?: number
     Normal: number
-    Siaga: number
     Banjir: number
   }
 
   export type LevelUpdateManyMutationInput = {
     Normal?: IntFieldUpdateOperationsInput | number
-    Siaga?: IntFieldUpdateOperationsInput | number
     Banjir?: IntFieldUpdateOperationsInput | number
   }
 
   export type LevelUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     Normal?: IntFieldUpdateOperationsInput | number
-    Siaga?: IntFieldUpdateOperationsInput | number
     Banjir?: IntFieldUpdateOperationsInput | number
   }
 
@@ -8882,6 +7768,17 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
+  export type DateTimeFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[]
+    notIn?: Date[] | string[]
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
   export type AdminOrderByRelevanceInput = {
     fields: AdminOrderByRelevanceFieldEnum | AdminOrderByRelevanceFieldEnum[]
     sort: SortOrder
@@ -8892,6 +7789,8 @@ export namespace Prisma {
     id?: SortOrder
     email?: SortOrder
     password?: SortOrder
+    role?: SortOrder
+    created_at?: SortOrder
   }
 
   export type AdminAvgOrderByAggregateInput = {
@@ -8902,12 +7801,16 @@ export namespace Prisma {
     id?: SortOrder
     email?: SortOrder
     password?: SortOrder
+    role?: SortOrder
+    created_at?: SortOrder
   }
 
   export type AdminMinOrderByAggregateInput = {
     id?: SortOrder
     email?: SortOrder
     password?: SortOrder
+    role?: SortOrder
+    created_at?: SortOrder
   }
 
   export type AdminSumOrderByAggregateInput = {
@@ -8948,55 +7851,6 @@ export namespace Prisma {
     _max?: NestedStringFilter<$PrismaModel>
   }
 
-  export type DateTimeFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[]
-    notIn?: Date[] | string[]
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
-  }
-
-  export type SignUpOrderByRelevanceInput = {
-    fields: SignUpOrderByRelevanceFieldEnum | SignUpOrderByRelevanceFieldEnum[]
-    sort: SortOrder
-    search: string
-  }
-
-  export type SignUpCountOrderByAggregateInput = {
-    id?: SortOrder
-    username?: SortOrder
-    password?: SortOrder
-    email?: SortOrder
-    created_at?: SortOrder
-  }
-
-  export type SignUpAvgOrderByAggregateInput = {
-    id?: SortOrder
-  }
-
-  export type SignUpMaxOrderByAggregateInput = {
-    id?: SortOrder
-    username?: SortOrder
-    password?: SortOrder
-    email?: SortOrder
-    created_at?: SortOrder
-  }
-
-  export type SignUpMinOrderByAggregateInput = {
-    id?: SortOrder
-    username?: SortOrder
-    password?: SortOrder
-    email?: SortOrder
-    created_at?: SortOrder
-  }
-
-  export type SignUpSumOrderByAggregateInput = {
-    id?: SortOrder
-  }
-
   export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[]
@@ -9009,6 +7863,60 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedDateTimeFilter<$PrismaModel>
     _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type BoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
+  export type SignupOrderByRelevanceInput = {
+    fields: SignupOrderByRelevanceFieldEnum | SignupOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type SignupCountOrderByAggregateInput = {
+    id?: SortOrder
+    username?: SortOrder
+    password?: SortOrder
+    email?: SortOrder
+    accepted?: SortOrder
+    created_at?: SortOrder
+  }
+
+  export type SignupAvgOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type SignupMaxOrderByAggregateInput = {
+    id?: SortOrder
+    username?: SortOrder
+    password?: SortOrder
+    email?: SortOrder
+    accepted?: SortOrder
+    created_at?: SortOrder
+  }
+
+  export type SignupMinOrderByAggregateInput = {
+    id?: SortOrder
+    username?: SortOrder
+    password?: SortOrder
+    email?: SortOrder
+    accepted?: SortOrder
+    created_at?: SortOrder
+  }
+
+  export type SignupSumOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type FloatFilter<$PrismaModel = never> = {
@@ -9027,9 +7935,17 @@ export namespace Prisma {
     isNot?: HardwareWhereInput
   }
 
+  export type ElevationOrderByRelevanceInput = {
+    fields: ElevationOrderByRelevanceFieldEnum | ElevationOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
   export type ElevationCountOrderByAggregateInput = {
     id?: SortOrder
     water_elevation?: SortOrder
+    latitude?: SortOrder
+    longitude?: SortOrder
     created_at?: SortOrder
     hardwareId?: SortOrder
   }
@@ -9043,6 +7959,8 @@ export namespace Prisma {
   export type ElevationMaxOrderByAggregateInput = {
     id?: SortOrder
     water_elevation?: SortOrder
+    latitude?: SortOrder
+    longitude?: SortOrder
     created_at?: SortOrder
     hardwareId?: SortOrder
   }
@@ -9050,6 +7968,8 @@ export namespace Prisma {
   export type ElevationMinOrderByAggregateInput = {
     id?: SortOrder
     water_elevation?: SortOrder
+    latitude?: SortOrder
+    longitude?: SortOrder
     created_at?: SortOrder
     hardwareId?: SortOrder
   }
@@ -9082,12 +8002,6 @@ export namespace Prisma {
     none?: ElevationWhereInput
   }
 
-  export type LocationListRelationFilter = {
-    every?: LocationWhereInput
-    some?: LocationWhereInput
-    none?: LocationWhereInput
-  }
-
   export type WhatsappListRelationFilter = {
     every?: WhatsappWhereInput
     some?: WhatsappWhereInput
@@ -9095,10 +8009,6 @@ export namespace Prisma {
   }
 
   export type ElevationOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type LocationOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -9133,46 +8043,6 @@ export namespace Prisma {
 
   export type HardwareSumOrderByAggregateInput = {
     id?: SortOrder
-  }
-
-  export type LocationOrderByRelevanceInput = {
-    fields: LocationOrderByRelevanceFieldEnum | LocationOrderByRelevanceFieldEnum[]
-    sort: SortOrder
-    search: string
-  }
-
-  export type LocationCountOrderByAggregateInput = {
-    id?: SortOrder
-    longitude?: SortOrder
-    latitude?: SortOrder
-    created_at?: SortOrder
-    hardwareId?: SortOrder
-  }
-
-  export type LocationAvgOrderByAggregateInput = {
-    id?: SortOrder
-    hardwareId?: SortOrder
-  }
-
-  export type LocationMaxOrderByAggregateInput = {
-    id?: SortOrder
-    longitude?: SortOrder
-    latitude?: SortOrder
-    created_at?: SortOrder
-    hardwareId?: SortOrder
-  }
-
-  export type LocationMinOrderByAggregateInput = {
-    id?: SortOrder
-    longitude?: SortOrder
-    latitude?: SortOrder
-    created_at?: SortOrder
-    hardwareId?: SortOrder
-  }
-
-  export type LocationSumOrderByAggregateInput = {
-    id?: SortOrder
-    hardwareId?: SortOrder
   }
 
   export type WhatsappOrderByRelevanceInput = {
@@ -9212,40 +8082,39 @@ export namespace Prisma {
   export type LevelCountOrderByAggregateInput = {
     id?: SortOrder
     Normal?: SortOrder
-    Siaga?: SortOrder
     Banjir?: SortOrder
   }
 
   export type LevelAvgOrderByAggregateInput = {
     id?: SortOrder
     Normal?: SortOrder
-    Siaga?: SortOrder
     Banjir?: SortOrder
   }
 
   export type LevelMaxOrderByAggregateInput = {
     id?: SortOrder
     Normal?: SortOrder
-    Siaga?: SortOrder
     Banjir?: SortOrder
   }
 
   export type LevelMinOrderByAggregateInput = {
     id?: SortOrder
     Normal?: SortOrder
-    Siaga?: SortOrder
     Banjir?: SortOrder
   }
 
   export type LevelSumOrderByAggregateInput = {
     id?: SortOrder
     Normal?: SortOrder
-    Siaga?: SortOrder
     Banjir?: SortOrder
   }
 
   export type StringFieldUpdateOperationsInput = {
     set?: string
+  }
+
+  export type DateTimeFieldUpdateOperationsInput = {
+    set?: Date | string
   }
 
   export type IntFieldUpdateOperationsInput = {
@@ -9256,8 +8125,8 @@ export namespace Prisma {
     divide?: number
   }
 
-  export type DateTimeFieldUpdateOperationsInput = {
-    set?: Date | string
+  export type BoolFieldUpdateOperationsInput = {
+    set?: boolean
   }
 
   export type HardwareCreateNestedOneWithoutElevationInput = {
@@ -9289,13 +8158,6 @@ export namespace Prisma {
     connect?: ElevationWhereUniqueInput | ElevationWhereUniqueInput[]
   }
 
-  export type LocationCreateNestedManyWithoutHardwareInput = {
-    create?: XOR<LocationCreateWithoutHardwareInput, LocationUncheckedCreateWithoutHardwareInput> | LocationCreateWithoutHardwareInput[] | LocationUncheckedCreateWithoutHardwareInput[]
-    connectOrCreate?: LocationCreateOrConnectWithoutHardwareInput | LocationCreateOrConnectWithoutHardwareInput[]
-    createMany?: LocationCreateManyHardwareInputEnvelope
-    connect?: LocationWhereUniqueInput | LocationWhereUniqueInput[]
-  }
-
   export type WhatsappCreateNestedManyWithoutHardwareInput = {
     create?: XOR<WhatsappCreateWithoutHardwareInput, WhatsappUncheckedCreateWithoutHardwareInput> | WhatsappCreateWithoutHardwareInput[] | WhatsappUncheckedCreateWithoutHardwareInput[]
     connectOrCreate?: WhatsappCreateOrConnectWithoutHardwareInput | WhatsappCreateOrConnectWithoutHardwareInput[]
@@ -9308,13 +8170,6 @@ export namespace Prisma {
     connectOrCreate?: ElevationCreateOrConnectWithoutHardwareInput | ElevationCreateOrConnectWithoutHardwareInput[]
     createMany?: ElevationCreateManyHardwareInputEnvelope
     connect?: ElevationWhereUniqueInput | ElevationWhereUniqueInput[]
-  }
-
-  export type LocationUncheckedCreateNestedManyWithoutHardwareInput = {
-    create?: XOR<LocationCreateWithoutHardwareInput, LocationUncheckedCreateWithoutHardwareInput> | LocationCreateWithoutHardwareInput[] | LocationUncheckedCreateWithoutHardwareInput[]
-    connectOrCreate?: LocationCreateOrConnectWithoutHardwareInput | LocationCreateOrConnectWithoutHardwareInput[]
-    createMany?: LocationCreateManyHardwareInputEnvelope
-    connect?: LocationWhereUniqueInput | LocationWhereUniqueInput[]
   }
 
   export type WhatsappUncheckedCreateNestedManyWithoutHardwareInput = {
@@ -9336,20 +8191,6 @@ export namespace Prisma {
     update?: ElevationUpdateWithWhereUniqueWithoutHardwareInput | ElevationUpdateWithWhereUniqueWithoutHardwareInput[]
     updateMany?: ElevationUpdateManyWithWhereWithoutHardwareInput | ElevationUpdateManyWithWhereWithoutHardwareInput[]
     deleteMany?: ElevationScalarWhereInput | ElevationScalarWhereInput[]
-  }
-
-  export type LocationUpdateManyWithoutHardwareNestedInput = {
-    create?: XOR<LocationCreateWithoutHardwareInput, LocationUncheckedCreateWithoutHardwareInput> | LocationCreateWithoutHardwareInput[] | LocationUncheckedCreateWithoutHardwareInput[]
-    connectOrCreate?: LocationCreateOrConnectWithoutHardwareInput | LocationCreateOrConnectWithoutHardwareInput[]
-    upsert?: LocationUpsertWithWhereUniqueWithoutHardwareInput | LocationUpsertWithWhereUniqueWithoutHardwareInput[]
-    createMany?: LocationCreateManyHardwareInputEnvelope
-    set?: LocationWhereUniqueInput | LocationWhereUniqueInput[]
-    disconnect?: LocationWhereUniqueInput | LocationWhereUniqueInput[]
-    delete?: LocationWhereUniqueInput | LocationWhereUniqueInput[]
-    connect?: LocationWhereUniqueInput | LocationWhereUniqueInput[]
-    update?: LocationUpdateWithWhereUniqueWithoutHardwareInput | LocationUpdateWithWhereUniqueWithoutHardwareInput[]
-    updateMany?: LocationUpdateManyWithWhereWithoutHardwareInput | LocationUpdateManyWithWhereWithoutHardwareInput[]
-    deleteMany?: LocationScalarWhereInput | LocationScalarWhereInput[]
   }
 
   export type WhatsappUpdateManyWithoutHardwareNestedInput = {
@@ -9380,20 +8221,6 @@ export namespace Prisma {
     deleteMany?: ElevationScalarWhereInput | ElevationScalarWhereInput[]
   }
 
-  export type LocationUncheckedUpdateManyWithoutHardwareNestedInput = {
-    create?: XOR<LocationCreateWithoutHardwareInput, LocationUncheckedCreateWithoutHardwareInput> | LocationCreateWithoutHardwareInput[] | LocationUncheckedCreateWithoutHardwareInput[]
-    connectOrCreate?: LocationCreateOrConnectWithoutHardwareInput | LocationCreateOrConnectWithoutHardwareInput[]
-    upsert?: LocationUpsertWithWhereUniqueWithoutHardwareInput | LocationUpsertWithWhereUniqueWithoutHardwareInput[]
-    createMany?: LocationCreateManyHardwareInputEnvelope
-    set?: LocationWhereUniqueInput | LocationWhereUniqueInput[]
-    disconnect?: LocationWhereUniqueInput | LocationWhereUniqueInput[]
-    delete?: LocationWhereUniqueInput | LocationWhereUniqueInput[]
-    connect?: LocationWhereUniqueInput | LocationWhereUniqueInput[]
-    update?: LocationUpdateWithWhereUniqueWithoutHardwareInput | LocationUpdateWithWhereUniqueWithoutHardwareInput[]
-    updateMany?: LocationUpdateManyWithWhereWithoutHardwareInput | LocationUpdateManyWithWhereWithoutHardwareInput[]
-    deleteMany?: LocationScalarWhereInput | LocationScalarWhereInput[]
-  }
-
   export type WhatsappUncheckedUpdateManyWithoutHardwareNestedInput = {
     create?: XOR<WhatsappCreateWithoutHardwareInput, WhatsappUncheckedCreateWithoutHardwareInput> | WhatsappCreateWithoutHardwareInput[] | WhatsappUncheckedCreateWithoutHardwareInput[]
     connectOrCreate?: WhatsappCreateOrConnectWithoutHardwareInput | WhatsappCreateOrConnectWithoutHardwareInput[]
@@ -9406,20 +8233,6 @@ export namespace Prisma {
     update?: WhatsappUpdateWithWhereUniqueWithoutHardwareInput | WhatsappUpdateWithWhereUniqueWithoutHardwareInput[]
     updateMany?: WhatsappUpdateManyWithWhereWithoutHardwareInput | WhatsappUpdateManyWithWhereWithoutHardwareInput[]
     deleteMany?: WhatsappScalarWhereInput | WhatsappScalarWhereInput[]
-  }
-
-  export type HardwareCreateNestedOneWithoutLocationInput = {
-    create?: XOR<HardwareCreateWithoutLocationInput, HardwareUncheckedCreateWithoutLocationInput>
-    connectOrCreate?: HardwareCreateOrConnectWithoutLocationInput
-    connect?: HardwareWhereUniqueInput
-  }
-
-  export type HardwareUpdateOneRequiredWithoutLocationNestedInput = {
-    create?: XOR<HardwareCreateWithoutLocationInput, HardwareUncheckedCreateWithoutLocationInput>
-    connectOrCreate?: HardwareCreateOrConnectWithoutLocationInput
-    upsert?: HardwareUpsertWithoutLocationInput
-    connect?: HardwareWhereUniqueInput
-    update?: XOR<XOR<HardwareUpdateToOneWithWhereWithoutLocationInput, HardwareUpdateWithoutLocationInput>, HardwareUncheckedUpdateWithoutLocationInput>
   }
 
   export type HardwareCreateNestedOneWithoutWhatsappInput = {
@@ -9460,6 +8273,17 @@ export namespace Prisma {
     endsWith?: string | StringFieldRefInput<$PrismaModel>
     search?: string
     not?: NestedStringFilter<$PrismaModel> | string
+  }
+
+  export type NestedDateTimeFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[]
+    notIn?: Date[] | string[]
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
   export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
@@ -9507,17 +8331,6 @@ export namespace Prisma {
     _max?: NestedStringFilter<$PrismaModel>
   }
 
-  export type NestedDateTimeFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[]
-    notIn?: Date[] | string[]
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
-  }
-
   export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[]
@@ -9530,6 +8343,19 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedDateTimeFilter<$PrismaModel>
     _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type NestedBoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
+  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type NestedFloatWithAggregatesFilter<$PrismaModel = never> = {
@@ -9550,14 +8376,12 @@ export namespace Prisma {
 
   export type HardwareCreateWithoutElevationInput = {
     name: string
-    Location?: LocationCreateNestedManyWithoutHardwareInput
     Whatsapp?: WhatsappCreateNestedManyWithoutHardwareInput
   }
 
   export type HardwareUncheckedCreateWithoutElevationInput = {
     id?: number
     name: string
-    Location?: LocationUncheckedCreateNestedManyWithoutHardwareInput
     Whatsapp?: WhatsappUncheckedCreateNestedManyWithoutHardwareInput
   }
 
@@ -9579,25 +8403,27 @@ export namespace Prisma {
 
   export type HardwareUpdateWithoutElevationInput = {
     name?: StringFieldUpdateOperationsInput | string
-    Location?: LocationUpdateManyWithoutHardwareNestedInput
     Whatsapp?: WhatsappUpdateManyWithoutHardwareNestedInput
   }
 
   export type HardwareUncheckedUpdateWithoutElevationInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
-    Location?: LocationUncheckedUpdateManyWithoutHardwareNestedInput
     Whatsapp?: WhatsappUncheckedUpdateManyWithoutHardwareNestedInput
   }
 
   export type ElevationCreateWithoutHardwareInput = {
     water_elevation: number
+    latitude: string
+    longitude: string
     created_at?: Date | string
   }
 
   export type ElevationUncheckedCreateWithoutHardwareInput = {
     id?: number
     water_elevation: number
+    latitude: string
+    longitude: string
     created_at?: Date | string
   }
 
@@ -9608,29 +8434,6 @@ export namespace Prisma {
 
   export type ElevationCreateManyHardwareInputEnvelope = {
     data: ElevationCreateManyHardwareInput | ElevationCreateManyHardwareInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type LocationCreateWithoutHardwareInput = {
-    longitude: string
-    latitude: string
-    created_at?: Date | string
-  }
-
-  export type LocationUncheckedCreateWithoutHardwareInput = {
-    id?: number
-    longitude: string
-    latitude: string
-    created_at?: Date | string
-  }
-
-  export type LocationCreateOrConnectWithoutHardwareInput = {
-    where: LocationWhereUniqueInput
-    create: XOR<LocationCreateWithoutHardwareInput, LocationUncheckedCreateWithoutHardwareInput>
-  }
-
-  export type LocationCreateManyHardwareInputEnvelope = {
-    data: LocationCreateManyHardwareInput | LocationCreateManyHardwareInput[]
     skipDuplicates?: boolean
   }
 
@@ -9675,35 +8478,10 @@ export namespace Prisma {
     NOT?: ElevationScalarWhereInput | ElevationScalarWhereInput[]
     id?: IntFilter<"Elevation"> | number
     water_elevation?: FloatFilter<"Elevation"> | number
+    latitude?: StringFilter<"Elevation"> | string
+    longitude?: StringFilter<"Elevation"> | string
     created_at?: DateTimeFilter<"Elevation"> | Date | string
     hardwareId?: IntFilter<"Elevation"> | number
-  }
-
-  export type LocationUpsertWithWhereUniqueWithoutHardwareInput = {
-    where: LocationWhereUniqueInput
-    update: XOR<LocationUpdateWithoutHardwareInput, LocationUncheckedUpdateWithoutHardwareInput>
-    create: XOR<LocationCreateWithoutHardwareInput, LocationUncheckedCreateWithoutHardwareInput>
-  }
-
-  export type LocationUpdateWithWhereUniqueWithoutHardwareInput = {
-    where: LocationWhereUniqueInput
-    data: XOR<LocationUpdateWithoutHardwareInput, LocationUncheckedUpdateWithoutHardwareInput>
-  }
-
-  export type LocationUpdateManyWithWhereWithoutHardwareInput = {
-    where: LocationScalarWhereInput
-    data: XOR<LocationUpdateManyMutationInput, LocationUncheckedUpdateManyWithoutHardwareInput>
-  }
-
-  export type LocationScalarWhereInput = {
-    AND?: LocationScalarWhereInput | LocationScalarWhereInput[]
-    OR?: LocationScalarWhereInput[]
-    NOT?: LocationScalarWhereInput | LocationScalarWhereInput[]
-    id?: IntFilter<"Location"> | number
-    longitude?: StringFilter<"Location"> | string
-    latitude?: StringFilter<"Location"> | string
-    created_at?: DateTimeFilter<"Location"> | Date | string
-    hardwareId?: IntFilter<"Location"> | number
   }
 
   export type WhatsappUpsertWithWhereUniqueWithoutHardwareInput = {
@@ -9731,59 +8509,15 @@ export namespace Prisma {
     hardwareId?: IntFilter<"Whatsapp"> | number
   }
 
-  export type HardwareCreateWithoutLocationInput = {
-    name: string
-    Elevation?: ElevationCreateNestedManyWithoutHardwareInput
-    Whatsapp?: WhatsappCreateNestedManyWithoutHardwareInput
-  }
-
-  export type HardwareUncheckedCreateWithoutLocationInput = {
-    id?: number
-    name: string
-    Elevation?: ElevationUncheckedCreateNestedManyWithoutHardwareInput
-    Whatsapp?: WhatsappUncheckedCreateNestedManyWithoutHardwareInput
-  }
-
-  export type HardwareCreateOrConnectWithoutLocationInput = {
-    where: HardwareWhereUniqueInput
-    create: XOR<HardwareCreateWithoutLocationInput, HardwareUncheckedCreateWithoutLocationInput>
-  }
-
-  export type HardwareUpsertWithoutLocationInput = {
-    update: XOR<HardwareUpdateWithoutLocationInput, HardwareUncheckedUpdateWithoutLocationInput>
-    create: XOR<HardwareCreateWithoutLocationInput, HardwareUncheckedCreateWithoutLocationInput>
-    where?: HardwareWhereInput
-  }
-
-  export type HardwareUpdateToOneWithWhereWithoutLocationInput = {
-    where?: HardwareWhereInput
-    data: XOR<HardwareUpdateWithoutLocationInput, HardwareUncheckedUpdateWithoutLocationInput>
-  }
-
-  export type HardwareUpdateWithoutLocationInput = {
-    name?: StringFieldUpdateOperationsInput | string
-    Elevation?: ElevationUpdateManyWithoutHardwareNestedInput
-    Whatsapp?: WhatsappUpdateManyWithoutHardwareNestedInput
-  }
-
-  export type HardwareUncheckedUpdateWithoutLocationInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    Elevation?: ElevationUncheckedUpdateManyWithoutHardwareNestedInput
-    Whatsapp?: WhatsappUncheckedUpdateManyWithoutHardwareNestedInput
-  }
-
   export type HardwareCreateWithoutWhatsappInput = {
     name: string
     Elevation?: ElevationCreateNestedManyWithoutHardwareInput
-    Location?: LocationCreateNestedManyWithoutHardwareInput
   }
 
   export type HardwareUncheckedCreateWithoutWhatsappInput = {
     id?: number
     name: string
     Elevation?: ElevationUncheckedCreateNestedManyWithoutHardwareInput
-    Location?: LocationUncheckedCreateNestedManyWithoutHardwareInput
   }
 
   export type HardwareCreateOrConnectWithoutWhatsappInput = {
@@ -9805,26 +8539,19 @@ export namespace Prisma {
   export type HardwareUpdateWithoutWhatsappInput = {
     name?: StringFieldUpdateOperationsInput | string
     Elevation?: ElevationUpdateManyWithoutHardwareNestedInput
-    Location?: LocationUpdateManyWithoutHardwareNestedInput
   }
 
   export type HardwareUncheckedUpdateWithoutWhatsappInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     Elevation?: ElevationUncheckedUpdateManyWithoutHardwareNestedInput
-    Location?: LocationUncheckedUpdateManyWithoutHardwareNestedInput
   }
 
   export type ElevationCreateManyHardwareInput = {
     id?: number
     water_elevation: number
-    created_at?: Date | string
-  }
-
-  export type LocationCreateManyHardwareInput = {
-    id?: number
-    longitude: string
     latitude: string
+    longitude: string
     created_at?: Date | string
   }
 
@@ -9835,38 +8562,24 @@ export namespace Prisma {
 
   export type ElevationUpdateWithoutHardwareInput = {
     water_elevation?: FloatFieldUpdateOperationsInput | number
+    latitude?: StringFieldUpdateOperationsInput | string
+    longitude?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ElevationUncheckedUpdateWithoutHardwareInput = {
     id?: IntFieldUpdateOperationsInput | number
     water_elevation?: FloatFieldUpdateOperationsInput | number
+    latitude?: StringFieldUpdateOperationsInput | string
+    longitude?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ElevationUncheckedUpdateManyWithoutHardwareInput = {
     id?: IntFieldUpdateOperationsInput | number
     water_elevation?: FloatFieldUpdateOperationsInput | number
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type LocationUpdateWithoutHardwareInput = {
-    longitude?: StringFieldUpdateOperationsInput | string
     latitude?: StringFieldUpdateOperationsInput | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type LocationUncheckedUpdateWithoutHardwareInput = {
-    id?: IntFieldUpdateOperationsInput | number
     longitude?: StringFieldUpdateOperationsInput | string
-    latitude?: StringFieldUpdateOperationsInput | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type LocationUncheckedUpdateManyWithoutHardwareInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    longitude?: StringFieldUpdateOperationsInput | string
-    latitude?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
