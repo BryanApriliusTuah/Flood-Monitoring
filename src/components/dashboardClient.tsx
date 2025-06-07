@@ -16,6 +16,7 @@ import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { ChartAreaInteractive } from "@/components/chart-area-interactive";
 import SignUpType from "@/domain/entities/signup.type";
 import axios from "axios";
+import Socket from "@/components/socket";
 
 export const DashboardContext = createContext<ContextType | null>(null);
 
@@ -90,6 +91,7 @@ export default function dashboardClient({
 							<div className="@container/main flex flex-1 flex-col gap-2">
 								<div className="flex flex-col gap-4 py-4 md:gap-6 md:py-6">
 									<SectionCards data={sectionCardData} />
+									<Socket />
 									<div className="px-4 lg:px-6">
 										<ChartAreaInteractive
 											data={chartData}

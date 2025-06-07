@@ -227,7 +227,7 @@ const SectionCards = async (): Promise<SectionCardType> => {
 
 			predictPersentage = String(
 				(
-					((waterIndexLevel.water1 - parseFloat(prediction)) /
+					((parseFloat(prediction) - waterIndexLevel.water1) /
 						waterIndexLevel.water1) *
 					100
 				).toFixed(2)
